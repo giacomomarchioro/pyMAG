@@ -3,10 +3,49 @@ from __future__ import print_function
 from datetime import datetime
 import MAGtools 
 import warnings
+import re
 
 
+class image_dimension(object):
+    """
+Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_dimensions>, per il quale è definito un tipo complesso specializzato, niso:dimensions, appartenente al namespace niso . L'elemento <image_dimensions> è obbligatorio e non ripetibile. Il tipo niso:dimensions è definito come xsd:sequence e comprende i seguenti elementi:
+    
+    ATTENZIONE: Non sembrano corrispondere ad i termini aggiornati.
+    """
+    def __init__(self):
+        self.imagelenght = None
+        self.imagewidth = None
+        self.source_xdimension = None
+        self.source_ydimension = None
 
+    def set_imagelengthandwidth(self,length,width):
+        """
+        Metodo per settare il numero di pixel verticali e orizzontali dell'immagine.
 
+        Parameters
+        ----------
+        length : int
+            contiene la lunghezza dell'immagine, vale a dire la dimensione verticale espressa in pixel. L'elemento è obbligatorio e non ripetibile. Raccomandazione NISO (Data Dictionary, p. 23)
+        width : int
+            contiene la larghezza dell'immagine, vale a dire la dimensione orizzontale espressa in pixel. L'elemento è obbligatorio e non ripetibile. Raccomandazione NISO (Data Dictionary, p. 22)
+        """
+        lenght = MAGtools.checkpositiveinteger(lenght)
+        width = MAGtools.checkpositiveinteger(width)
+        self.imagelenght = lenght
+        self.imagewidth = width
+
+    def set_xydimensions(self,x_inches,y_inches):
+        """[summary]
+        Attenzione: non sembra sia aggiornato.
+        Parameters
+        ----------
+        x_inches : float
+             contiene la larghezza (dimensione orizzontale) dell'oggetto analogico digitalizzato espresso in pollici (inches). L'elemento è opzionale e non ripetibile. Raccomandazione NISO (Data Dictionary, pp. 25-26)
+        y_inches : float
+            contiene la lunghezza (dimensione verticale) dell'oggetto analogico digitalizzato espresso in pollici (inches). L'elemento è opzionale e non ripetibile. Raccomandazione NISO (Data Dictionary, p. 26)
+        """
+        self.source_xdimension = x_inches
+        self.source_ydimension = y_inches
 
 
 class image_metrics(object):
@@ -17,8 +56,7 @@ class image_metrics(object):
         self.ysamplingfrequency = None
         self.photometricinterpretation = None
         self.bitpersample = None
-        self.ppi = None
-        self.dpi = None
+
 
     def set_samplingfrequencyunit(self,value):
         """obbligatorio e non ripetibile, definisce l'unità di misura usata 
@@ -335,16 +373,149 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
 
         
 class img(object):
-    def __init__(self):
+    """https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_img
+    La sezione IMG raccoglie i metadati amministrativi e gestionali relativi alle immagini statiche. Alcuni di questi dati, in realtà, possono essere raccolti direttamente all'interno della sezione GEN, grazie all'elemento <img_group>, il cui contenuto verrà tuttavia trattato in questa sezione per omogeneità tematica.
+
+La sezione IMG utilizza il namespace niso: che fa riferimento a uno schema che traduce le linee guida del Data Dictionary NISO. Tale schema è stato realizzato dal Comitato MAG e verrà quindi qui interamente documentato di volta in volta nei successivi paragrafi e complessivamente nel paragrafo Lo schema Niso .
+
+La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna immagine digitale descritta da MAG. L'elemento è opzionale e ripetibile. Il suo contenuto è di tipo xsd:sequence, e può contenere i seguenti elementi:
+    L'elemento file si torva qui già scomposto in fileLocation (tipo di link es. URL) e fileLink (il percorso del file)
+    """
+    def __init__(self,sequence_number):
         # attributi
         self.ID = None
+        self.imggroupID = None
+        self.holdingsID = None
         # elementi
-        self.image_metrics = None
+        self.sequence_number = sequence_number
+        self.nomenclature = None
+        self.usage = None 
+        self.scale = None 
+        self.file = None
+        self.filesize = None
+        self.image_dimensions = image_dimension()
+        self.image_metrics = image_metrics()
         self.ppi = None
         self.dpi = None
-        self.format = None
-        self.scanning = None
+        self.format = format_()
+        self.scanning = scanning()
+        self.datetimecreated = None
+        self.target = None 
+        self.altimg = None
+        self.note = None 
+        self.fileLocation = None
+        self.fileLink = None
+
     
+
+    def set_nomencalature(self,value):
+        """A ciascuna immagine deve inoltre essere attribuita una denominazione, per esempio Pagina 1, Carta 2v, ecc. Tale denominazione viene codificata dall'elemento <nomenclature>. L'elemento è di tipo xsd:string; si consiglia comunque di definire una nomenclatura controllata negli standard di progetto. L'elemento è obbligatorio e non ripetibile
+        Parameters
+        ----------
+        value : int
+            numero di pixels.
+        """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
+        msg = "Tali misurazione è sconsigliata in quanto obsoleta e imprecisa; è conservata solo per garantire la compatibilità con le versioni precedenti di MAG. Si consiglia, invece di usare <niso:xsamplingfrequency> e <niso:ysamplingfrequency> all'interno di <image_metrics>. L'uso di <dpi> e <ppi> di fatto equivalgono a <niso:xsamplingfrequency> e <niso:ysamplingfrequency> con valori uguali e con <niso:samplingfrequencyunit> = 2."
+        self.nomenclature = value
+
+    def set_usage(self,uso,copyright):
+        """A ciascuna immagine deve inoltre essere attribuita una denominazione, per esempio Pagina 1, Carta 2v, ecc. Tale denominazione viene codificata dall'elemento <nomenclature>. L'elemento è di tipo xsd:string; si consiglia comunque di definire una nomenclatura controllata negli standard di progetto. L'elemento è obbligatorio e non ripetibile
+        Parameters
+        ----------
+        value : int
+            numero di pixels.
+        """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
+        conv_dict={"digitalizzazione completa": "0",
+                     "uso pubblico": "1",
+                     "bassa risoluzione":"2",
+                     "preview":"4"}
+
+        conv_dict2 = {"a":"il repository non ha il copyright dell'oggetto digitale",
+                      "b":"il repository ha il copyright dell'oggetto digitale"}
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
+        uso = MAGtools.validvalue(value=uso,valuedict=conv_dict,url=url)
+        copyright = MAGtools.validvalue(value=copyright,valuedict=conv_dict2,url=url)
+        self.usage = uso+copyright
+
+    def set_side(self,side):
+        """
+        Esattamente come per la fotocopiatura, la scansione di un oggetto analogico può procedere in vario modo, è possibile infatti procedere per una pagina alla volta oppure per pagine affiancate. Tale informazione può essere registrata grazie all'elemento opzionale e non ripetibile <side>, per il quale è definito un tipo semplice specializzato denominato a sua volta side. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
+
+            left : l'immagine contiene la digitalizzazione della pagina sinistra di un volume o di un fascicolo
+            right : l'immagine contiene la digitalizzazione della pagina destra di un volume o di un fascicolo
+            double : l'immagine contiene la digitalizzazione di una doppia pagina di un volume o di un fascicolo
+            part : l'immagine contiene la digitalizzazione parziale dell'oggetto analogico fonte.
+        
+        """
+        lista = ['left','right','double','part']
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scansione"
+        self.side = valueinlist(value,lista,url)
+
+    def set_file(self,link,Location,):
+        """
+        Il link è in genere il percorso che punta alla risorsa. 
+
+        Il tipo complesso link contiene anche la definizione di un ulteriore attributo Location che specifica il tipo di link definito da xlink:href. I valori possibili sono:
+
+        URN: Uniform Resource Name;
+        URL: Uniform Resource Locator;
+        URI: Uniform Resource Identifier (sui primi tre tipi di identificatori di risorsa, si veda la panoramica informativa del W3C http://www.w3.org/Addressing/)
+        PURL: Persistent URL, sviluppato dalla OCLC, Online Computer Library Center (si veda il sito PURL http://purl.oclc.org/).
+        HANDLE: tipologia di riferimenti definiti secondo il sistema Handle della CNRI, Corporation for National Research Initiatives (si veda il sito dell'Handle System http://www.handle.net/).
+        DOI: Digital Object Identifier (si veda il sito della Doi Foundation http://www.doi.org/).
+        OTHER: altro.
+        Un percorso su rete locale può essere indicato come URL.
+
+        """
+        lista = ['URN','URL','URI','PURL','HANDLE','DOI','OTHER']
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#xlink"
+        Location = valueinlist(Location,lista,url)
+        self.fileLocation = Location
+        self.fileLink = link
+
+    def set_md5(self,value):
+        """
+        L'integrità del contenuto digitale è verificata grazie alla sua impronta digitale, registrata dall'elemento <md5>, un codice standard di 32 caratteri che viene rilevato automaticamente grazie all'impiego di apposti applicativi. Le regole per il rilevamento dell'impronta devono essere definite localmente, così come i momenti per il rilievo stesso (prima del momento del deposito, al momento del deposito, o in entrambi i momenti). Si tratta di una raccomandazione NISO e come tale il tipo specializzato che governa il contenuto dell'elemento appartiene al namespace niso ed è denominato niso:checksum . Tale tipo è definito come restrizione di xsd:string che limita la lunghezza massima della stringa a 32 caratteri.
+        
+        Parameters
+        ----------
+        value : str
+            la checksum md5
+        """
+        if len(re.findall(r"([a-fA-F\d]{32})", value)) == 1:
+            warnings.warn("Non sembra un md5 valido.")
+        self.md5 = value
+
+    def set_scale(self,value):
+        """Durante la scansione è possibile impiegare una scala millimetrica da affiancare all'oggetto sottoposto a scansione in modo da ricostruire le dimensioni dell'originale partendo dalla sua riproduzione digitale. L'informazione può essere registrata grazie all'elemento opzionale e non ripetibile <scale> per il quale è definito un tipo semplice specializzato denominato millimetric_scale. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
+
+        0 : non è presente alcuna scala millimetrica
+        1 : è presente una scala millimetrica
+
+        Parameters
+        ----------
+        value : [type]
+            [description]
+        """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
+        conv_dict={"0" : "non è presente alcuna scala millimetrica",
+                   "1" : "è presente una scala millimetrica"}
+        self.scale = MAGtools.validvalue(value=value,valuedict=conv_dict,url=url)
+
+    def set_filesize(self,value):
+        """La grandezza del file (che va espressa in byte) è registrata dell'elemento <filesize>. L'elemento è di tipo xsd:Integer (un numero positivo), è opzionale e non ripetibile. Anche l'elemento <filesize> è una raccomandazione NISO (Cfr. Data Dictionary, p. 13).
+
+        Parameters
+        ----------
+        value : int
+            la dimensione del file in byte
+        """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_file"
+        value = MAGtools.checkpositiveinteger(value,url)
+        self.filesize = value
+
     def set_ppi(self,value):
         """pixel per inch, cioè il numero di pixel presenti per ogni pollice quadrato,
         Parameters
@@ -377,11 +548,11 @@ class img_group(object):
         # attributi
         self.ID = None
         # elementi
-        self.image_metrics = None
+        self.image_metrics =  image_metrics()
         self.ppi = None
         self.dpi = None
-        self.format = None
-        self.scanning = None
+        self.format = format_()
+        self.scanning = scanning()
 
     
     def set_ppi(self,value):
@@ -397,7 +568,7 @@ class img_group(object):
         MAGtools.checkpositiveinteger(value=value,url=url)
         self.ppi = value
 
-      def set_dpi(self,value):
+    def set_dpi(self,value):
         """dots per inch, cioè il numero di punti presenti per ogni pollice quadrato. Si applica propriamente agli output (testo, immagini) prodotti dalle stampanti e non alle immagini memorizzate su supporto digitale; tale misurazione è tuttavia normalmente utilizzata anche all'interno di progetti di digitalizzazione.
         Parameters
         ----------
@@ -501,7 +672,7 @@ class gen(object):
         self.agency = MAGtools.check_agency(agency)
 
 
-    def set_access_rights(self,access_rights):
+    def set_access_rights(self,value):
         """dichiara le condizioni di accessibilità dell'oggetto descritto nella sezione BIB. 
         Il suo contenuto deve assumere uno dei seguenti valori:
     0 : uso riservato all'interno dell'istituzione

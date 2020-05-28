@@ -1,20 +1,24 @@
 from __future__ import print_function
-import zipfile
 import hashlib
 import xml.etree.ElementTree as ET
 import numpy as np
-import MAG_sections
+import GEN_IMG_sections
+import BIB_section
+import STRU_section
 """
 
 """
 __all__ = ['MAGFile']
 
 class MAGFile(object):
-    """docstring for x3pfile."""
+    """An object oriented representation of the MAG application schema."""
     def __init__(self, filepath=None):
-        self.gen = _x3pfileclasses.Record1()
-        self.stru = _x3pfileclasses.Record2()
-        self.img = _x3pfileclasses.Record3()
+        self.gen = GEN_IMG_sections.gen()
+        self.structs = [] 
+        self.bib = BIB_section.bib()
+        self.imgs = []
+        # counters
+        self.struct_counter = 1
         if filepath is not None:
             self.load(filepath)
 

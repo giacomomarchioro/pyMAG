@@ -42,7 +42,7 @@ def check_agency(codice):
 
 
 def checkgroupID(func):
-    def function_wrapper(self,ID,raiseerror):
+    def function_wrapper(self,ID):
         """
         ID : l'attributo è di tipo xsd:ID, vale a dire che contiene un identificatore 
         univoco che consentirà poi di richiamare l'intera sezione. Tale identificatore 
@@ -94,3 +94,57 @@ def checkpositiveinteger(value,url):
     if int(value) < 11:
         print("Atteznione valore anomalo: %s" %value)
     return str(value)
+
+def URIescaping(uri):
+    """ Codifica i caratteri nell'URI con gli escape necessari.
+    In un URI (Uniform Resource Identifier) alcuni caratteri hanno infatti un significato particolare e quindi per usarli al di fuori del loro significato è necessario impiegare una codifica particolare. Nel dettaglio, per forzare il sistema ad accettare un carattere dotato di un particolare significato senza tale significato è necessario introdurre un escape, vale a dire il simbolo di percento % seguito dalla codifica esadecimale (composta di due cifre) del carattere stesso. Per esempio lo spazio ha il significato speciale di "fine di un URI", se vogliamo invece che non venga considerato in questo modo, dovremo sostituirlo con %20. Un altro carattere che ha un significato particolare è il segno di slash "/" che significa "gerarchicamente inferiore" e che può essere forzato grazie alla codifica %2F.
+
+    I seguenti caratteri sono riservati e devono essere codificati con un escape:
+
+    /	%2F
+    ?	%3F
+    #	%23
+    [ e ]	%5B e %5D
+    ;	%3B
+    :	%3A
+    @	%40
+    &	%26
+    =	%3D
+    +	%2B
+    $	%24
+    ,	%2C
+    <	%3C
+    >	%3E
+    %	%25
+    "	%22
+    { e }	%7B e %7D
+    |	%7C
+    \	%5C
+    ^	%5E
+    `	%60
+    (spazio)	%20
+    Sono invece utilizzabili i seguenti caratteri:
+    numeri
+    lettere maiuscole e minuscole
+    segni di punteggiatura quali (separati da |) - | _ | . | ! | ~ | * | ' | ( | )
+
+    Parameters
+    ----------
+    uri : [type]
+        [description]
+    """
+    caracter_tohex = {"/":"%2F","?":"%3F","#":"%23","[":"%5B","]":"%5D",
+    ";":"%3B",":":"%3A","@":"%40","&":"%26","=":"%3D","+":"%2B","$":"%24",
+    ",":"%2C","<":"%3C",">":"%3E","%":"%25","\"":"%22","{":"%7B","}":"%7D",
+    "|":"%7C","\\":"%5C","^":"%5E","`":"%60"," ":"%20"}
+
+    for chraracter in uri:
+        uri = identifiertxt.replace(chraracter,caracter_tohex[i])
+    return uri
+
+
+def checkSICI():
+    raise NotImplementedError
+
+def createSICI():
+    raise NotImplementedError
