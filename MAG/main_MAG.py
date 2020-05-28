@@ -5,19 +5,7 @@ import xml.etree.ElementTree as ET
 import numpy as np
 import MAG_sections
 """
-This module is an implementation of the .x3p format datastructure using the dot
-notation. The xml structure of the .x3p is almost always mantained and made
-accessible using the dot notation (e.g. for accessing the revision we can use
-x3pfile.record1.revison).
-Few execptions have been made to this rule: when there is a data structure that
-is clearly easier to describe using an array, a numpy array is used.
-This happens:
-    - for the rotation matrix there are no r11,r12 etc. etc. params but a 3 x 3
-      numpy matrix (r11 at index 0,0)
-    - in case there is a profile encoded in the xml file ( a DataList).
-    -
-Issues not solved:
-   - there are some problems with encoding e.g. accent, greekletters
+
 """
 __all__ = ['MAGFile']
 
@@ -30,20 +18,10 @@ class MAGFile(object):
         if filepath is not None:
             self.load(filepath)
 
-    def convert_datatype(self, dtype):
-        '''
-        This tool is used to cenvert datatype
-        '''
-        dt = {"I": np.int16,
-              "L": np.int32,
-              "F": np.float32,
-              "D": np.float64,
-              np.int16: "I",
-              np.int32: "L",
-              np.float32: "F",
-              np.float64: "D"}
-        return dt[dtype]
+ 
 
+
+#### da rimuovere
     def set_VendorSpecificID(self, url):
         '''This is an extension hook for vendor specific data formats derived
         from ISO5436_2_XML. This tag contains a vendor specific ID which is the
