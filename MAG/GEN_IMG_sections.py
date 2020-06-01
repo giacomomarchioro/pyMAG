@@ -92,8 +92,9 @@ Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_
         width : int
             contiene la larghezza dell'immagine, vale a dire la dimensione orizzontale espressa in pixel. L'elemento è obbligatorio e non ripetibile. Raccomandazione NISO (Data Dictionary, p. 22)
         """
-        length = MAGtools.checkpositiveinteger(length)
-        width = MAGtools.checkpositiveinteger(width)
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_dimensions"
+        length = MAGtools.checkpositiveinteger(length,url)
+        width = MAGtools.checkpositiveinteger(width,url)
         self.imagelength = length
         self.imagewidth = width
 
@@ -335,6 +336,8 @@ class scanning(object):
     """
 
     def __init__(self):
+        # usiamo un flag per gestire il fatto che ha degli attributi obbligatori anche se lui stesso non lo è
+        self.staus = 'NotUsed'
         self.sourcetype = None
         self.scanningagency = None
         self.devicesource = None
@@ -372,6 +375,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
                 MAGtools.valueinlist(value=value,lista=lista,url=url)
         else:
             value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.staus = 'Used'
         self.sourcetype = value
 
     def set_scanningagency(self,value):
@@ -381,6 +385,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value : str
             una stringa contentente il nome dell'ente o della persona.
         """
+        self.staus = 'Used'
         self.scanningagency = value
 
     def set_devicesource(self,value):
@@ -394,6 +399,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         lista = [ "scanner", "fotocamera digitale", "videocamera",]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.staus = 'Used'
         self.devicesource = value
 
     def set_scanner_manufacturer(self,value):
@@ -407,6 +413,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         lista = [ "scanner", "fotocamera digitale", "videocamera",]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.staus = 'Used'
         self.scanner_manufacturer = value
     
     def set_scanner_model(self,value):
@@ -420,6 +427,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
    
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.staus = 'Used'
         self.scanner_manufacturer = value
     
     def set_capture_software(self,value):
@@ -437,6 +445,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         version = splitted[-1]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.staus = 'Used'
         self.scanner_manufacturer = value
 
     
@@ -514,8 +523,10 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         conv_dict2 = {"a":"il repository non ha il copyright dell'oggetto digitale",
                       "b":"il repository ha il copyright dell'oggetto digitale"}
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
-        uso = MAGtools.validvalue(value=uso,valuedict=conv_dict,url=url)
-        copyright = MAGtools.validvalue(value=copyright,valuedict=conv_dict2,url=url)
+        if uso is not None:
+            uso = MAGtools.validvalue(value=uso,valuedict=conv_dict,url=url)
+        if copyright is not None:
+            copyright = MAGtools.validvalue(value=copyright,valuedict=conv_dict2,url=url)
         if stringapersonalizzata != None:
             if stringapersonalizzata[0] not in [1,2,3,4]:
                 warnings.warn("Si consiglia di utilizzare il numero corrispondente al caso come indicato da ICCU. %s" %url)
@@ -572,7 +583,7 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
             la checksum md5
         """
         if len(re.findall(r"([a-fA-F\d]{32})", value)) == 1:
-            warnings.warn("Non sembra un md5 valido.")
+            warnings.warn("Non sembra un md5 valido.",stacklevel=2)
         self.md5 = value
 
     def set_scale(self,value):

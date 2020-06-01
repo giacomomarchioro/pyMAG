@@ -13,7 +13,9 @@ def check_datetime(datetime_str,url=None):
     try:
         datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S')
     except ValueError:
-        warnings.warn('La data non è nel formato corretto! (es. 2020-6-14T18:30:29)\n%s' %url)
+        warnings.warn(('La data non è nel formato corretto!'
+        ' dovrebbe essere per es. 2020-6-14T18:30:29'
+        ' Era invece %s\n%s' %(datetime_str,url)),stacklevel=3)
     return datetime_str
 
 
@@ -22,7 +24,7 @@ def check_url(url):
         request = requests.get(url)
         if request.status_code != 200:
             print(request.status_code)
-            warnings.warn('Esiste il server ma non la pagina')
+            warnings.warn('Esiste il server ma non la pagina',stacklevel=3)
     except ConnectionError:
         print("Errore di connessione indirizzo non valido!")
     except requests.exceptions.MissingSchema:
@@ -65,7 +67,7 @@ def checkgroupID(func):
         """
         link = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
         if ID[0].isdigit():
-            warnings.warn("L'ID non può cominciare con un numero. Invece comincia con %s.\n%s" %(ID[0],link))
+            warnings.warn("L'ID non può cominciare con un numero. Invece comincia con %s.\n%s" %(ID[0],link),stacklevel=3)
         for indx, carat in enumerate(ID):
             if carat in r"""!"#$%&'()*+, /:;<=>?@[\]^`{|}~ """:
                 if carat == " ":
@@ -73,7 +75,7 @@ def checkgroupID(func):
                 arrow = " "*(indx) + "^"
                 msg = "L'attributo ID non può contenere segni di punteggiatura \
 diversi dal punto, il trattino e il trattino basso. Ho trovato %s: \n%s\n%s\n%s" %(carat,ID,arrow,link)
-                warnings.warn(msg)
+                warnings.warn(msg,stacklevel=3)
         func(self,ID)
         return ID
     return function_wrapper
@@ -87,13 +89,13 @@ def validvalue(value,valuedict,url):
     else:
         fields = list(valuedict) + list(set(valuedict.values()))
         warnings.warn(("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
-                        "Era invece: %s " %(", ".join(fields),url,value)))
+                        "Era invece: %s " %(", ".join(fields),url,value)),stacklevel=4)
     return value
 
 def valueinlist(value,lista,url):
     if value not in lista:
         warnings.warn(("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
-                        "Era invece: %s " %(", ".join(lista),url,value)))
+                        "Era invece: %s " %(", ".join(lista),url,value)),stacklevel=4)
     return value
 
 
@@ -103,7 +105,7 @@ def checkpositiveinteger(value,url):
         int(value)
     except ValueError:
         warnings.warn(("Il valore può essere deve essere un intero positivo.\nMaggiori informazioni:%s \n"
-                        "Era invece: %s " %(url,value)))
+                        "Era invece: %s " %(url,value)),stacklevel=3)
     if int(value) < 11:
         print("Atteznione valore anomalo: %s" %value)
     return str(value)

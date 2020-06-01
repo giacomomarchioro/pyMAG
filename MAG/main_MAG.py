@@ -4,9 +4,10 @@ import numpy as np
 from . import GEN_IMG_sections
 from . import BIB_section
 from . import STRU_section
+from .MAGtools import obbligatorio 
 import warnings
 import logging
-logging.captureWarnings(True)
+#logging.captureWarnings(True)
 """
 
 """
@@ -26,6 +27,7 @@ class MAGFile(object):
         self.struct_counter = 0
         self.imgs_counter = 0
         self.holdings_counter = 0
+        self.warnings = warnings
         if filepath is not None:
             self.load(filepath)
     
@@ -46,7 +48,51 @@ class MAGFile(object):
     def check(self):
         # image metrics
         for img in self.imgs:
-            pass
+            sn = img.sequence_number
+            fields = vars(img)
+            for i in fields:
+                if fields[i] is obbligatorio:
+                    warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+            i_d = vars(img.image_dimensions)
+            for i in i_d:
+                    if i_d[i] is obbligatorio and i_dg[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+            i_m = vars(img.image_metrics)
+            i_f = vars(img.format)
+            i_s = vars(img.scanning)
+            # il campo potrebbe essere definito all'interno di un image-group
+            if fields['imggroupID'] is not None:
+                imggrp = self.gen.img_groups[fields['imggroupID']]
+                i_dg = vars(imggrp.image_dimensions)
+                i_mg = vars(imggrp.image_metrics)
+                i_fg = vars(imggrp.format)
+                i_sg = vars(imggrp.scanning)
+                for i in i_m:
+                    if i_m[i] is obbligatorio and i_mg[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                for i in i_f:
+                    if i_f[i] is obbligatorio and i_fg[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                if img.scanning.status == 'Used':
+                    for i in i_s:
+                        if i_s[i] is obbligatorio and i_sg[i] is obbligatorio:
+                            warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+            else:
+                for i in i_m:
+                    if i_m[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                for i in i_f:
+                    if i_f[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                if img.scanning.status == 'Used':
+                    for i in i_s:
+                        if i_s[i] is obbligatorio:
+                            warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+
+
+
+                
+            
 
 
 
@@ -124,14 +170,14 @@ class MAGFile(object):
 
 
         def load_image_dimension(elem,root):
-            imglengt, imgheight = None, None
+            imglengt, imagelength = None, None
             source_xdimension, source_ydimension = None, None
 
             for se in elem:
                 if se.tag.endswith('imagewidth'):
                     imagewidth = se.text
                 elif se.tag.endswith('imagelength'):
-                    imagelenght = se.text
+                    imagelength = se.text
                 elif se.tag.endswith('source_xdimension'):
                     source_xdimension = se.text
                 elif se.tag.endswith('source_ydimension'):
@@ -139,8 +185,8 @@ class MAGFile(object):
                 else:
                     print("Non convertito%s" %se)
 
-            if imagewidth is not None and imgheight is not None:
-                root.set_imagelengthandwidth(imagelenght,imagewidth)
+            if imagewidth is not None and imagelength is not None:
+                root.set_imagelengthandwidth(imagelength,imagewidth)
             if source_xdimension is not None and source_ydimension is not None:
                 root.set_xydimensions(source_xdimension,source_ydimension)
             
