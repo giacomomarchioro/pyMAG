@@ -15,7 +15,7 @@ class element(object):
 
     serve a dichiarare l'ordine degli <element> nel caso di un oggetto digitale logicamente unitario ma fisicamente diviso in più oggetti analogici dello stesso tipo.
     """
-    def __init__(self,start,stop,num,resource=None):
+    def __init__(self,start,stop,num,piece=None):
         self.resource = resource
         # attributo 
         self.num = num
@@ -81,7 +81,7 @@ class stru(object):
     def __init__(self,sequence_number):
         self.stru = []
         self.sequence_number = sequence_number
-        self.nomenclature = 'Obbligatorio'
+        self.nomenclature = MAGtools.obbligatorio
         self.elements = []
         # deprecated attributes
         self.descr = None

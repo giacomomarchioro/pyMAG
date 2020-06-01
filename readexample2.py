@@ -1,22 +1,33 @@
 import xml.etree.ElementTree as ET
 import MAG 
 import importlib
-from collections import defaultdict
 
 importlib.reload(MAG)
 self = MAG.MAGFile()
 tree = ET.parse('MagExporteample.xml')
 root = tree.getroot()
-root
 
-xmls = "{http://www.iccu.sbn.it/metaAG1.pdf}"
+def add_newstruct(elem):
+    from MAG.STRU_section import stru
+    for se in elem:
+        if se.tag.endswith('sequence_number'):
+            mystru = stru(se.text)
+        if se.tag.endswith('element'):
+            for sse in se:
+                pass
+            #TODO:Element
+            #mystru.add_element()
+        if se.tag.endswith('stru'):
+            mystru.add_stru(add_newstruct(se))
 
-def xml2dict(elem):
-    xdict = defaultdict(list)
-    for item in elem.iter():
-        xdict[item.tag.replace(xmls,'')].append(item.text)
-    return xdict
-
+    if 'start' in elem.attrib:
+        mystru.set_start(elem.attrib['start'])
+    if 'stop' in elem.attrib:
+        mystru.set_stop(elem.attrib['stop'])
+    if 'descr' in elem.attrib:
+        mystru.set_descr(elem.attrib['descr'])
+    return mystru
+        
 
 def load_scanning(elem,root):
     if se.tag.endswith('capture_software'):
@@ -65,6 +76,26 @@ def load_image_metrics(elem,root):
             print("Non convertito%s" %se)
 
 
+def load_image_dimension(elem,root):
+    imglengt, imgheight = None, None
+    source_xdimension, source_ydimension = None, None
+
+    for se in elem:
+        if se.tag.endswith('imagelength'):
+            imglengt = se.text
+        elif se.tag.endswith('imageheight'):
+            imgheight = se.text
+        elif se.tag.endswith('source_xdimension'):
+            source_xdimension = se.text
+        elif se.tag.endswith('source_ydimension'):
+            source_ydimension = se.text
+
+    if imglengt is not None and imgheight is not None:
+        root.set_imagelengthandwidth(imglengt,imgheight)
+    if source_xdimension is not None and source_ydimension is not None:
+        root.set_xydimensions(source_xdimension,source_ydimension)
+    
+ 
 
 def load_img_group(elem):
     ID = elem.attrib['ID']
@@ -86,6 +117,15 @@ def load_img_group(elem):
         else:
             print("Non convertito%s" %se)
 
+def load_holdings(elem):
+    if se.tag.endswith('shelfmark'):
+        self.gen.holdings.add_shelfmark(se.text)
+    elif se.tag.endswith('inventory_number'):
+        self.gen.holdings.set_inventory_number(se.text)
+    elif se.tag.endswith('library'):
+        self.gen.holdings.set_library(se.text)
+    else:
+        print('Non convertito: %s' %se)
 
 
 # Main part
@@ -145,6 +185,62 @@ for elem in root:
                 self.bib.add_type(se.text)
             else:
                 print("Non convertito: %s" %se)
+        #TODO:Holdings
+        
+    elif elem.tag.endswith('stru'):
+        # aggiungiamo ricorsivamente le strutture
+        self.structs.append(add_newstruct(elem))
+
+    elif elem.tag.endswith('img'):
+        from MAG.GEN_IMG_sections import img
+        if 'imggroupID' in elem.attrib:
+            imgID = elem.attrib['imggroupID']
+        else:
+            imgID = None
+        if 'holdingsID' in elem.attrib:
+            holdingsID = elem.attrib['holdingsID']
+        else:
+            holdingsID = None
+        for se in elem:
+            if se.tag.endswith('sequence_number'):
+                newimg = img(se.text,imggroupID=imgID,holdingsID=holdingsID)
+            elif se.tag.endswith('datetimecreated'):
+                newimg.set_datetimecreated(se.text)
+            elif se.tag.endswith('dpi'):
+                newimg.set_dpi(se.text)
+            elif se.tag.endswith('file'):
+                loc = se.attrib['Location']
+                link = se.attrib['{http://www.w3.org/TR/xlink}href']
+                newimg.set_file(link=link,Location=loc)
+            elif se.tag.endswith('filesize'):
+                newimg.set_filesize(se.text)
+            elif se.tag.endswith('md5'):
+                newimg.set_md5(se.text)
+            elif se.tag.endswith('nomenclature'):
+                newimg.set_nomenclature(se.text)
+            elif se.tag.endswith('note'):
+                newimg.set_note(se.text)
+            elif se.tag.endswith('ppi'):
+                newimg.set_ppi(se.text)
+            elif se.tag.endswith('scale'):
+                newimg.set_scale(se.text)
+            elif se.tag.endswith('side'):
+                newimg.set_side(se.text)
+            elif se.tag.endswith('usage'):
+                newimg.set_usage(stringapersonalizzata=se.text)
+            elif se.tag.endswith('image_dimensions'):
+                load_image_dimension(se,newimg.image_dimensions)
+            elif se.tag.endswith('image_metrics'):
+                load_image_metrics(se,newimg.metrics)
+            elif se.tag.endswith('format'):
+                load_format(se,newimg.format)
+            else:
+                print('Non convertito: %s' %se)
+        self.imgs.append(newimg)
+        self.imgs_counter+=1
+
+
+
 
 
     else:
@@ -152,25 +248,6 @@ for elem in root:
 
 
 
-
-def printclas(myobj,root):
-    fields = dir(myobj)
-    for i in fields:
-        if i.startswith('set'):
-            print("self.%s.%s(elem.attrib['%s'])" %(root,i,i.split('set_')[-1]))
-
-def printclas2(myobj,root):
-    fields = dir(myobj)
-    for i in fields:
-        if i.startswith('set'):
-            print("self.%s.%s(dicte['%s'])" %(root,i,i.split('set_')[-1]))
-
-def printclas3(myobj,root):
-    fields = dir(myobj)
-    for i in fields:
-        if i.startswith('set'):
-            print("elif se.tag.endswith('%s'):" %(i.split('set_')[-1]))
-            print("\tself.%s.set_%s(se.text)" %(root,i.split('set_')[-1]))
 
 def printclas4(myobj,root):
     fields = dir(myobj)
@@ -182,13 +259,6 @@ def printclas4(myobj,root):
             print("elif se.tag.endswith('%s'):" %(i.split('add_')[-1]))
             print("\t%s.add_%s(se.text)" %(root,i.split('add_')[-1]))
     print("else:")
-    print("\tprint(Non convertito: %s)" %i)
+    print("\tprint('Non convertito: %s' %se)")
 
-def printclas4(myobj,root):
-    fields = dir(myobj)
-    for i in fields:
-        if i.startswith('add'):
-            print("elif se.tag.endswith('%s'):" %(i.split('add_')[-1]))
-            print("\t%s.add_%s(se.text)" %(root,i.split('add_')[-1]))
-    print("else:")
-    print("\tprint('Non convertito: %s'%se)" )
+

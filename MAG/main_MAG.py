@@ -25,6 +25,7 @@ class MAGFile(object):
         # counters
         self.struct_counter = 0
         self.imgs_counter = 0
+        self.holdings_counter = 0
         if filepath is not None:
             self.load(filepath)
     
@@ -42,194 +43,268 @@ class MAGFile(object):
         self.struct_counter += 1
         self.structs.append(STRU_section.stru(self.struct_counter))
 
-    
-
-
-
-#### da rimuovere
+    def check(self):
+        # image metrics
+        for img in self.imgs:
+            pass
 
 
 
     def load(self, filepath):
-        tree = ET.parse(zfile.open('main.xml'))
+        tree = ET.parse(filepath)
         root = tree.getroot()
-        # return tree,root #for debug
-        # We first get the records it would not be efficient to iter all the
-        # root because sometimes Record3 contains very long profiles
+        def add_newstruct(elem):
+            for se in elem:
+                if se.tag.endswith('sequence_number'):
+                    mystru = STRU_section.stru(se.text)
+                elif se.tag.endswith('element'):
+                    for sse in se:
+                        pass
+                    #TODO:Element
+                    #mystru.add_element()
+                elif se.tag.endswith('stru'):
+                    mystru.add_stru(add_newstruct(se))
+                else:
+                    print("Non convertito%s" %se)
 
-        records = {}
-        for child in root:
-            records[child.tag] = child
 
-        axes = None
-        # We must take care that field with minOccurs = 0 could not be present
-        # we use "if" structure to avoid using execption.
-        # We also use the setter method for double check the import.
-        for item in records['Record1']:
-            if item.tag == 'Revision':
-                self.record1.revision = item.text
-            if item.tag == 'FeatureType':
-                self.record1.set_featuretype(item.text)
-            if item.tag == 'Axes':
-                axes = item
-        for ax in axes:
-            if ax.tag == 'CX':
-                for elem in ax:
-                    if elem.tag == 'AxisType':
-                        self.record1.axes.CX.set_axistype(elem.text)
-                    if elem.tag == 'Increment':
-                        self.record1.axes.CX.set_increment(elem.text)
-                    if elem.tag == 'Offset':
-                        self.record1.axes.CX.set_offset(elem.text)
-                    if elem.tag == 'DataType':
-                        self.record1.axes.CX.set_datatype(elem.text)
+            if 'start' in elem.attrib:
+                mystru.set_start(elem.attrib['start'])
+            if 'stop' in elem.attrib:
+                mystru.set_stop(elem.attrib['stop'])
+            if 'descr' in elem.attrib:
+                mystru.set_descr(elem.attrib['descr'])
+            return mystru
+            
+        def load_scanning(elem,root):
+            if se.tag.endswith('capture_software'):
+                root.set_capture_software(se.text)
+            elif se.tag.endswith('devicesource'):
+                root.set_devicesource(se.text)
+            elif se.tag.endswith('scanner_manufacturer'):
+                root.set_scanner_manufacturer(se.text)
+            elif se.tag.endswith('scanner_model'):
+                root.set_scanner_model(se.text)
+            elif se.tag.endswith('scanningagency'):
+                root.set_scanningagency(se.text)
+            elif se.tag.endswith('sourcetype'):
+                root.set_sourcetype(se.text)
+            else:
+                print("Non convertito%s" %se)
 
-            if ax.tag == 'CY':
-                for elem in ax:
-                    if elem.tag == 'AxisType':
-                        self.record1.axes.CY.set_axistype(elem.text)
-                    if elem.tag == 'Increment':
-                        self.record1.axes.CY.set_increment(elem.text)
-                    if elem.tag == 'Offset':
-                        self.record1.axes.CY.set_offset(elem.text)
-                    if elem.tag == 'DataType':
-                        self.record1.axes.CY.set_datatype(elem.text)
 
-            if ax.tag == 'CZ':
-                for elem in ax:
-                    if elem.tag == 'AxisType':
-                        self.record1.axes.CZ.set_axistype(elem.text)
-                    if elem.tag == 'Increment':
-                        self.record1.axes.CZ.set_increment(elem.text)
-                    if elem.tag == 'Offset':
-                        self.record1.axes.CZ.set_offset(elem.text)
-                    if elem.tag == 'DataType':
-                        self.record1.axes.CZ.set_datatype(elem.text)
+        def load_format(elem,root):
+            for se in elem:
+                if se.tag.endswith('compression'):
+                    root.set_compression(se.text)
+                elif se.tag.endswith('mime'):
+                    root.set_mime(se.text)
+                elif se.tag.endswith('name'):
+                    root.set_name(se.text)
+                else:
+                    print("Non convertito%s" %se)
 
-            if ax.tag == 'Rotation':
-                # we construct the rotation matrix using the set rotation and
-                # the indexes taken from the element tag.
-                self.infos['Rotation'] = True
-                for elem in ax:
-                    col, row = elem.tag[1:]
-                    self.record1.axes.set_rotation(int(row),
-                                                   int(col), elem.text)
 
-        def xml2dict(elem):
-            xdict = {}
-            for item in elem.iter():
-                xdict[item.tag] = item.text
-            return xdict
+        def load_image_metrics(elem,root):
+            for se in elem:
+                if se.tag.endswith('bitpersample'):
+                    root.set_bitpersample(se.text)
+                elif se.tag.endswith('photometricinterpretation'):
+                    root.set_photometricinterpretation(se.text)
+                elif se.tag.endswith('samplingfrequencyplane'):
+                    root.set_samplingfrequencyplane(se.text)
+                elif se.tag.endswith('samplingfrequencyunit'):
+                    root.set_samplingfrequencyunit(se.text)
+                elif se.tag.endswith('xsamplingfrequency'):
+                    root.set_xsamplingfrequency(se.text)
+                elif se.tag.endswith('ysamplingfrequency'):
+                    root.set_ysamplingfrequency(se.text)
+                else:
+                    print("Non convertito%s" %se)
 
-        # Records2 is optional so we check if it's in the records list
-        if 'Record2' in records:
-            # fileds in record2 are unique we use a dict
-            xd = xml2dict(records['Record2'])
-            # even though the whole record is not mandatory some value are
-            self.record2.set_date(xd['Date'])
-            self.record2.probingsystem.set_type(xd['Type'])
-            self.record2.probingsystem.set_identification(xd['Identification'])
-            self.record2.instrument.set_model(xd['Model'])
-            self.record2.instrument.set_serial(xd['Serial'])
-            self.record2.instrument.set_manufacturer(xd['Manufacturer'])
-            self.record2.instrument.set_version(xd['Version'])
-            self.record2.set_calibrationdate(xd['CalibrationDate'])
-            if 'Creator' in xd:
-                self.record2.set_creator(xd['Creator'])
-            if 'Comment' in xd:
-                self.record2.set_comment(xd['Comment'])
 
-        else:
-            self.record2 = None
+        def load_image_dimension(elem,root):
+            imglengt, imgheight = None, None
+            source_xdimension, source_ydimension = None, None
 
-        # Records3 is more problematic because it could contain a lot of data
-        for elem in records['Record3']:
-            if elem.tag == 'MatrixDimension':
-                xd = xml2dict(elem)
-                self.record3.matrixdimension.set_sizeX(xd['SizeX'])
-                self.record3.matrixdimension.set_sizeY(xd['SizeY'])
-                self.record3.matrixdimension.set_sizeZ(xd['SizeZ'])
+            for se in elem:
+                if se.tag.endswith('imagewidth'):
+                    imagewidth = se.text
+                elif se.tag.endswith('imagelength'):
+                    imagelenght = se.text
+                elif se.tag.endswith('source_xdimension'):
+                    source_xdimension = se.text
+                elif se.tag.endswith('source_ydimension'):
+                    source_ydimension = se.text
+                else:
+                    print("Non convertito%s" %se)
 
-            if elem.tag == 'DataLink':
-                self.record3.datalist = False
-                # This mean that we have a binary file
-                print('Found a binary file')
-                mask = np.ma.nomask
-                for i in elem:
-                    if i.tag == 'PointDataLink':
-                        self.record3.datalink.set_PointDataLink(i.text)
-                        binfile = zfile.read(i.text)
-                    if i.tag == 'MD5ChecksumPointData':
-                        self.record3.datalink.set_MD5ChecksumPointData(i.text)
-                        # We check the checksum on the way
-                        checksum_calc = hashlib.md5(binfile).hexdigest()
-                        if checksum_calc.lower() != i.text.lower():
-                            print("Checksums bin data are different!")
+            if imagewidth is not None and imgheight is not None:
+                root.set_imagelengthandwidth(imagelenght,imagewidth)
+            if source_xdimension is not None and source_ydimension is not None:
+                root.set_xydimensions(source_xdimension,source_ydimension)
+            
+        
 
-                    if i.tag == 'ValidPointsLink':
-                        self.record3.datalink.set_ValidPointsLink(i.text)
-                        validpoints = zfile.read(i.text)
+        def load_img_group(elem):
+            ID = elem.attrib['ID']
+            self.gen.add_img_group(ID)
+            for se in elem:
+                if se.tag.endswith('dpi'):
+                    self.gen.img_groups[ID].set_dpi(se.text)
+                elif se.tag.endswith('ppi'):
+                    self.gen.img_groups[ID].set_ppi(se.text)
+                elif se.tag.endswith('image_metrics'):
+                    root = self.gen.img_groups[ID].image_metrics
+                    load_image_metrics(se,root)
+                elif se.tag.endswith('format'):
+                    root = self.gen.img_groups[ID].format
+                    load_format(se,root)
+                elif se.tag.endswith('scanning'):
+                    root = self.gen.img_groups[ID].scanning
+                    load_format(se,root)
+                else:
+                    print("Non convertito%s" %se)
 
-                    if i.tag == 'MD5ChecksumValidPoints':
-                        self.record3.datalink.set_MD5ChecksumValidPoints(i.text)
-                        # We check the checksum on the way
-                        checksum_calc = hashlib.md5(validpoints).hexdigest()
-                        if checksum_calc.lower() != i.text.lower():
-                            print("Checksums valid bin data are different!")
+        def load_holdings(elem):
+            self.holdings_counter +=1
+            # if there is no ID we use a progressive count as ID
+            if 'ID' in elem.attrib:
+                ID = elem.attrib['ID']
+            else:
+                ID = self.holdings_counter
+            myholding = BIB_section.holdings(ID)
+            for se in elem:
+                if se.tag.endswith('shelfmark'):
+                    myholding.add_shelfmark(se.text)
+                elif se.tag.endswith('inventory_number'):
+                    myholding.set_inventory_number(se.text)
+                elif se.tag.endswith('library'):
+                    myholding.set_library(se.text)
+                else:
+                    print('Non convertito: %s' %se)
+            self.bib.holdings[ID] = myholding
 
-                    if self.record3.matrixdimension.sizeZ == 1:
-                        size = (self.record3.matrixdimension.sizeX,
-                                self.record3.matrixdimension.sizeY)
-                        dtypes = self.record1.axes.get_axes_dataype()
-                        if len(dtypes) == 1:
-                            dtype = self.convert_datatype(dtypes.pop())
-                            data = np.frombuffer(binfile, dtype=dtype)
-                            self.data = np.ma.masked_array(data,
-                                                           mask=mask,
-                                                           dtype=dtype
-                                                           ).reshape(size)
 
-                    elif self.record3.matrixdimension.sizeZ > 1:
-                        size = (self.record3.matrixdimension.sizeX,
-                                self.record3.matrixdimension.sizeY,
-                                self.record3.matrixdimension.sizeZ)
-                        dtypes = self.record1.axes.get_axes_dataype()
-                        if len(dtypes) == 1:
-                            dtype = self.convert_datatype(dtypes.pop())
-                            data = np.frombuffer(binfile, dtype=dtype)
-                            self.data = np.ma.masked_array(data,
-                                                           mask=mask,
-                                                           dtype=dtype
-                                                           ).reshape(size)
-
-            #np.ma.masked_array([(1,2,3),(3,4,5),(5,6,7)],dtype = [('x', 'i8'), ('y',   'f4'),('z','i8')])
-
-            if elem.tag == 'DataList':
-                print('Found a datalist')
-                self.record3.datalink = False
-                datalist = []
-                # it could be reasonable to espect sizeZ to be the number of
-                # profiles
-                n_profiles = self.record3.matrixdimension.sizeZ
-                for value in elem:
-                    if value.text is None:  # it means its an invalid entry
-                    # actualy xsd:float has also a NaN value that could be used
-                        nanarr = [np.nan]*n_profiles
-                        datalist.append(nanarr)
+        # Main part
+        for elem in root:
+            if elem.tag.endswith('gen'):
+                # attributi
+                self.gen.set_creation(elem.attrib['creation'])
+                self.gen.set_last_update(elem.attrib['last_update'])
+                # elementi
+                for se in elem:
+                    if se.tag.endswith('access_rights'):
+                        self.gen.set_access_rights(se.text)
+                    elif se.tag.endswith('agency'):
+                        self.gen.set_agency(se.text)
+                    elif se.tag.endswith('collection'):
+                        self.gen.set_collection(se.text)
+                    elif se.tag.endswith('completeness'):
+                        self.gen.set_completeness(se.text)
+                    elif se.tag.endswith('stprog'):
+                        self.gen.set_stprog(se.text)
+                    elif se.tag.endswith('img_group'):
+                        load_img_group(se)
                     else:
-                        values = value.text.split(';')
-                        datalist.append(values)
-                        if len(values) > n_profiles:
-                            n_profiles = len(values)
+                        print("Non convertito%s" %se)
+            elif elem.tag.endswith('bib'):
+                self.bib.set_level(elem.attrib['level'])
+                for se in elem:
+                    if se.tag.endswith('contributor'):
+                        self.bib.add_contributor(se.text)
+                    elif se.tag.endswith('coverage'):
+                        self.bib.add_coverage(se.text)
+                    elif se.tag.endswith('identifier'):
+                        self.bib.add_coverage(se.text)
+                    elif se.tag.endswith('creator'):
+                        self.bib.add_creator(se.text)
+                    elif se.tag.endswith('date'):
+                        self.bib.add_date(se.text)
+                    elif se.tag.endswith('description'):
+                        self.bib.add_description(se.text)
+                    elif se.tag.endswith('format'):
+                        self.bib.add_format(se.text)
+                    elif se.tag.endswith('language'):
+                        self.bib.add_language(se.text)
+                    elif se.tag.endswith('publisher'):
+                        self.bib.add_publisher(se.text)
+                    elif se.tag.endswith('relation'):
+                        self.bib.add_relation(se.text)
+                    elif se.tag.endswith('rights'):
+                        self.bib.add_rights(se.text)
+                    elif se.tag.endswith('source'):
+                        self.bib.add_source(se.text)
+                    elif se.tag.endswith('subject'):
+                        self.bib.add_subject(se.text)
+                    elif se.tag.endswith('title'):
+                        self.bib.add_title(se.text)
+                    elif se.tag.endswith('type'):
+                        self.bib.add_type(se.text)
+                    elif se.tag.endswith('holdings'):
+                        load_holdings(se)
+                    else:
+                        print("Non convertito: %s" %se)
+                
+                
+            elif elem.tag.endswith('stru'):
+                # aggiungiamo ricorsivamente le strutture
+                self.structs.append(add_newstruct(elem))
+
+            elif elem.tag.endswith('img'):
+                from MAG.GEN_IMG_sections import img
+                if 'imggroupID' in elem.attrib:
+                    imgID = elem.attrib['imggroupID']
+                else:
+                    imgID = None
+                if 'holdingsID' in elem.attrib:
+                    holdingsID = elem.attrib['holdingsID']
+                else:
+                    holdingsID = None
+                for se in elem:
+                    if se.tag.endswith('sequence_number'):
+                        newimg = img(se.text,imggroupID=imgID,holdingsID=holdingsID)
+                    elif se.tag.endswith('datetimecreated'):
+                        newimg.set_datetimecreated(se.text)
+                    elif se.tag.endswith('dpi'):
+                        newimg.set_dpi(se.text)
+                    elif se.tag.endswith('file'):
+                        loc = se.attrib['Location']
+                        link = se.attrib['{http://www.w3.org/TR/xlink}href']
+                        newimg.set_file(link=link,Location=loc)
+                    elif se.tag.endswith('filesize'):
+                        newimg.set_filesize(se.text)
+                    elif se.tag.endswith('md5'):
+                        newimg.set_md5(se.text)
+                    elif se.tag.endswith('nomenclature'):
+                        newimg.set_nomenclature(se.text)
+                    elif se.tag.endswith('note'):
+                        newimg.set_note(se.text)
+                    elif se.tag.endswith('ppi'):
+                        newimg.set_ppi(se.text)
+                    elif se.tag.endswith('scale'):
+                        newimg.set_scale(se.text)
+                    elif se.tag.endswith('side'):
+                        newimg.set_side(se.text)
+                    elif se.tag.endswith('usage'):
+                        newimg.set_usage(stringapersonalizzata=se.text)
+                    elif se.tag.endswith('image_dimensions'):
+                        load_image_dimension(se,newimg.image_dimensions)
+                    elif se.tag.endswith('image_metrics'):
+                        load_image_metrics(se,newimg.metrics)
+                    elif se.tag.endswith('format'):
+                        load_format(se,newimg.format)
+                    else:
+                        print('Non convertito: %s' %se)
+                self.imgs.append(newimg)
+                self.imgs_counter+=1
 
 
-                dtypes = self.record1.axes.get_axes_dataype()
-                if len(dtypes) == 1:
-                    dtype = self.convert_datatype(dtypes.pop())
-                    data = np.array(datalist, dtype=dtype)
-                    self.data = data.T
-            # Record4 contains only one element
-            self.record4.checksumfile = records['Record4'][0].text
+
+
+
+            else:
+                print("Non convertito%s" %elem)
 
     def write(self, filepath):
         p = ET.Element('mag:metadigit')

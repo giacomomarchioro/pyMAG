@@ -90,8 +90,8 @@ class piece_rivista(object):
     """
     def __init__(self):
         self.tipo = "periodico"
-        self.year = 'Obbligatorio'
-        self.issue = 'Obbligatorio'
+        self.year = MAGtools.obbligatorio
+        self.issue = MAGtools.obbligatorio
         self.stpiece_per = None
 
     def set_year(self,value):
@@ -131,8 +131,8 @@ class piece_volume(object):
     """
     def __init__(self):
         self.tipo = "volume di raccolta"
-        self.part_number = 'Obbligatorio'
-        self.part_name = 'Obbligatorio'
+        self.part_number = MAGtools.obbligatorio
+        self.part_name = MAGtools.obbligatorio
         self.stpiece_vol = None
 
     def set_part_number(self,value):
@@ -186,7 +186,7 @@ Per l'elemento è definito un attributo obbligatorio level.
 
     def __init__(self):
         # Attrubutes
-        self.level = 'Obbligatorio'
+        self.level = MAGtools.obbligatorio
         # Elements
         self.holdings = dict()
         self.identifiers = []

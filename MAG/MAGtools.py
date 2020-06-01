@@ -2,6 +2,11 @@ import requests
 from datetime import datetime
 import warnings
 
+class obbligatorio(object):
+    """ Oggetto usato per definire campi obligatorio.
+    """
+    def __str__(self):
+      return "Campo obbligatorio non presente!"
 
 
 def check_datetime(datetime_str,url=None):
