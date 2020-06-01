@@ -1,9 +1,72 @@
 from __future__ import print_function
 #https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html
 from datetime import datetime
-import MAGtools 
+from . import MAGtools 
 import warnings
 import re
+
+# manca il target
+
+class target(object):
+    """L'eventuale presenza, la tipologia e le modalità d'utilizzo di un target (o scala cromatica) durante la scansione dell'oggetto analogico è identificata dalla sezione codificata dall'elemento <target>, secondo lo standard NISO. L'elemento è opzionale e non ripetibile. Per <target> è definito un tipo specializzato appartenente al namespace niso denominato niso:targetdata. Tale tipo è di tipo xsd:sequence e contiene cinque elementi:
+
+    <niso:targetType> : opzionale e non ripetibile, dichiara se il target è interno o esterno. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:targettype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
+    0 il target è esterno
+    1 il target è interno
+    <niso:targetID> : obbligatorio e non ripetibile, identifica il nome del target, produttore o organizzazione, il numero della versione o il media. � di tipo xsd:string.
+    <niso:imageData> : opzionale e non ripetibile, identifica il path dell'immagine digitale che funge da target esterno. � di tipo xsd:anyURI. Si usa solo se <niso:targetType> è uguale a 0 (esterno).
+    <niso:performanceData> : opzionale e non ripetibile, identifica il path del file che contiene i dati dell'immagine performance relativa al target identificato da <niso:targetID>. � di tipo xsd:anyURI.
+    <niso:profiles> : opzionale e non ripetibile, identifica il path del file che contiene il profilo dei colori ICC o un altro profilo di gestione. � di tipo xsd:anyURI.
+
+    url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#target"
+    """
+
+    def __init__(self):
+        self.targetType = None
+        self.targetID = 'Obbligatorio'
+        self.imageData = None
+        self.performanceData = None
+        self.profiles = None
+
+    def set_targetType(self,value):
+        """opzionale e non ripetibile, dichiara se il target è interno o esterno. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:targettype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
+0 il target è esterno
+1 il target è interno
+
+        Parameters
+        ----------
+        value : [type]
+            [description]
+        """
+        conv_dict = {"target esterno": "0",
+                     "target interno": "1",
+                     }
+        value = MAGtools.checkpositiveinteger(value=value,url=url)
+        
+    def set_targetID(self,value):
+        """"
+        obbligatorio e non ripetibile, identifica il nome del target, produttore o organizzazione, il numero della versione o il media.
+        """
+        if len(value.split(',')) < 3:
+            warnings.warn("Il campo dovrebbe contenere separati da una virgola: il nome del target, produttore o organizzazione, il numero della versione o il media.")
+        self.targetID = value
+
+    def set_imageData(self,value):
+        """opzionale e non ripetibile, identifica il path dell'immagine digitale che funge da target esterno. � di tipo xsd:anyURI.
+
+        Parameters
+        ----------
+        value : [type]
+            [description]
+        """
+        #TODO: path check
+        self.imageData = value
+    
+    def set_performanceData(self,value):
+        self.performanceData = value
+    
+    def set_profiles(self,value):
+        self.profiles = value
 
 
 class image_dimension(object):
@@ -13,8 +76,8 @@ Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_
     ATTENZIONE: Non sembrano corrispondere ad i termini aggiornati.
     """
     def __init__(self):
-        self.imagelenght = None
-        self.imagewidth = None
+        self.imagelenght = 'Obbligatorio'
+        self.imagewidth = 'Obbligatorio'
         self.source_xdimension = None
         self.source_ydimension = None
 
@@ -50,12 +113,13 @@ Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_
 
 class image_metrics(object):
     def __init__(self):
-        self.samplingfrequencyunit = None
-        self.samplingfrequencyplane = None
+        self.samplingfrequencyunit = 'Obbligatorio'
+        self.samplingfrequencyplane = 'Obbligatorio'
+        # obbligatori se applicabili
         self.xsamplingfrequency = None
         self.ysamplingfrequency = None
-        self.photometricinterpretation = None
-        self.bitpersample = None
+        self.photometricinterpretation = 'Obbligatorio'
+        self.bitpersample = 'Obbligatorio'
 
 
     def set_samplingfrequencyunit(self,value):
@@ -133,6 +197,7 @@ class image_metrics(object):
                      "pollice": "2",
                      "inch": "2",
                      "centimetro": "3"}
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.checkpositiveinteger(value=value,url=url)
         self.ysamplingfrequency = value
 
@@ -189,24 +254,24 @@ class image_metrics(object):
         self.bitpersample = value
 
 
-class  format_(object):
+class format_(object):
     """
     Il formato delle immagini (tipologia e modalità di compressione) è gestito dall'elemento <format> ed è codificato secondo lo standard NISO. L'elemento, oltre che dentro <img>, può essere usato dentro <img_group> ; è formalmente opzionale, ma in pratica deve sempre essere usato, o dentro <img> o dentro <img_group>. Per <format> è definito un tipo specializzato appartenente al namespace niso denominato niso:format che presenta una sequenza di tre elementi:
     """
     def __init__(self):
-        self.name = None
-        self.mime = None
-        self.compression = None
+        self.name = 'Obbligatorio'
+        self.mime = 'Obbligatorio'
+        self.compression = 'Obbligatorio'
 
     def set_name(self,value):
         """obbligatorio e non ripetibile, contiene il formato dell'immagine. � di tipo xsd:string, si consiglia di usare valori come JPG, GIF, TIF, PDF ecc. Si raccomanda di usare valori formati da tre caratteri. Una sintassi alternativa può essere adottata per i formati che codificano il numero di revisione nel file header: [formato file][numero di revisione], per esempio: TIFF/EP 1.0.0.0.
-
+        Per file in JPG2000 usare JP2.
         Parameters
         ----------
         value : str
             estensione del file.
         """
-        lista = ["JPG","GIF","TIF","PDF","PNG"]
+        lista = ["JPG","GIF","TIF","PDF","PNG","JP2"]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_format"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.name = value
@@ -219,6 +284,8 @@ class  format_(object):
         image/png
         image/vnd.djvu
         application/pdf
+        Attenziona pyMAG aggiunge anche il formato JPEG2000 come image/jp2
+        image/jp2
         Parameters
         ----------
         value : str
@@ -228,6 +295,7 @@ class  format_(object):
                   "image/tiff",
                   "image/gif",
                   "image/png",
+                  "image/jp2",
                   "image/vnd.djvu",
                   "application/pdf",]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_format"
@@ -271,9 +339,10 @@ class scanning(object):
         self.scanningagency = None
         self.devicesource = None
         self.scanningsystem = None
-        self.scanner_manufacturer = None
-        self.scanner_model = None
-        self.capture_software = None
+        # obbligatori ma scanning sysem no!
+        self.scanner_manufacturer = 'Obbligatorio'
+        self.scanner_model = 'Obbligatorio'
+        self.capture_software = 'Obbligatorio'
 
     def set_sourcetype(self,value):
         """opzionale e non ripetibile, descrive le caratteristiche fisiche del supporto analogico di partenza. Di tipo xsd:string, si suggerisce comunque di adottare uno dei seguenti valori:
@@ -370,7 +439,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.scanner_manufacturer = value
 
-
+    
         
 class img(object):
     """https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_img
@@ -381,14 +450,14 @@ La sezione IMG utilizza il namespace niso: che fa riferimento a uno schema che t
 La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna immagine digitale descritta da MAG. L'elemento è opzionale e ripetibile. Il suo contenuto è di tipo xsd:sequence, e può contenere i seguenti elementi:
     L'elemento file si torva qui già scomposto in fileLocation (tipo di link es. URL) e fileLink (il percorso del file)
     """
-    def __init__(self,sequence_number):
+    def __init__(self,sequence_number,imggroupID=None,holdingsID=None):
         # attributi
         self.ID = None
-        self.imggroupID = None
-        self.holdingsID = None
+        self.imggroupID = imggroupID
+        self.holdingsID = holdingsID
         # elementi
         self.sequence_number = sequence_number
-        self.nomenclature = None
+        self.nomenclature = 'Obbligatorio'
         self.usage = None 
         self.scale = None 
         self.file = None
@@ -399,12 +468,13 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         self.dpi = None
         self.format = format_()
         self.scanning = scanning()
-        self.datetimecreated = None
+        self.datetimecreated = 'Obbligatorio'
         self.target = None 
         self.altimg = None
         self.note = None 
-        self.fileLocation = None
-        self.fileLink = None
+        self.fileLocation = 'Obbligatorio'
+        self.fileLink = 'Obbligatorio'
+        self.md5 = 'Obbligatorio'
 
     
 
@@ -542,11 +612,32 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         MAGtools.checkpositiveinteger(value=value,url=url)
         self.dpi = value
 
+    def set_datetimecreated(self,value):
+        """
+        L'elemento <datetimecreated> registra la data e l'ora di creazione del file digitale. L'elemento è obbligatorio e non ripetibile; è di tipo xsd:dateTime, vale a dire che assume la forma YYYY-MM-DDThh:mm:ss:mmm di cui si vedano le specificazioni nella sezione GEN.
+
+        Per esempio:
+
+        <datetimecreated>2005-04-13T02:01:52</datetimecreated>
+
+        Parameters
+        ----------
+        value : [type]
+            [description]
+        """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#datetime"
+        value = check_datetime(value,url)
+        self.datetimecreated = value
+
+    def set_note(self,value):
+        self.note = value
+
+
 
 class img_group(object):
-    def __init__(self):
+    def __init__(self,ID):
         # attributi
-        self.ID = None
+        self.ID = ID
         # elementi
         self.image_metrics =  image_metrics()
         self.ppi = None
@@ -590,11 +681,11 @@ class gen(object):
         self.creation = None
         self.last_update = None
         # elementi
-        self.stprog = None
+        self.stprog = 'Obbligatorio'
         self.collection = None
-        self.agency = None
-        self.access_rights = None
-        self.completeness = None
+        self.agency = 'Obbligatorio'
+        self.access_rights = 'Obbligatorio'
+        self.completeness = 'Obbligatorio'
         self.img_groups = dict()
         self.audio_groups = dict()
         self.video_groups = dict()
@@ -692,14 +783,14 @@ class gen(object):
         self.access_rights = value
 
 
-    def set_completeness(self,completeness):
+    def set_completeness(self,value):
         """dichiara la completezza della digitalizzazione. Il suo contenuto deve assumere uno dei seguenti valori:
         0 : digitalizzazione completa
         1 : digitalizzazione incompleta
         L'elemento è obbligatorio, non ripetibile e non sono definiti attributi.
         L'esempio che segue riguarda un oggetto digitale completamente digitalizzato il cui accesso è libero
         """
-        completeness=str(completeness)
+        value=str(value)
         conv_dict={"digitalizzazione completa": "0",
                      "uso pubblico": "1"}
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
@@ -707,10 +798,10 @@ class gen(object):
         self.completeness = value
 
     @MAGtools.checkgroupID
-    def create_img_groupID(self,ID):
+    def add_img_group(self,ID):
         if ID in self.img_groups.keys():
             warnings.warn("L'ID è già presente nella lista degli ID.")
-        self.img_groups[ID] = img_group()
+        self.img_groups[ID] = img_group(ID)
 
     def check_obligatory(self):
         if self.stprog is None:
@@ -721,3 +812,6 @@ class gen(object):
             warnings.warn(" campo access_rights è obbligatorio")
         if self.completeness is None:
             warnings.warn(" campo completeness è obbligatorio")
+
+    def printvars(self):
+        print(vars(self))

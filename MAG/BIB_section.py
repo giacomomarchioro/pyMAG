@@ -1,7 +1,7 @@
 from __future__ import print_function
 #https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_bib
 from datetime import datetime
-import MAGtools 
+from . import MAGtools  
 import warnings
 
 
@@ -90,8 +90,8 @@ class piece_rivista(object):
     """
     def __init__(self):
         self.tipo = "periodico"
-        self.year = None
-        self.issue = None
+        self.year = 'Obbligatorio'
+        self.issue = 'Obbligatorio'
         self.stpiece_per = None
 
     def set_year(self,value):
@@ -131,8 +131,8 @@ class piece_volume(object):
     """
     def __init__(self):
         self.tipo = "volume di raccolta"
-        self.part_number = None
-        self.part_name = None
+        self.part_number = 'Obbligatorio'
+        self.part_name = 'Obbligatorio'
         self.stpiece_vol = None
 
     def set_part_number(self,value):
@@ -186,7 +186,7 @@ Per l'elemento è definito un attributo obbligatorio level.
 
     def __init__(self):
         # Attrubutes
-        self.level = None
+        self.level = 'Obbligatorio'
         # Elements
         self.holdings = dict()
         self.identifiers = []
@@ -208,6 +208,26 @@ Per l'elemento è definito un attributo obbligatorio level.
         self.coverages = [] 
         self.rightss = [] 
 
+    def create_holidngwithoutID(self):
+        """Usato quando si vuole creare un holding senza ID. Verrà assegnato un ID numerico non valido per un file MAG. 
+        """
+        count = 0
+        while count in self.holdings.keys():
+            count+=1
+        self.holdings[count] = holdings()
+
+    @MAGtools.checkgroupID
+    def create_holdingsID(self,ID):
+        """
+        Non è chiaro se dobbiamo applicare le stesse regolo di img_groupID. MA le applichiamo per sicurezza.
+        Parameters
+        ----------
+        ID : [type]
+            [description]
+        """
+        if ID in self.holdings.keys():
+            warnings.warn("L'ID è già presente nella lista degli ID.")
+        self.holdings[ID] = holdings()
 
     def set_level(self,value):
         """level : indica il livello della descrizione bibliografica. Il suo valore deve essere scelto fra i seguenti:
@@ -230,7 +250,7 @@ Per l'elemento è definito un attributo obbligatorio level.
         self.level = value
 
 
-    def set_identifier(self,value):
+    def add_identifier(self,value):
         """contiene un identificatore univoco di un record descrittivo nell'ambito di un dato contesto. Di solito si usa un identificatore di un record bibliografico (opportunamente normalizzato) appartenente a un qualche schema di catalogazione (per es. SBN, Library of Congress).
 
     Il <dc:identifier>, tuttavia, non va confuso con la segnatura dell'oggetto analogico o con la sua classificazione catalografica. Si tratta infatti di un codice identificativo che serve per fare riferimento in modo univoco a un dato oggetto; come tale pertanto, non dovrebbe contenere al suo interno alcuno spazio o altro carattere dotato di significato speciale. Nel caso in cui si voglia comunque usare segnature o sigle catalografiche, poich� un identificatore meccanico deve sottostare a regole particolari, è comunque necessario normalizzare tale segnatura applicando le cosiddette URI Escaping Techniques
@@ -245,10 +265,9 @@ Per l'elemento è definito un attributo obbligatorio level.
             print("Applichati escape chr. %s" %newvalue)
         self.identifiers.append(newvalue)
 
-
     def add_title(self,value):
         """ aggiunge l'elemento DoublinCore alla lista"""
-        self.title.append(value)
+        self.titles.append(value)
 
     def add_creator(self,value):
         """ aggiunge l'elemento DoublinCore alla lista"""

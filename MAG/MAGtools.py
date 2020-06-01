@@ -4,11 +4,11 @@ import warnings
 
 
 
-def check_datetime(datetime_str):
+def check_datetime(datetime_str,url=None):
     try:
         datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S')
     except ValueError:
-        warnings.warn('La data non è nel formato corretto! (es. 2020-6-14T18:30:29)')
+        warnings.warn('La data non è nel formato corretto! (es. 2020-6-14T18:30:29)\n%s' %url)
     return datetime_str
 
 
@@ -20,11 +20,19 @@ def check_url(url):
             warnings.warn('Esiste il server ma non la pagina')
     except ConnectionError:
         print("Errore di connessione indirizzo non valido!")
+    except requests.exceptions.MissingSchema:
+        print("Schema non valido.")
+
 
     return url
 
 
 def check_agency(codice):
+    """
+    
+    """
+    # nell'anagrafe ICCU il codice e separato da - mentre nel MAG da :
+    codice = codice.replace(':','-')
     url = "https://anagrafe.iccu.sbn.it/it/ricerca/dettaglio.html?monocampo=" + codice
     try:
         request = requests.get(url)
@@ -37,7 +45,7 @@ def check_agency(codice):
                 print("Il codice %s non esiste nell'anagrafe ICCU" %codice)
     except ConnectionError:
         print("L'anagrafe ICCU sembra non sia più disponibile.")
-
+    codice = codice.replace('-',':')
     return codice
 
 
@@ -138,8 +146,8 @@ def URIescaping(uri):
     ",":"%2C","<":"%3C",">":"%3E","%":"%25","\"":"%22","{":"%7B","}":"%7D",
     "|":"%7C","\\":"%5C","^":"%5E","`":"%60"," ":"%20"}
 
-    for chraracter in uri:
-        uri = identifiertxt.replace(chraracter,caracter_tohex[i])
+    for chraracter in caracter_tohex.keys():
+        uri = identifiertxt.replace(chraracter,caracter_tohex[chraracter])
     return uri
 
 

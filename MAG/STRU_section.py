@@ -1,7 +1,7 @@
 from __future__ import print_function
 #https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html
 from datetime import datetime
-import MAGtools 
+from . import MAGtools 
 import warnings
 
 class element(object):
@@ -81,7 +81,7 @@ class stru(object):
     def __init__(self,sequence_number):
         self.stru = []
         self.sequence_number = sequence_number
-        self.nomenclature = None
+        self.nomenclature = 'Obbligatorio'
         self.elements = []
         # deprecated attributes
         self.descr = None
