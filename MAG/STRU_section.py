@@ -16,7 +16,7 @@ class element(object):
     serve a dichiarare l'ordine degli <element> nel caso di un oggetto digitale logicamente unitario ma fisicamente diviso in più oggetti analogici dello stesso tipo.
     """
     def __init__(self,start,stop,num,piece=None):
-        self.resource = resource
+        self.resource = None
         # attributo 
         self.num = num
         # come attributi di start a stop
@@ -78,10 +78,10 @@ class stru(object):
     """
     https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_stru
     """
-    def __init__(self,sequence_number):
-        self.stru = []
+    def __init__(self,sequence_number=None):
+        self.structs = []
         self.sequence_number = sequence_number
-        self.nomenclature = MAGtools.obbligatorio
+        self.nomenclature = None
         self.elements = []
         # deprecated attributes
         self.descr = None
@@ -94,7 +94,7 @@ class stru(object):
     def add_stru(self):
         """Metodo per aggiungere un elemento stru.
         """
-        self.stru.append(stru(sequence_number=self.nested_sequence_number))
+        self.structs.append(stru(sequence_number=self.nested_sequence_number))
         self.nested_sequence_number += 1
 
     def set_nomenclature(self,value):

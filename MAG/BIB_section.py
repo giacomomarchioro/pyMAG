@@ -11,7 +11,7 @@ class holdings(object):
     """
 
     def __init__(self,ID):
-        self.ID = None
+        self.ID = ID
         self.library = None 
         self.inventory_number = None 
         self.shelfmarks = [] 

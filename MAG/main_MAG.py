@@ -46,6 +46,16 @@ class MAGFile(object):
         self.structs.append(STRU_section.stru(self.struct_counter))
 
     def check(self):
+        """Alcuni campi sono definiti obbligatori ma "formalmente opzionali" questi campi quindi 
+        non sono coperti dallo schema xsd. Per validare che la convenzione venga rispettata pyMAG
+        utilizza la funzione check.
+        Sono obbligatori anche se opzionali nello schema xsd.
+            - image_metrics
+            - image_dimensions
+            - format
+            - scanning
+            - year, issue e part_number,part_name nel caso della scelta dell'elemento piece per seriale e volumi.
+        """
         # image metrics
         for img in self.imgs:
             sn = img.sequence_number
@@ -63,7 +73,6 @@ class MAGFile(object):
             # il campo potrebbe essere definito all'interno di un image-group
             if fields['imggroupID'] is not None:
                 imggrp = self.gen.img_groups[fields['imggroupID']]
-                i_dg = vars(imggrp.image_dimensions)
                 i_mg = vars(imggrp.image_metrics)
                 i_fg = vars(imggrp.format)
                 i_sg = vars(imggrp.scanning)
@@ -73,10 +82,9 @@ class MAGFile(object):
                 for i in i_f:
                     if i_f[i] is obbligatorio and i_fg[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
-                if img.scanning.status == 'Used':
-                    for i in i_s:
-                        if i_s[i] is obbligatorio and i_sg[i] is obbligatorio:
-                            warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                for i in i_s:
+                    if i_s[i] is obbligatorio and i_sg[i] is obbligatorio:
+                        warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
             else:
                 for i in i_m:
                     if i_m[i] is obbligatorio:
@@ -101,8 +109,11 @@ class MAGFile(object):
         root = tree.getroot()
         def add_newstruct(elem):
             for se in elem:
+                mystru = STRU_section.stru()
                 if se.tag.endswith('sequence_number'):
-                    mystru = STRU_section.stru(se.text)
+                    mystru.sequence_number= se.text
+                elif se.tag.endswith('nomenclature'):
+                    mystru.set_nomencalture = se.text
                 elif se.tag.endswith('element'):
                     for sse in se:
                         pass
@@ -296,6 +307,7 @@ class MAGFile(object):
             elif elem.tag.endswith('stru'):
                 # aggiungiamo ricorsivamente le strutture
                 self.structs.append(add_newstruct(elem))
+                self.struct_counter+=1
 
             elif elem.tag.endswith('img'):
                 from MAG.GEN_IMG_sections import img
@@ -376,8 +388,9 @@ class MAGFile(object):
         # seguente formato: Anno (4 cifre) - Mese (2 cifre) - Giorno (2 cifre) T Ora (2 cifre) : Minuti (2 cifre) : Secondi (2 cifre) o,
         #  più formalmente, aaaa-mm-ggThh:mm:ss; per esempio:
         # <mag:gen creation="2005-08-04T13:00:00" last_update="2005-08-04T13:00:00">
-        gen.set("creation",creation) # opzionale implenta check
-        gen.set("last_update",last_update)
+        gen.set("creation",self.gen.creation) 
+        if self.gen.last_update is not None:
+            gen.set("last_update",self.gen.last_update)
         # riferimento agli standard di progetto OB,NR
         # contiene la URI dove è possibile trovare la documentazione relativa la progetto di digitalizzazione.
         #  Tipicamente si tratta della pagina web in cui sono specificate le scelte relative alla 
@@ -385,14 +398,14 @@ class MAGFile(object):
         # alla home page dell'istituzione responsabile del progetto. Il suo contenuto è xsd:anyURI.
         #  L'elemento è obbligatorio, non ripetibile e non sono definiti attributi.
         magstprog = ET.SubElement(gen,'stprog')
-        magstprog.text = magstprogtxt
+        magstprog.text = self.gen.stprog
 
         # contiene la URI (tipicamente l'indirizzo di una pagina web) di un documento in cui viene 
         # specificata la collezione cui fa parte la risorsa o le risorse digitalizzate. 
         # Il suo contenuto è xsd:anyURI. L'elemento è opzionale, non ripetibile e non sono definiti attributi.
-
-        collection = ET.SubElement(gen,'collection')
-        collection.text = collectiontxt
+        if self.gen.collection is not None:
+            collection = ET.SubElement(gen,'collection')
+            collection.text = self.gen.collection
         # contiene il nome dell'istituzione responsabile del progetto di digitalizzazione. Il suo contenuto è xsd:string, ma si raccomanda di 
         # usare la sintassi UNIMARC definita per il campo 801, cioè cod. paese (due caratteri):codice Agenzia 
         # per intero, per esempio: IT:BNCF. In alternativa è possibile usare una sigla riconosciuta, per esempio dall'Anagrafe biblioteche 
@@ -401,20 +414,20 @@ class MAGFile(object):
         # -- meglio usare l'anagrafe che il codice Agenzia che non riesco a capire che cos'è.
         # controlla nell'anagrafe https://anagrafe.iccu.sbn.it/isil/IT-ZR0055
         agency = ET.SubElement(gen,'agency')
-        agency.text = agencytxt
+        agency.text = self.gen.agency
         # <access_rights> : dichiara le condizioni di accessibilità dell'oggetto descritto nella sezione BIB. Il suo contenuto deve assumere uno dei seguenti valori:
         # 0 : uso riservato all'interno dell'istituzione
         # 1 : uso pubblico
         # L'elemento è obbligatorio, non ripetibile e non sono definiti attributi.
         access_rights = ET.SubElement(gen,'access_rights')
-        access_rights.text = access_rightstxt
+        access_rights.text = self.gen.access_rights
 
         # <completeness> : dichiara la completezza della digitalizzazione. Il suo contenuto deve assumere uno dei seguenti valori:
         # 0 : digitalizzazione completa
         # 1 : digitalizzazione incompleta
         # L'elemento è obbligatorio, non ripetibile e non sono definiti attributi.
         completeness = ET.SubElement(gen,'completeness')
-        completeness.text = completenesstxt
+        completeness.text = self.gen.completeness
         # La digitalizzazione di un oggetto analogico (per esempio un volume) può dar luogo a molti oggetti digitali (per esempio le immagini che
         # riproducono ogni pagina del volume). Normalmente tali oggetti condividono un certo numero di caratteristiche, specie se la digitalizzazione è stata 
         # compiuta nello stesso momento. In questi casi è normale descrivere tutte le immagini ottenute dalla digitalizzazione di un singolo oggetto analogico
@@ -429,48 +442,64 @@ class MAGFile(object):
         # Le caratteristiche comuni a un gruppo omogeneo immagini possono essere definite all'interno dell'elemento <img_group>. 
         # L'elemento è opzionale, ripetibile e ha un attributo obbligatorio:
 
+        for ig in self.gen.img_groups.values():
+            # creo l'elemento 
+            img_group = ET.SubElement(gen,'img_group')
+            # assegno l'ID all gruppo se non è assegnato viene usato un numero
+            if type(ig.ID) is str:
+                img_group.set('ID', ig.ID)
 
-        # creo l'elemento 
-        img_group = ET.SubElement(gen,'img_group')
-        # creo il grupppo ID seguendo le formule
-        imggroupID1 = create_img_groupID('Masters')
-        # assegno l'ID all gruppo
-        img_group.set('ID', imggroupID1)
-
-
-        image_metrics = ET.SubElement(img_group,'image_metrics')
-        # informazioni sul campionamento
-        nisosamplingfrequencyunit = ET.SubElement(image_metrics, 'niso:samplingfrequencyunit')
-        nisosamplingfrequencyunit.text = nisosamplingfrequencyunittxt
-        nisosamplingfrequencyplane = ET.SubElement(image_metrics, 'niso:samplingfrequencyplane')
-        nisosamplingfrequencyplane.text = nisosamplingfrequencyplanetxt
-        nisosamplingfrequencyunit = ET.SubElement(image_metrics, 'niso:samplingfrequencyunit')
-        nisosamplingfrequencyunit.text = nisosamplingfrequencyunittxt
-        nisobitpersample = ET.SubElement(image_metrics, 'niso:bitpersample')
-        nisobitpersample.text = nisobitpersampletxt
-        # ppi and dpi
-        ppi = ET.SubElement(img_group, 'ppi')
-        ppi.text = ppitxt
-        dpi = ET.SubElement(img_group, 'dpi')
-        dpi.text = dpitxt
-        # formato immagine
-        fromat_ = ET.SubElement(img_group,'format')
-        nisoname = ET.SubElement(fromat_, 'niso:name')
-        nisoname.text = nisonametxt
-        nisomime = ET.SubElement(fromat_, 'niso:mime')
-        nisomime.text = nisomimetxt
-        nisocompression = ET.SubElement(fromat_, 'niso:compression')
-        nisocompression.text = nisocompressiontxt
-        # informazione sulla procedura di scansione
-        scanning = ET.SubElement(img_group,'scanning')
-        nisoscanningagency = ET.SubElement(scanning,'niso:scanningagency')
-        nisoscanningsystem = ET.SubElement(scanning,'niso:scanningsystem')
-        nisoscanner_manufacturer = ET.SubElement(nisoscanningsystem,'niso:scanner_manufacturer')
-        nisoscanner_manufacturer.text = nisoscanner_manufacturertxt
-        nisoscanner_model = ET.SubElement(nisoscanningsystem,'niso:scanner_model')
-        nisoscanner_model.text = nisoscanner_modeltxt
-        nisocapture_software = ET.SubElement(nisoscanningsystem,'niso:capture_software')
-        nisocapture_software.text = nisocapture_softwaretxt
+            image_metrics = ET.SubElement(img_group,'image_metrics')
+            # informazioni sul campionamento
+            if ig.image_metrics.samplingfrequencyunit not in [None,obbligatorio]:
+                nisosamplingfrequencyunit = ET.SubElement(image_metrics, 'niso:samplingfrequencyunit')
+                nisosamplingfrequencyunit.text = ig.image_metrics.samplingfrequencyunit
+            if ig.image_metrics.samplingfrequencyplane not in [None,obbligatorio]:
+                nisosamplingfrequencyplane = ET.SubElement(image_metrics, 'niso:samplingfrequencyplane')
+                nisosamplingfrequencyplane.text = ig.image_metrics.samplingfrequencyplane
+            if ig.image_metrics.xsamplingfrequency not in [None,obbligatorio]:
+                xsamplingfrequency = ET.SubElement(image_metrics, 'niso:xsamplingfrequency')
+                xsamplingfrequency.text = ig.image_metrics.xsamplingfrequency
+            if ig.image_metrics.ysamplingfrequency not in [None,obbligatorio]:
+                ysamplingfrequency = ET.SubElement(image_metrics, 'niso:ysamplingfrequency')
+                ysamplingfrequency.text = ig.image_metrics.ysamplingfrequency
+            if ig.image_metrics.bitpersample not in [None,obbligatorio]:
+                nisobitpersample = ET.SubElement(image_metrics, 'niso:bitpersample')
+                nisobitpersample.text = ig.image_metrics.bitpersample
+            # ppi and dpi
+            if ig.ppi is not None:
+                ppi = ET.SubElement(img_group, 'ppi')
+                ppi.text = ig.ppi
+            if ig.dpi is not None:
+                dpi = ET.SubElement(img_group, 'dpi')
+                dpi.text = ig.dpi
+            # formato immagine
+            fromat_ = ET.SubElement(img_group,'format')
+            if ig.format.name not in [None,obbligatorio]:
+                nisoname = ET.SubElement(fromat_, 'niso:name')
+                nisoname.text = ig.format.name
+            if ig.format.mime not in [None,obbligatorio]:
+                nisomime = ET.SubElement(fromat_, 'niso:mime')
+                nisomime.text = ig.format.mime
+            if ig.format.compression not in [None,obbligatorio]:
+                nisocompression = ET.SubElement(fromat_, 'niso:compression')
+                nisocompression.text = ig.format.compression
+            # informazione sulla procedura di scansione
+            scanning = ET.SubElement(img_group,'scanning')
+            if ig.scanning.scanningagency not in [None,obbligatorio]:
+                nisoscanningagency = ET.SubElement(scanning,'niso:scanningagency')
+                nisoscanningagency.text = ig.scanning.scanningagency
+            nisoscanningsystem = ET.SubElement(scanning,'niso:scanningsystem')
+            nisiscanningsystem = ig.scanning.scanningsystem
+            if ig.scanning.scanner_manufacturer not in [None,obbligatorio]:
+                nisoscanner_manufacturer = ET.SubElement(nisoscanningsystem,'niso:scanner_manufacturer')
+                nisoscanner_manufacturer.text = ig.scanning.scanner_manufacturer
+            if ig.scanning.scanner_model not in [None,obbligatorio]:
+                nisoscanner_model = ET.SubElement(nisoscanningsystem,'niso:scanner_model')
+                nisoscanner_model.text = ig.scanning.scanner_model
+            if ig.scanning.capture_software not in [None,obbligatorio]:
+                nisocapture_software = ET.SubElement(nisoscanningsystem,'niso:capture_software')
+                nisocapture_software.text = ig.scanning.capture_software
 
             
         # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_bib
@@ -485,13 +514,7 @@ class MAGFile(object):
         # m: monografia
         # s: seriale
         # c: raccolta prodotta dall'istituzione
-        biblevel = 'c'
-        if biblevel not in ['a','m','s','c']:
-            raise ValueError(("Il campo level deve essere scelto fra i seguenti: a (spoglio),"
-                            "m (monografia), s (seriale), c (raccolta prodotta dall'isituzione)."
-                            "Ho ricevuto %s." %biblevel))
-        # c: raccolta prodotta dall'istituzione")
-        bib.set('level',biblevel)
+        bib.set('level',self.bib.level)
 
 
 
@@ -499,15 +522,6 @@ class MAGFile(object):
         # Il primo degli elementi Dublin Core è il <dc:identifier> che contiene un identificatore univoco di un record 
         # descrittivo nell'ambito di un dato contesto. Di solito si usa un identificatore di un record bibliografico 
         # (opportunamente normalizzato) appartenente a un qualche schema di catalogazione (per es. SBN, Library of Congress).
-
-        caracter_tohex = {"/":"%2F","?":"%3F","#":"%23","[":"%5B","]":"%5D",
-        ";":"%3B",":":"%3A","@":"%40","&":"%26","=":"%3D","+":"%2B","$":"%24",
-        ",":"%2C","<":"%3C",">":"%3E","%":"%25","\"":"%22","{":"%7B","}":"%7D",
-        "|":"%7C","\\":"%5C","^":"%5E","`":"%60"," ":"%20"}
-
-        identifiertxt = r'my+strange\"'
-        for i in caracter_tohex:
-            identifiertxt = identifiertxt.replace(i,caracter_tohex[i])
         # può essere ripetibile info:bni/2004-778
         # Nel caso di <dc:identifier> plurimi, nella versione 1.5 di MAG era consentito differenziarli tramite 
         # l'utilizzo dell'attributo xsi:type. Tale soluzione, però, poneva complessi problemi di validazione. 
@@ -521,66 +535,114 @@ class MAGFile(object):
         # Aggiungere la possibiltà per le seguenti:
         # <dc:identifier>info:sbn/CFI0342793</dc:identifier>
         # <dc:identifier>info:bni/2004-778</dc:identifier>
+        for i in self.bib.identifiers:
+            dcidentifier = ET.SubElement(bib, 'dc:identifier')
+            dcidentifier.text = i
+        for i in self.bib.titles:
+            dctitle = ET.SubElement(bib, 'dc:title')
+            dctitle.text = i
+        for i in self.bib.creators:
+            creato = ET.SubElement(bib,'dc:creator')
+            creato.text=i
+        for i in self.bib.publishers:
+            publisher = ET.SubElement(bib,'dc:publisher')
+            publisher.text=i
+        for i in self.bib.subjects:
+            subject = ET.SubElement(bib,'dc:subject')
+            subject.text=i
+        for i in self.bib.descriptions:
+            description = ET.SubElement(bib,'dc:description')
+            description.text=i
+        for i in self.bib.contributors:
+            contributor = ET.SubElement(bib,'dc:contributor')
+            contributor.text=i
+        for i in self.bib.dates:
+            date = ET.SubElement(bib,'dc:date')
+            date.text=i
+        for i in self.bib.types:
+            typet = ET.SubElement(bib,'dc:type')
+            typet.text=i
+        for i in self.bib.formats:
+            formatt = ET.SubElement(bib,'dc:format')
+            formatt.text=i
+        for i in self.bib.sources:
+            source = ET.SubElement(bib,'dc:source')
+            source.text=i
+        for i in self.bib.languages:
+            language = ET.SubElement(bib,'dc:language')
+            language.text=i
+        for i in self.bib.relations:
+            relation = ET.SubElement(bib,'dc:relation')
+            relation.text=i
+        for i in self.bib.coverages:
+            coverage = ET.SubElement(bib,'dc:coverage')
+            coverage.text=i
+        for i in self.bib.rightss:
+            rights = ET.SubElement(bib,'dc:rights')
+            rights.text=i
 
-        dcidentifier = ET.SubElement(bib, 'dc:identifier')
-        dcidentifier.text = identifiertxt
-
-        dctitle = ET.SubElement(bib, 'dc:title')
-        dctitle.text = dctitletxt
-
-        dccreator = ET.SubElement(bib, 'dc:creator')
-        dccreator.text = dccreatortxt
-        # e via dicendo... 
-        # Opzionali:
-        holdings = ET.SubElement(bib, 'holdings')
-        # contiene il nome dell'istituzione proprietaria dell'oggetto analogico o
-        # di parte dell'oggetto analogico. Di tipo xsd:string, è opzionale e non ripetibile.
-        library = ET.SubElement(holdings,'library')
-        library.text = librarytxt
-        inventory_number = ET.SubElement(holdings,'inventory_number')
-        # contiene il numero di inventario attribuito all'oggetto analogico dall'istituzione 
-        # che lo possiede. Di tipo xsd:string, è opzionale e non ripetibile.
-        inventory_number.text = inventory_numbertxt
-        shelfmark = ET.SubElement(holdings,'shelfmark')
-        shelfmark.text = shelfmarktxt
-        # lAlcuni progetti di digitalizzazione che hanno adottato MAG come standard per la 
-        # raccolta dei metadati amministrativi e gestionali, hanno messo in evidenza la necessità 
-        # di dotare lo schema di alcuni elementi per la raccolta di particolari informazioni
-        #  specialistiche relativamente all'oggetto analogico raccolte durante il processo
-        #  di digitalizzazione. Tali informazioni non potevano essere agevolmente codificate 
-        # all'interno del set Dublin Core poiché la scelta di non avvalersi degli elementi 
-        # Dublin Core qualificati rendevano difficilmente identificabili tali contenuti. � stato 
-        # perciò creato l'elemento <local_bib> di tipo xsd:sequence, per il quale 
-        # non sono definiti attributi.
-        # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#local_bib
-        local_bib = ET.SubElement(bib, 'local_bib')
-        # L'elemento è opzionale così pure come gli elementi ivi contenuti:
-        # <geo_coord> : di tipo xsd:string, contiene le coordinate geografiche relative
-        #  a una carta o a una mappa. L'elemento è opzionale e ripetibile. Non sono definiti attributi.
-        geo_coord = ET.SubElement(local_bib, 'geo_coord')
-        # <not_date> : di tipo xsd:string, contiene la data di notifica relativa a un bando
-        #  o a un editto. L'elemento è opzionale e ripetibile. Non sono definiti attributi.
-        not_date = ET.SubElement(local_bib, 'not_date')
-        # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
-        # Pubblicazioni seriali e unità componenti di opere più vaste possono essere minuziosamente
-        #  descritte. Tali informazioni sono raccolte dall'elemento <piece>, di tipo xsd:choice, 
-        # vale a dire che può avere due contenuti diversi a seconda che contenga dati relativi a 
-        # una pubblicazione seriale (per esempio il fascicolo di una rivista) o all'unità 
-        # componente di un'opera più vasta (per esempio il singolo volume di un'enciclopedia). 
-        # L'elemento è opzionale e non ripetibile; non sono definiti attributi.
-        piece = ET.SubElement(bib, 'piece')
-        # non lo completiamo
-        # ....
+        for h in self.bib.holdings.values(): 
+            holdings = ET.SubElement(bib, 'holdings')
+            # contiene il nome dell'istituzione proprietaria dell'oggetto analogico o
+            # di parte dell'oggetto analogico. Di tipo xsd:string, è opzionale e non ripetibile.
+            if h.library is not None:
+                library = ET.SubElement(holdings,'library')
+                library.text = h.library
+            if h.inventory_number is not None:
+                inventory_number = ET.SubElement(holdings,'inventory_number')
+                # contiene il numero di inventario attribuito all'oggetto analogico dall'istituzione 
+                # che lo possiede. Di tipo xsd:string, è opzionale e non ripetibile.
+                inventory_number.text = h.inventory_number
+            for i in h.shelfmarks:
+                shelfmark = ET.SubElement(holdings,'shelfmark')
+                shelfmark.text = i[0]
+                if i[1] is not None:
+                    shelfmark.set('collocation_type',i[1])
+            # lAlcuni progetti di digitalizzazione che hanno adottato MAG come standard per la 
+            # raccolta dei metadati amministrativi e gestionali, hanno messo in evidenza la necessità 
+            # di dotare lo schema di alcuni elementi per la raccolta di particolari informazioni
+            #  specialistiche relativamente all'oggetto analogico raccolte durante il processo
+            #  di digitalizzazione. Tali informazioni non potevano essere agevolmente codificate 
+            # all'interno del set Dublin Core poiché la scelta di non avvalersi degli elementi 
+            # Dublin Core qualificati rendevano difficilmente identificabili tali contenuti. � stato 
+            # perciò creato l'elemento <local_bib> di tipo xsd:sequence, per il quale 
+            # non sono definiti attributi.
+            # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#local_bib
+            local_bib = ET.SubElement(bib, 'local_bib')
+            # L'elemento è opzionale così pure come gli elementi ivi contenuti:
+            # <geo_coord> : di tipo xsd:string, contiene le coordinate geografiche relative
+            #  a una carta o a una mappa. L'elemento è opzionale e ripetibile. Non sono definiti attributi.
+            geo_coord = ET.SubElement(local_bib, 'geo_coord')
+            # <not_date> : di tipo xsd:string, contiene la data di notifica relativa a un bando
+            #  o a un editto. L'elemento è opzionale e ripetibile. Non sono definiti attributi.
+            not_date = ET.SubElement(local_bib, 'not_date')
+            # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
+            # Pubblicazioni seriali e unità componenti di opere più vaste possono essere minuziosamente
+            #  descritte. Tali informazioni sono raccolte dall'elemento <piece>, di tipo xsd:choice, 
+            # vale a dire che può avere due contenuti diversi a seconda che contenga dati relativi a 
+            # una pubblicazione seriale (per esempio il fascicolo di una rivista) o all'unità 
+            # componente di un'opera più vasta (per esempio il singolo volume di un'enciclopedia). 
+            # L'elemento è opzionale e non ripetibile; non sono definiti attributi.
+            piece = ET.SubElement(bib, 'piece')
+            # non lo completiamo
+            # ....
 
         # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
         # L'elemento <stru> è il terzo figlio dell'elemento root <metadigit>; l'elemento è opzionale, 
-        # ripetibile e nidificabile. Esso contiene informazioni circa la struttura logica del documento digitalizzato. Tramite le informazioni codificate in questa sezione del record MAG è infatti possibile documentare la suddivisione interna di un documento (capitoli di un libro, articoli di una rivista), realizzare record MAG radice e record MAG di spoglio oppure collegare diversi MAG fra loro.
+        # ripetibile e nidificabile. Esso contiene informazioni circa la struttura logica del documento digitalizzato. 
+        # Tramite le informazioni codificate in questa sezione del record MAG è infatti possibile documentare la 
+        # suddivisione interna di un documento (capitoli di un libro, articoli di una rivista), realizzare record MAG 
+        # radice e record MAG di spoglio oppure collegare diversi MAG fra loro.
         # La sezione STRU trova la sua tipica utilizzazione nei seguenti tre casi:
-        # quando si ritenga opportuno mettere in evidenza le eventuali partizioni interne di un oggetto digitale (es. capitoli di un libro);
-        # nel caso di spogli, laddove le partizioni spogliate (es. articoli di una rivista) siano discrete autonomamente e come tali possano avere una propria sezione BIB;
-        # per far riferimento ad altri oggetti MAG correlati non appartenenti alla stessa tipologia, per esempio nel caso di un cofanetto contenente CD musicali e un fascicolo di testo.
+        # quando si ritenga opportuno mettere in evidenza le eventuali partizioni interne di un oggetto digitale (
+        # es. capitoli di un libro);
+        # nel caso di spogli, laddove le partizioni spogliate (es. articoli di una rivista) siano discrete autonomamente 
+        # e come tali possano avere una propria sezione BIB;
+        # per far riferimento ad altri oggetti MAG correlati non appartenenti alla stessa tipologia, per esempio nel caso 
+        # di un cofanetto contenente CD musicali e un fascicolo di testo.
         # Non ha invece senso nel caso di un oggetto unitario, privo di strutture interne.
-        # L'elemento <stru> è opzionale, ripetibile e ricorsivo, nel senso che è possibile innestare un numero indeterminato di elementi <stru>
+        # L'elemento <stru> è opzionale, ripetibile e ricorsivo, nel senso che è possibile innestare un numero indeterminato
+        #  di elementi <stru>
         # gli uni dentro agli altri, al fine di documentare l'eventuale articolazione interna di un documento.
         # Il suo contenuto è di tipo xsd:sequence e può contenere i seguenti elementi:
         # 
@@ -594,13 +656,35 @@ class MAGFile(object):
         # descr : di tipo xsd:string, contiene il nome o la descrizione di una particolare struttura. Al posto di tale attributo è preferibile usare l'elemento <nomenclature>
         # start : di tipo xsd:string, contiene il numero di sequenza che segna l'inizio del range di contenuti (precisati nelle sezioni IMG, OCR, DOC, AUDIO o VIDEO) da collegare. Al posto di tale attributo è preferibile usare l'elemento <start> contenuto all'interno di <element>.
         # stop : di tipo xsd:string, contiene il numero di sequenza che segna la fine del range di contenuti (precisati nelle sezioni IMG, OCR, DOC, AUDIO o VIDEO) da collegare. Al posto di tale attributo è preferibile usare l'elemento <stop> contenuto all'interno di <element>.
-        stru = ET.SubElement(p, 'stru')
-        sequence_number = ET.SubElement(stru, 'sequence_number')
-        nomenclature = ET.SubElement(stru, 'nomenclature')
-        element = ET.SubElement(stru, 'element')
-        resource = ET.SubElement(element, 'resource')
-        start = ET.SubElement(element, 'start')
-        stop = ET.SubElement(element, 'resource')
+        
+        def add_struc(xlmelem,stru):
+            struxml = ET.SubElement(xlmelem, 'stru')
+            if stru.sequence_number is not None:
+                sequence_number = ET.SubElement(struxml, 'sequence_number')
+                sequence_number.text = stru.sequence_number
+            if stru.nomenclature is not None:
+                nomenclature = ET.SubElement(struxml, 'nomenclature')
+                nomenclature.text = stru.nomenclature
+            for e in stru.elements:
+                element = ET.SubElement(struxml, 'element')
+                if e.resource is not None:
+                    resource = ET.SubElement(element, 'resource')
+                    resource.text = e.resource
+                if e.start is not None:
+                    start = ET.SubElement(element, 'start')
+                    start.text = e.start
+                if e.stop is not None:
+                    stop = ET.SubElement(element, 'resource')
+                    stop.text = e.stop
+            for ss in stru.structs:
+                add_struct(xlmelem=struxml,stru=stru)
+
+
+
+        
+        for s in self.structs:
+            add_struc(xlmelem=p,stru= s)
+            
 
         # La sezione IMG raccoglie i metadati amministrativi e gestionali relativi alle immagini statiche. 
         # Alcuni di questi dati, in realtà, possono essere raccolti direttamente all'interno della sezione GEN, grazie all'elemento <img_group>, il cui contenuto verrà tuttavia trattato in questa sezione per omogeneità tematica.
@@ -631,8 +715,8 @@ class MAGFile(object):
         # 
         # imggroupID : di tipo xsd:IDREF contiene un riferimento all'attributo ID dell'elemento <img_group> . Tale attributo consente di collegare un <img> con le caratteristiche tecniche definite globalmente da <img_group>. L'attributo è opzionale; qualora non sia usato si assume che le caratteristiche tecniche dell'immagine non siano state altrove descritte e quindi l'elemento <image_metrics> deve ritenersi obbligatorio, così come <format> e <scanning>.
         # holdingsID : di tipo xsd:IDREF contiene un riferimento all'attributo ID dell'elemento <holdings> e serve a definire a quale istituzione appartiene l'oggetto analogico digitalizzato. L'attributo è opzionale.
-        images = ['my imag','myimg3']
-        for image in images:
+  
+        for image in self.imgs:
             img = ET.SubElement(p, 'img')
             sequence_number = ET.SubElement(img,'sequence_number')
             nomenclature = ET.SubElement(img,'nomenclature')
@@ -684,15 +768,12 @@ class MAGFile(object):
             # Tale attributo consente di collegare un <img> con le caratteristiche tecniche definite globalmente da <img_group>.
             #  L'attributo è opzionale; qualora non sia usato si assume che le caratteristiche tecniche dell'immagine non siano 
             # state altrove descritte e quindi l'elemento <image_metrics> deve ritenersi obbligatorio, così come <format> e <scanning>.
-            img.set('imggroupID',img_ID)
+            if image.imggroupID is not None:
+                img.set('imggroupID',image.imggroupID)
             # holdingsID : di tipo xsd:IDREF contiene un riferimento all'attributo ID dell'elemento <holdings> e serve a 
             # definire a quale istituzione appartiene l'oggetto analogico digitalizzato. L'attributo è opzionale.
-            img.set('holdingsID',holdingsID)
-
-        xml = ET.tostring(p, encoding='utf-8')
-
-
-
+            if image.holdingsID is not None:
+                img.set('holdingsID',image.holdingsID)
 
         def indent(elem, level=0):
             i = "\n" + level*"  "

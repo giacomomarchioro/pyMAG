@@ -337,12 +337,11 @@ class scanning(object):
 
     def __init__(self):
         # usiamo un flag per gestire il fatto che ha degli attributi obbligatori anche se lui stesso non lo è
-        self.staus = 'NotUsed'
         self.sourcetype = None
         self.scanningagency = None
         self.devicesource = None
         self.scanningsystem = None
-        # obbligatori ma scanning sysem no!
+        # obbligatori ma scanning system no! E' uno degli elementi obbligatorio formalmente opizonali
         self.scanner_manufacturer = MAGtools.obbligatorio
         self.scanner_model = MAGtools.obbligatorio
         self.capture_software = MAGtools.obbligatorio
@@ -375,7 +374,6 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
                 MAGtools.valueinlist(value=value,lista=lista,url=url)
         else:
             value = MAGtools.valueinlist(value=value,lista=lista,url=url)
-        self.staus = 'Used'
         self.sourcetype = value
 
     def set_scanningagency(self,value):
@@ -385,7 +383,6 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value : str
             una stringa contentente il nome dell'ente o della persona.
         """
-        self.staus = 'Used'
         self.scanningagency = value
 
     def set_devicesource(self,value):
@@ -399,7 +396,6 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         lista = [ "scanner", "fotocamera digitale", "videocamera",]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
-        self.staus = 'Used'
         self.devicesource = value
 
     def set_scanner_manufacturer(self,value):
@@ -410,11 +406,11 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value : str
             una stringa tra i campi possibili.
         """
-        lista = [ "scanner", "fotocamera digitale", "videocamera",]
+        
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
-        value = MAGtools.valueinlist(value=value,lista=lista,url=url)
-        self.staus = 'Used'
+        #value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.scanner_manufacturer = value
+        self.scanningsystem = True
     
     def set_scanner_model(self,value):
         """obbligatorio e non ripetibile, contiene la marca e il modello dell'apparecchiatura di acquisizione.
@@ -426,9 +422,9 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         """
    
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
-        value = MAGtools.valueinlist(value=value,lista=lista,url=url)
-        self.staus = 'Used'
-        self.scanner_manufacturer = value
+        #value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        self.scanner_model = value
+        self.scanningsystem = True
     
     def set_capture_software(self,value):
         """obbligatorio e non ripetibile, contiene il nome del software usato per l'acquisizione dell'immagine e la versione:
@@ -444,9 +440,8 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         name = " ".join(splitted[:-1])
         version = splitted[-1]
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
-        value = MAGtools.valueinlist(value=value,lista=lista,url=url)
-        self.staus = 'Used'
-        self.scanner_manufacturer = value
+        self.capture_software = value
+        self.scanningsystem = True
 
     
         
