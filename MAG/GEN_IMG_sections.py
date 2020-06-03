@@ -3,9 +3,8 @@ from __future__ import print_function
 from datetime import datetime
 from . import MAGtools 
 import warnings
-import re
 
-# manca il target
+
 
 class target(object):
     """L'eventuale presenza, la tipologia e le modalità d'utilizzo di un target (o scala cromatica) durante la scansione dell'oggetto analogico è identificata dalla sezione codificata dall'elemento <target>, secondo lo standard NISO. L'elemento è opzionale e non ripetibile. Per <target> è definito un tipo specializzato appartenente al namespace niso denominato niso:targetdata. Tale tipo è di tipo xsd:sequence e contiene cinque elementi:
@@ -27,6 +26,9 @@ class target(object):
         self.imageData = None
         self.performanceData = None
         self.profiles = None
+
+    def get_vars(self):
+        return vars(self)
 
     def set_targetType(self,value):
         """opzionale e non ripetibile, dichiara se il target è interno o esterno. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:targettype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
@@ -60,14 +62,19 @@ class target(object):
             [description]
         """
         #TODO: path check
+        value = MAGtools.check_notnanorempty(value)
         self.imageData = value
     
     def set_performanceData(self,value):
+        value = MAGtools.check_notnanorempty(value)
         self.performanceData = value
     
     def set_profiles(self,value):
+        value = MAGtools.check_notnanorempty(value)
         self.profiles = value
-
+    
+    def get_vars(self):
+        return vars(self)
 
 class image_dimension(object):
     """
@@ -80,6 +87,9 @@ Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_
         self.imagewidth = MAGtools.obbligatorio
         self.source_xdimension = None
         self.source_ydimension = None
+
+    def get_vars(self):
+        return vars(self)
 
     def set_imagelengthandwidth(self,length,width):
         """
@@ -110,10 +120,11 @@ Le dimensioni dell'immagini digitale sono codificate grazie all'elemento <image_
         """
         self.source_xdimension = x_inches
         self.source_ydimension = y_inches
-
+    
 
 class image_metrics(object):
     def __init__(self):
+        self.is_used = False
         self.samplingfrequencyunit = MAGtools.obbligatorio
         self.samplingfrequencyplane = MAGtools.obbligatorio
         # obbligatori se applicabili
@@ -122,6 +133,8 @@ class image_metrics(object):
         self.photometricinterpretation = MAGtools.obbligatorio
         self.bitpersample = MAGtools.obbligatorio
 
+    def get_vars(self):
+        return vars(self)
 
     def set_samplingfrequencyunit(self,value):
         """obbligatorio e non ripetibile, definisce l'unità di misura usata 
@@ -150,6 +163,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.validvalue(value=value,valuedict=conv_dict,url=url)
         self.samplingfrequencyunit = value
+        self.is_used = True
 
     def set_samplingfrequencyplane(self,value):
         """obbligatorio e non ripetibile, dichiara il piano focale del campionamento. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:samplingfrequencyplanetype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
@@ -171,6 +185,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.validvalue(value=value,valuedict=conv_dict,url=url)
         self.samplingfrequencyplane = value
+        self.is_used = True
 
     def set_xsamplingfrequency(self,value):
         """opzionale (ma obbligatorio se applicabile) e non ripetibile, contiene la frequenza di campionamento nella direzione orizzontale, presente in alternativa a <ppi> e <dpi> (elementi obsoleti), con <niso:samplingfrequencyunit> = 2 (inch) o 3 (centimetro); con 1 il campo è nullo. Il suo contenuto è di tipo xsd:positiveInteger, vale a dire un numero positivo
@@ -183,6 +198,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.checkpositiveinteger(value=value,url=url)
         self.xsamplingfrequency = value
+        self.is_used = True
 
     def set_ysamplingfrequency(self,value):
         """opzionale (ma obbligatorio se applicabile) e non ripetibile, contiene la frequenza di campionamento nella direzione verticale, presente in alternativa a <ppi> e <dpi> (elementi obsoleti), con <niso:samplingfrequencyunit> = 2 (inch) o 3 (centimetro); con 1 il campo è nullo. Il suo contenuto è di tipo xsd:positiveInteger, vale a dire un numero positivo
@@ -201,6 +217,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.checkpositiveinteger(value=value,url=url)
         self.ysamplingfrequency = value
+        self.is_used = True
 
     def set_photometricinterpretation(self,value):
         """obbligatorio e non ripetibile, definisce l'interpretazione fotometrica dei bit del campione. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:photometricinterpretationtype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
@@ -229,6 +246,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.photometricinterpretation = value
+        self.is_used = True
 
     def set_bitpersample(self,value):
         """obbligatorio e non ripetibile, definisce il numero di bit per ciascun campione, esplicitando il rapporto profondità/colore. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:bitpersampletype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
@@ -253,7 +271,7 @@ class image_metrics(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#image_metrics"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.bitpersample = value
-
+        self.is_used = True
 
 class format_(object):
     """
@@ -263,6 +281,10 @@ class format_(object):
         self.name = MAGtools.obbligatorio
         self.mime = MAGtools.obbligatorio
         self.compression = MAGtools.obbligatorio
+        self.is_used = False
+
+    def get_vars(self):
+        return vars(self)
 
     def set_name(self,value):
         """obbligatorio e non ripetibile, contiene il formato dell'immagine. � di tipo xsd:string, si consiglia di usare valori come JPG, GIF, TIF, PDF ecc. Si raccomanda di usare valori formati da tre caratteri. Una sintassi alternativa può essere adottata per i formati che codificano il numero di revisione nel file header: [formato file][numero di revisione], per esempio: TIFF/EP 1.0.0.0.
@@ -276,6 +298,7 @@ class format_(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_format"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.name = value
+        self.is_used = True
 
     def set_mime(self,value):
         """obbligatorio e non ripetibile, contiene il tipo mime dell'immagine. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:img_mimetype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori (si noti la presenza del formato PDF, che per sua natura si presta sia per contenuti testuali - e come tale il valore è previsto fra i mime type delle sezioni OCR e DOC -, sia per veicolare immagini):
@@ -302,6 +325,7 @@ class format_(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_format"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.mime = value
+        self.is_used = True
     
     def set_compression(self,value):
         """obbligatorio e non ripetibile, dichiara il tipo di compressione applicato all'immagine. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:compressiontype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
@@ -329,6 +353,7 @@ class format_(object):
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_format"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.compression = value
+        self.is_used = True
 
 class scanning(object):
     """
@@ -345,6 +370,10 @@ class scanning(object):
         self.scanner_manufacturer = MAGtools.obbligatorio
         self.scanner_model = MAGtools.obbligatorio
         self.capture_software = MAGtools.obbligatorio
+        self.is_used = True
+
+    def get_vars(self):
+        return vars(self)
 
     def set_sourcetype(self,value):
         """opzionale e non ripetibile, descrive le caratteristiche fisiche del supporto analogico di partenza. Di tipo xsd:string, si suggerisce comunque di adottare uno dei seguenti valori:
@@ -375,6 +404,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         else:
             value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.sourcetype = value
+        self.is_used = True
 
     def set_scanningagency(self,value):
         """opzionale e non ripetibile, contiene il nome della persona, società o ente produttore dell'immagine digitale, cioè dell'entità che ha realizzato la scansione. � di tipo xsd:string. Se assente, si assume che la scansione sia stata effettuata all'interno dell'istituzione responsabile del progetto di digitalizzazione.
@@ -383,7 +413,9 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value : str
             una stringa contentente il nome dell'ente o della persona.
         """
+        value = MAGtools.check_notnanorempty(value,url=url,minlen=3)
         self.scanningagency = value
+        self.is_used = True
 
     def set_devicesource(self,value):
         """opzionale e non ripetibile, descrive la tipologia dell'apparecchiatura di scansione, per esempio "scanner", "fotocamera digitale", "videocamera". 
@@ -397,6 +429,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.devicesource = value
+        self.is_used = True
 
     def set_scanner_manufacturer(self,value):
         """obbligatorio e non ripetibile, contiene il nome del produttore del dispositivo
@@ -409,8 +442,10 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         #value = MAGtools.valueinlist(value=value,lista=lista,url=url)
+        value = MAGtools.check_notnanorempty(value,url=url,minlen=3)
         self.scanner_manufacturer = value
         self.scanningsystem = True
+        self.is_used = True
     
     def set_scanner_model(self,value):
         """obbligatorio e non ripetibile, contiene la marca e il modello dell'apparecchiatura di acquisizione.
@@ -422,9 +457,11 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         """
    
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
+        value = MAGtools.check_notnanorempty(value,url=url,minlen=3)
         #value = MAGtools.valueinlist(value=value,lista=lista,url=url)
         self.scanner_model = value
         self.scanningsystem = True
+        self.is_used = True
     
     def set_capture_software(self,value):
         """obbligatorio e non ripetibile, contiene il nome del software usato per l'acquisizione dell'immagine e la versione:
@@ -442,6 +479,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         self.capture_software = value
         self.scanningsystem = True
+        self.is_used = True
 
     
         
@@ -462,10 +500,11 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         # elementi
         self.sequence_number = sequence_number
         self.nomenclature = MAGtools.obbligatorio
-        self.usage = None 
+        self.usage = [] 
         self.scale = None 
         self.file = None
         self.filesize = None
+        self.side = None
         self.image_dimensions = image_dimension()
         self.image_metrics = image_metrics()
         self.ppi = None
@@ -473,14 +512,20 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         self.format = format_()
         self.scanning = scanning()
         self.datetimecreated = MAGtools.obbligatorio
-        self.target = None 
-        self.altimg = None
+        self.targets = [] 
+        self.altimgs = []
         self.note = None 
         self.fileLocation = MAGtools.obbligatorio
         self.fileLink = MAGtools.obbligatorio
         self.md5 = MAGtools.obbligatorio
+        MAGtools.check_notnanorempty(self.sequence_number)
 
-    
+    def get_vars(self):
+        var = vars(self)
+        var['image_dimension'] = self.image_dimensions.get_vars()
+        var['image_metrics'] = self.image_metrics.get_vars()
+        var['format'] = self.format.get_vars()
+        var['scanning'] = self.scanning.get_vars()
 
     def set_nomenclature(self,value):
         """A ciascuna immagine deve inoltre essere attribuita una denominazione, per esempio Pagina 1, Carta 2v, ecc. Tale denominazione viene codificata dall'elemento <nomenclature>. L'elemento è di tipo xsd:string; si consiglia comunque di definire una nomenclatura controllata negli standard di progetto. L'elemento è obbligatorio e non ripetibile
@@ -491,9 +536,18 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         """
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
         msg = "Tali misurazione è sconsigliata in quanto obsoleta e imprecisa; è conservata solo per garantire la compatibilità con le versioni precedenti di MAG. Si consiglia, invece di usare <niso:xsamplingfrequency> e <niso:ysamplingfrequency> all'interno di <image_metrics>. L'uso di <dpi> e <ppi> di fatto equivalgono a <niso:xsamplingfrequency> e <niso:ysamplingfrequency> con valori uguali e con <niso:samplingfrequencyunit> = 2."
+        value = MAGtools.check_notnanorempty(value,url=url,minlen=0)
         self.nomenclature = value
 
-    def set_usage(self,uso=None,copyright=None,stringapersonalizzata=None):
+    def add_altimg(self):
+        #TODO altimg
+        raise NotImplementedError
+
+    def add_target(self):
+        new_target = target()
+        self.targets.append(new_target)
+
+    def add_usage(self,uso=None,copyright=None,stringapersonalizzata=None):
         """Dello stesso oggetto digitale (tipicamente un foglio di carta) possono essere tratte più immagini digitali, più o meno definite, in diversi formati, ognuna delle quali con una diversa finalità. � infatti usuale creare immagini di alta qualità per l'archiviazione interna e immagini di qualità più limitata per la diffusione esterna. La finalità dell'immagine digitale viene registrata dall'elemento <usage>. L'elemento è di tipo xsd:string; al fine di favorire la portabilità dei dati, si consiglia tuttavia di adottare le seguenti due tassonomie (adottate dai maggiori progetti di digitalizzazione italiani), la prima relativa alle modalità d'uso, la seconda al possesso del copyright da parte dell'istituzione:
 
         1 : master
@@ -518,21 +572,24 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         conv_dict2 = {"a":"il repository non ha il copyright dell'oggetto digitale",
                       "b":"il repository ha il copyright dell'oggetto digitale"}
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
+        if uso is None and copyright is None and stringapersonalizzata is None:
+            warnings.warn("Tutti gli attributi di set_usage sono None")
+            return False
         if uso is not None:
             uso = MAGtools.validvalue(value=uso,valuedict=conv_dict,url=url)
         if copyright is not None:
             copyright = MAGtools.validvalue(value=copyright,valuedict=conv_dict2,url=url)
-        if stringapersonalizzata != None:
+        if stringapersonalizzata is not None:
             if stringapersonalizzata[0] not in [1,2,3,4]:
                 warnings.warn("Si consiglia di utilizzare il numero corrispondente al caso come indicato da ICCU. %s" %url)
             if len(stringapersonalizzata[0]) > 1:
                 if stringapersonalizzata[1] not in ["a","b"]:
                     warnings.warn("Si consiglia di utilizzare il numero corrispondente al caso come indicato da ICCU. %s" %url)
-            self.usage = stringapersonalizzata
+            self.usage.append(stringapersonalizzata)
         else:
-            self.usage = uso+copyright
+            self.usage.append(uso+copyright)
 
-    def set_side(self,side):
+    def set_side(self,value):
         """
         Esattamente come per la fotocopiatura, la scansione di un oggetto analogico può procedere in vario modo, è possibile infatti procedere per una pagina alla volta oppure per pagine affiancate. Tale informazione può essere registrata grazie all'elemento opzionale e non ripetibile <side>, per il quale è definito un tipo semplice specializzato denominato a sua volta side. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
 
@@ -544,9 +601,9 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         """
         lista = ['left','right','double','part']
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scansione"
-        self.side = valueinlist(value,lista,url)
+        self.side = MAGtools.valueinlist(value,lista,url)
 
-    def set_file(self,link,Location,):
+    def set_file(self,link,Location):
         """
         Il link è in genere il percorso che punta alla risorsa. 
 
@@ -577,8 +634,7 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         value : str
             la checksum md5
         """
-        if len(re.findall(r"([a-fA-F\d]{32})", value)) == 1:
-            warnings.warn("Non sembra un md5 valido.",stacklevel=2)
+        value = MAGtools.check_md5(value)
         self.md5 = value
 
     def set_scale(self,value):
@@ -653,7 +709,10 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         self.datetimecreated = value
 
     def set_note(self,value):
+        value = MAGtools.check_notnanorempty(value)
         self.note = value
+    
+    
 
 
 
@@ -668,7 +727,13 @@ class img_group(object):
         self.format = format_()
         self.scanning = scanning()
 
-    
+    def get_vars(self):
+        var = vars(self)
+        var['image_metrics'] = self.image_metrics.get_vars()
+        var['format'] = self.format.get_vars()
+        var['scanning'] = self.scanning.get_vars()
+        return var
+
     def set_ppi(self,value):
         """pixel per inch, cioè il numero di pixel presenti per ogni pollice quadrato,
         Parameters
@@ -694,6 +759,9 @@ class img_group(object):
         warnings.warn(msg + "\nPer maggiori informazioni:\n" + url, category=DeprecationWarning)
         MAGtools.checkpositiveinteger(value=value,url=url)
         self.dpi = value
+
+    
+
 ####################
 #
 #     MAIN CLASS
@@ -714,6 +782,11 @@ class gen(object):
         self.img_groups = dict()
         self.audio_groups = dict()
         self.video_groups = dict()
+
+    def get_vars(self):
+        var = vars(self)
+        for i in self.img_groups:
+            var['image_groups'][i] = var['image_groups'][i].get_vars()
 
    
 

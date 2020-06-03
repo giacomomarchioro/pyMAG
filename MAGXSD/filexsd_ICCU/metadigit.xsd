@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.iccu.sbn.it/metaAG1.pdf" 
+xmlns="http://www.iccu.sbn.it/metaAG1.pdf" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!--
+4/11/2002 Changes:
+1- Changed schema for DC
+2- Added section <stru>
+3- Added type SBN and BNI
+4- Added tag <side> to <img> section
+
+10/03/2003 Changes:
+1- Added tag <size>, <usage> and <scale> to <img> section
+2- Added subsections <target> and <altimg> to <img> section 
+3- Changed type of attributes <creation> and <last_update> for tag <gen>
+
+19/05/2003 Changes:
+1- Added tag <collection>, and subsection <img_group> to <gen> section
+2- Added complete set of DC elements to <bib> section 
+3- Added attribute level to <bib> section
+4- Section <holdings> is repetitive
+5- Added tag <library> to section <holdings>
+6- Renamed <fis> to <piece>
+7- Added tag <element> to section <stru>
+8- Added <doc> section
+9- Added imggroupID attribute to <img> and <altimg> sections
+10- Added holdingsID attribute to <img> section
+11- Added <image_metrics> section
+12- Moved tag <dpi> to section <image_metrics> and added tag <ppi> 
+13- Moved tag <photometricinterpretation> from section <format> to <image_metrics> 
+14- Renamed <size> to <filesize>
+15- Added section doc
+
+05/04/2004 Changes:
+1- Added "uniqstru" constraint
+2- Added tags <sequence_number> and <nomenclature> to section <stru>
+3- Relevant changes in section <stru>
+4- tag <usage> is repeatable
+
+-->
+	<xsd:include schemaLocation="metatype.xsd"/>
+	<xsd:element name="metadigit">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="gen"  type="gen"/>
+				<xsd:element name="bib"  type="bib"/>
+				<xsd:element name="stru" type="stru" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="img"  type="img"  minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ocr"  type="ocr"  minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="doc"  type="doc"  minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" default="1.5"/>
+		</xsd:complexType>
+		<!--vincolo di unicita' sul campo sequenza all'interno di ogni sezione -->
+		<xsd:unique name="uniqstru">
+			<xsd:selector xpath="stru"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqimg">
+			<xsd:selector xpath="img"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqocr">
+			<xsd:selector xpath="ocr"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqdoc">
+			<xsd:selector xpath="doc"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+	</xsd:element>
+</xsd:schema>

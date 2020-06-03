@@ -52,6 +52,9 @@ class holdings(object):
         """
         self.shelfmarks.append((value,collocation_type))
 
+    def get_vars(self):
+        return vars(self)
+
 class local_bib(object):
     """[summary]
 Alcuni progetti di digitalizzazione che hanno adottato MAG come standard per la raccolta dei metadati amministrativi e gestionali, hanno messo in evidenza la necessità di dotare lo schema di alcuni elementi per la raccolta di particolari informazioni specialistiche relativamente all'oggetto analogico raccolte durante il processo di digitalizzazione. Tali informazioni non potevano essere agevolmente codificate all'interno del set Dublin Core poich� la scelta di non avvalersi degli elementi Dublin Core qualificati rendevano difficilmente identificabili tali contenuti. � stato perciò creato l'elemento <local_bib> di tipo xsd:sequence, per il quale non sono definiti attributi. L'elemento è opzionale così pure come gli elementi ivi contenuti:
@@ -189,6 +192,7 @@ Per l'elemento è definito un attributo obbligatorio level.
         self.level = MAGtools.obbligatorio
         # Elements
         self.holdings = dict()
+        #obbligatorio
         self.identifiers = []
         self.local_bib = local_bib()
         self.piece_volume = piece_volume()
@@ -320,5 +324,8 @@ Per l'elemento è definito un attributo obbligatorio level.
     def add_rights(self,value):
         """ aggiunge l'elemento DoublinCore alla lista"""
         self.rightess.append(value)
+
+    def get_vars(self):
+        return vars(self)
 
 

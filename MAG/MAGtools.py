@@ -1,6 +1,10 @@
 import requests
 from datetime import datetime
 import warnings
+import re
+
+returnwarning = False
+
 
 class obbligatorio(object):
     """ Oggetto usato per definire campi obligatorio.
@@ -8,29 +12,71 @@ class obbligatorio(object):
     def __str__(self):
       return "Campo obbligatorio non presente!"
 
+def check_notnanorempty(value,url=None,minlen=0):  
+    if value in ['',None]:
+        msg = ('Il valore deve essere non nullo e non vuoto'
+            ' Era invece %s\n%s' %(value,url))
+        warnings.warn(msg,stacklevel=2)
+        msg = "<-!!ERRORE:" + msg
+        value = None
+        if returnwarning:
+            value = "None <-!!ERRORE:" + msg
+        return value
+    value = str(value)
+    msg = ""
+    if len(value)<minlen:
+       msg = "Il valore %s sembra avere una lunghezza anomala."%value
+       print(msg)
+       value = "None <-!!ERRORE:" + msg
+    if returnwarning:
+        value +=msg
+    return value
+
+def check_md5(value):
+    msg = ""
+    if value is not None:
+        if len(re.findall(r"([a-fA-F\d]{32})", value)) != 1:
+            msg = "Non sembra un md5 valido."
+            warnings.warn(msg,stacklevel=2)
+            msg = "<-!!ERRORE:" + msg
+    if returnwarning:
+        value = str(value)+msg
+    return value 
+    
+
 
 def check_datetime(datetime_str,url=None):
-    try:
-        datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S')
-    except ValueError:
-        warnings.warn(('La data non è nel formato corretto!'
-        ' dovrebbe essere per es. 2020-6-14T18:30:29'
-        ' Era invece %s\n%s' %(datetime_str,url)),stacklevel=3)
+    datetime_str = check_notnanorempty(datetime_str)
+    msg =''
+    if datetime_str is not None:
+        try:
+            datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S')
+        except ValueError:
+            msg = ('La data non è nel formato corretto!'
+            ' dovrebbe essere per es. 2020-6-14T18:30:29\n'
+            ' %s' %(url))
+            warnings.warn(msg+"\n Era invece %s"%datetime_str,stacklevel=3)
+            msg = "<-!!ERRORE:" + msg
+    if returnwarning:
+        datetime_str = datetime_str + msg
     return datetime_str
 
 
 def check_url(url):
+    msg = ""
     try:
         request = requests.get(url)
         if request.status_code != 200:
             print(request.status_code)
-            warnings.warn('Esiste il server ma non la pagina',stacklevel=3)
+            msg = 'Esiste il server ma non la pagina'
+            warnings.warn(msg,stacklevel=3)
+            msg = "<-!!ERRORE:" + msg
     except ConnectionError:
         print("Errore di connessione indirizzo non valido!")
     except requests.exceptions.MissingSchema:
         print("Schema non valido.")
-
-
+    if returnwarning:
+        url+=msg
     return url
 
 
@@ -83,19 +129,31 @@ diversi dal punto, il trattino e il trattino basso. Ho trovato %s: \n%s\n%s\n%s"
 
 def validvalue(value,valuedict,url):
     value = str(value)
+    msg=""
     if value in valuedict or value in valuedict.values():
         if value in valuedict:
             value = valuedict[value]
     else:
         fields = list(valuedict) + list(set(valuedict.values()))
-        warnings.warn(("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
-                        "Era invece: %s " %(", ".join(fields),url,value)),stacklevel=4)
+        msg = ("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
+                        "Era invece: %s " %(", ".join(fields),url,value))
+        warnings.warn(msg,stacklevel=4)
+        msg+="<-!!ERRORE:"
+    if returnwarning:
+        value+=msg
     return value
 
 def valueinlist(value,lista,url):
+    msg = ""
     if value not in lista:
-        warnings.warn(("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
-                        "Era invece: %s " %(", ".join(lista),url,value)),stacklevel=4)
+        msg = ("Il valore può essere: %s. \n Maggiori informazioni:%s \n"
+                        "Era invece: %s " %(", ".join(lista),url,value))
+        warnings.warn(msg,stacklevel=4)
+        msg+="<-!!ERRORE:"
+    if returnwarning:
+        if value is None:
+            value = "None "
+        value+=msg
     return value
 
 
@@ -104,8 +162,9 @@ def checkpositiveinteger(value,url):
     try:
         int(value)
     except ValueError:
-        warnings.warn(("Il valore può essere deve essere un intero positivo.\nMaggiori informazioni:%s \n"
-                        "Era invece: %s " %(url,value)),stacklevel=3)
+        msg = ("Il valore può essere deve essere un intero positivo.\nMaggiori informazioni:%s \n"
+                        "Era invece: %s " %(url,value))
+        warnings.warn(msg,stacklevel=3)
     if int(value) < 11:
         print("Atteznione valore anomalo: %s" %value)
     return str(value)
@@ -154,7 +213,7 @@ def URIescaping(uri):
     "|":"%7C","\\":"%5C","^":"%5E","`":"%60"," ":"%20"}
 
     for chraracter in caracter_tohex.keys():
-        uri = identifiertxt.replace(chraracter,caracter_tohex[chraracter])
+        uri = uri.replace(chraracter,caracter_tohex[chraracter])
     return uri
 
 

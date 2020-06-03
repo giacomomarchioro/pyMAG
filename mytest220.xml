@@ -1,0 +1,3223 @@
+<mag:metadigit version="2.0.1" xmlns="http://www.iccu.sbn.it/metaAG1.pdf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:mag="http://www.iccu.sbn.it/metaAG1.pdf" xmlns:niso="http://www.niso.org/pdfs/DataDict.pdf" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iccu.sbn.it/metaAG1.pdf http://www.iccu.sbn.it/directories/metadigit201/metadigit.xsd">
+  <gen creation="2006-12-14T09:12:22" last_update="2014-05-21T09:26:19Z">
+    <stprog>http://www.sisf-assisi.it/digitalizzazione.htm</stprog>
+  <collection>Mediatheca Franciscana - Fondo antico del Sacro Convento di Assisi</collection>
+  <agency>Societ&#224; internazionale di studi francescani (SISF) : Assisi</agency>
+  <access_rights>1</access_rights>
+  <completeness>0</completeness>
+  <img_group ID="master">
+      <image_metrics>
+        <niso:samplingfrequencyunit>2</niso:samplingfrequencyunit>
+      <niso:samplingfrequencyplane>2</niso:samplingfrequencyplane>
+      <niso:photometricinterpretation>RGB</niso:photometricinterpretation>
+      <niso:bitpersample>8,8,8</niso:bitpersample>
+      </image_metrics>
+    <format>
+        <niso:name>JPG</niso:name>
+      <niso:mime>image/jpeg</niso:mime>
+      <niso:compression>JPG</niso:compression>
+      </format>
+    <scanning>
+        <niso:scanningsystem />
+      </scanning>
+    </img_group>
+  <img_group ID="jpeg150">
+      <image_metrics>
+        <niso:samplingfrequencyunit>2</niso:samplingfrequencyunit>
+      <niso:samplingfrequencyplane>2</niso:samplingfrequencyplane>
+      <niso:xsamplingfrequency>150</niso:xsamplingfrequency>
+      <niso:ysamplingfrequency>150</niso:ysamplingfrequency>
+      <niso:photometricinterpretation>RGB</niso:photometricinterpretation>
+      <niso:bitpersample>8,8,8</niso:bitpersample>
+      </image_metrics>
+    <format>
+        <niso:name>JPG</niso:name>
+      <niso:mime>image/jpeg</niso:mime>
+      <niso:compression>JPG</niso:compression>
+      </format>
+    <scanning>
+        <niso:scanningsystem />
+      </scanning>
+    </img_group>
+  </gen>
+<bib level="m">
+    <dc:identifier>PG0213_ms.171</dc:identifier>
+  <dc:title>Assisi, Fondo Antico presso la Biblioteca del Sacro Convento, ms. 171</dc:title>
+  <dc:description>Recupero da catalogo (CENCI, Bibliotheca, I, p. 149, nr. 146). Cart.; fascicoli legati; 1301-1400 desumibile (cfr. CENCI, Bibliotheca, I, p. 149); mm 285 x 215 (c. 1) (cfr. CENCI, Bibliotheca, I, p. 149). Disposizione del testo: a una colonna; cfr. CENCI, Bibliotheca, I, p. 149. Scrittura e mani: mano del XIV secolo; cfr. CENCI, Bibliotheca, I, p. 149. Decorazione: iniziali semplici; (la prima lettera, alla c. 1r, &#232; colorata; cfr. CENCI, Bibliotheca, I, p. 149). Legatura: 1801-1900, cosiddetta "ligatura assisiensis"; cfr. CENCI, Bibliotheca, I, p. 149. Storia del manoscritto: il codice non &#232; numerato.</dc:description>
+  <dc:description>(cc. 1r) Autore identificato: Eberardus : de Bethunia. Titolo aggiunto: Graecismus liber optimus (titolo desunto dal cod. A). Testo inc.: Quoniam ignorancie (c. 1r).</dc:description>
+  <dc:date>1301</dc:date>
+  <dc:date>1400</dc:date>
+  <dc:type>manoscritto</dc:type>
+  <dc:format>cartaceo; mm 285 x 215</dc:format>
+  <holdings>
+      <library>Assisi, Fondo Antico presso la Biblioteca del Sacro Convento - IT-PG0213</library>
+    <shelfmark>ms. 171</shelfmark>
+    </holdings>
+  <piece />
+  </bib>
+<stru>
+    <sequence_number>1</sequence_number>
+  </stru>
+<img imggroupID="jpeg150">
+    <sequence_number>1</sequence_number>
+  <nomenclature>A171piatto1r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/a171piatto1r_a30ed2cd74f655a16aa2eb1aaeff6451_73572418bebf727aabb4af515dc356c7" />
+  <md5>73572418bebf727aabb4af515dc356c7</md5>
+  <image_dimensions>
+      <niso:imagelength>2122</niso:imagelength>
+    <niso:imagewidth>1536</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:08Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>2</sequence_number>
+  <nomenclature>A171piatto1v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/a171piatto1v_a30ed2cd74f655a16aa2eb1aaeff6451_8604f4ffcb6eeaf9f0b051d1df991590" />
+  <md5>8604f4ffcb6eeaf9f0b051d1df991590</md5>
+  <image_dimensions>
+      <niso:imagelength>2105</niso:imagelength>
+    <niso:imagewidth>1495</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:09Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>3</sequence_number>
+  <nomenclature>C171B0001r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0001r_a30ed2cd74f655a16aa2eb1aaeff6451_edd57d8b97dfb0388fd687a04d6f6986" />
+  <md5>edd57d8b97dfb0388fd687a04d6f6986</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:26Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>4</sequence_number>
+  <nomenclature>C171B0001v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0001v_a30ed2cd74f655a16aa2eb1aaeff6451_c90c820848cdcf9cbed223656fc1dcf4" />
+  <md5>c90c820848cdcf9cbed223656fc1dcf4</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:16Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>5</sequence_number>
+  <nomenclature>C171B0002r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0002r_a30ed2cd74f655a16aa2eb1aaeff6451_618b14af39dd43a9c19293b38059441a" />
+  <md5>618b14af39dd43a9c19293b38059441a</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:22Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>6</sequence_number>
+  <nomenclature>C171B0002v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0002v_a30ed2cd74f655a16aa2eb1aaeff6451_a0ae363c569ecb19b2c95742047a8035" />
+  <md5>a0ae363c569ecb19b2c95742047a8035</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:47Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>7</sequence_number>
+  <nomenclature>C171B0003r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0003r_a30ed2cd74f655a16aa2eb1aaeff6451_ab782b3fca5b264630a9670611d9db47" />
+  <md5>ab782b3fca5b264630a9670611d9db47</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:51Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>8</sequence_number>
+  <nomenclature>C171B0003v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0003v_a30ed2cd74f655a16aa2eb1aaeff6451_cfbc866ab0282b32f0f3de08f02aa790" />
+  <md5>cfbc866ab0282b32f0f3de08f02aa790</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1457</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:35Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>9</sequence_number>
+  <nomenclature>C171B0004r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0004r_a30ed2cd74f655a16aa2eb1aaeff6451_6c3e38f05ed4f3bf0cc327e5a66d08e4" />
+  <md5>6c3e38f05ed4f3bf0cc327e5a66d08e4</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:14Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>10</sequence_number>
+  <nomenclature>C171B0004v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0004v_a30ed2cd74f655a16aa2eb1aaeff6451_2f9fb6c51179dd852c242f772a6e1168" />
+  <md5>2f9fb6c51179dd852c242f772a6e1168</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1457</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:59Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>11</sequence_number>
+  <nomenclature>C171B0005r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0005r_a30ed2cd74f655a16aa2eb1aaeff6451_0a295142ca63b6210a8c5c46130e62c9" />
+  <md5>0a295142ca63b6210a8c5c46130e62c9</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:00Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>12</sequence_number>
+  <nomenclature>C171B0005v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0005v_a30ed2cd74f655a16aa2eb1aaeff6451_0e4ee204a22bc06019d850f60f67342e" />
+  <md5>0e4ee204a22bc06019d850f60f67342e</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:40Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>13</sequence_number>
+  <nomenclature>C171B0006r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0006r_a30ed2cd74f655a16aa2eb1aaeff6451_1918bcf8f9efcb596b2a6582be94f924" />
+  <md5>1918bcf8f9efcb596b2a6582be94f924</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:50Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>14</sequence_number>
+  <nomenclature>C171B0006v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0006v_a30ed2cd74f655a16aa2eb1aaeff6451_2769f161a66670e39d642505940cd051" />
+  <md5>2769f161a66670e39d642505940cd051</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:53Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>15</sequence_number>
+  <nomenclature>C171B0007r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0007r_a30ed2cd74f655a16aa2eb1aaeff6451_609efd05a873b8a3f99e7014798a57b2" />
+  <md5>609efd05a873b8a3f99e7014798a57b2</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:32Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>16</sequence_number>
+  <nomenclature>C171B0007v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0007v_a30ed2cd74f655a16aa2eb1aaeff6451_03bed414828e8e5f3c60d9d1c6d1d278" />
+  <md5>03bed414828e8e5f3c60d9d1c6d1d278</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:22Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>17</sequence_number>
+  <nomenclature>C171B0008r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0008r_a30ed2cd74f655a16aa2eb1aaeff6451_275a4f95f71433ff5216317ea60b42a9" />
+  <md5>275a4f95f71433ff5216317ea60b42a9</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:08Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>18</sequence_number>
+  <nomenclature>C171B0008v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0008v_a30ed2cd74f655a16aa2eb1aaeff6451_7220ac52fb2f7a390ec5cb7d6d438d38" />
+  <md5>7220ac52fb2f7a390ec5cb7d6d438d38</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:42Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>19</sequence_number>
+  <nomenclature>C171B0009r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0009r_a30ed2cd74f655a16aa2eb1aaeff6451_a681affa5d2fe85d294c9336c0893649" />
+  <md5>a681affa5d2fe85d294c9336c0893649</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:00Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>20</sequence_number>
+  <nomenclature>C171B0009v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0009v_a30ed2cd74f655a16aa2eb1aaeff6451_69e40a9dea65ab155c79d2f79e44c089" />
+  <md5>69e40a9dea65ab155c79d2f79e44c089</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:37Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>21</sequence_number>
+  <nomenclature>C171B0010r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0010r_a30ed2cd74f655a16aa2eb1aaeff6451_073fa2b026fd3705fe5ab558a1a4c70c" />
+  <md5>073fa2b026fd3705fe5ab558a1a4c70c</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:15Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>22</sequence_number>
+  <nomenclature>C171B0010v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0010v_a30ed2cd74f655a16aa2eb1aaeff6451_6ad0c7406e746794f7d0ec8a81871c77" />
+  <md5>6ad0c7406e746794f7d0ec8a81871c77</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1459</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:09Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>23</sequence_number>
+  <nomenclature>C171B0011r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0011r_a30ed2cd74f655a16aa2eb1aaeff6451_a41176f934e5fc7a7ee9a0ee43d71ba4" />
+  <md5>a41176f934e5fc7a7ee9a0ee43d71ba4</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:36Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>24</sequence_number>
+  <nomenclature>C171B0011v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0011v_a30ed2cd74f655a16aa2eb1aaeff6451_27d3f77ff1a303491dfa903da7a64be4" />
+  <md5>27d3f77ff1a303491dfa903da7a64be4</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:39Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>25</sequence_number>
+  <nomenclature>C171B0012r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0012r_a30ed2cd74f655a16aa2eb1aaeff6451_732b4de19e86d0df4cde3dcd29b06e06" />
+  <md5>732b4de19e86d0df4cde3dcd29b06e06</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:34Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>26</sequence_number>
+  <nomenclature>C171B0012v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0012v_a30ed2cd74f655a16aa2eb1aaeff6451_03b202a79a7613458f69bbc6e1634b2e" />
+  <md5>03b202a79a7613458f69bbc6e1634b2e</md5>
+  <image_dimensions>
+      <niso:imagelength>2038</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:12Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>27</sequence_number>
+  <nomenclature>C171B0013r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0013r_a30ed2cd74f655a16aa2eb1aaeff6451_0fde822a66fc4ffadb2614441092bcfd" />
+  <md5>0fde822a66fc4ffadb2614441092bcfd</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:08Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>28</sequence_number>
+  <nomenclature>C171B0013v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0013v_a30ed2cd74f655a16aa2eb1aaeff6451_609cd9350c91066cdf697b3384297efc" />
+  <md5>609cd9350c91066cdf697b3384297efc</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:23Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>29</sequence_number>
+  <nomenclature>C171B0014r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0014r_a30ed2cd74f655a16aa2eb1aaeff6451_95d5ca2096808540b442913df65b49a7" />
+  <md5>95d5ca2096808540b442913df65b49a7</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:36Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>30</sequence_number>
+  <nomenclature>C171B0014v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0014v_a30ed2cd74f655a16aa2eb1aaeff6451_c8b688650ca7b51022386c0859241689" />
+  <md5>c8b688650ca7b51022386c0859241689</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:28Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>31</sequence_number>
+  <nomenclature>C171B0015r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0015r_a30ed2cd74f655a16aa2eb1aaeff6451_bf9bfb45d93cb0bdd1c6f13518cf4bcd" />
+  <md5>bf9bfb45d93cb0bdd1c6f13518cf4bcd</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:04Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>32</sequence_number>
+  <nomenclature>C171B0015v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0015v_a30ed2cd74f655a16aa2eb1aaeff6451_13042628346402855c4c232ed3e37b35" />
+  <md5>13042628346402855c4c232ed3e37b35</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:29Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>33</sequence_number>
+  <nomenclature>C171B0016r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0016r_a30ed2cd74f655a16aa2eb1aaeff6451_1779e3ef424bb369357db76213af82c1" />
+  <md5>1779e3ef424bb369357db76213af82c1</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:03Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>34</sequence_number>
+  <nomenclature>C171B0016v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0016v_a30ed2cd74f655a16aa2eb1aaeff6451_22ade623c896d5e4e9f09c78897df782" />
+  <md5>22ade623c896d5e4e9f09c78897df782</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:25Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>35</sequence_number>
+  <nomenclature>C171B0017r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0017r_a30ed2cd74f655a16aa2eb1aaeff6451_63ae44b4053f9c378af26e48feb1c391" />
+  <md5>63ae44b4053f9c378af26e48feb1c391</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:41Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>36</sequence_number>
+  <nomenclature>C171B0017v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0017v_a30ed2cd74f655a16aa2eb1aaeff6451_8c87f5a61f161d893dc3e2fa066af476" />
+  <md5>8c87f5a61f161d893dc3e2fa066af476</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:19Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>37</sequence_number>
+  <nomenclature>C171B0018r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0018r_a30ed2cd74f655a16aa2eb1aaeff6451_1490522a4fe350e72295c0f0e631cc75" />
+  <md5>1490522a4fe350e72295c0f0e631cc75</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:12Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>38</sequence_number>
+  <nomenclature>C171B0018v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0018v_a30ed2cd74f655a16aa2eb1aaeff6451_df5ca48163dac9f4f7ffcec022e71639" />
+  <md5>df5ca48163dac9f4f7ffcec022e71639</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:07Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>39</sequence_number>
+  <nomenclature>C171B0019r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0019r_a30ed2cd74f655a16aa2eb1aaeff6451_713264ff1b5691a6e66195eeff5737e7" />
+  <md5>713264ff1b5691a6e66195eeff5737e7</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1454</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:35Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>40</sequence_number>
+  <nomenclature>C171B0019v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0019v_a30ed2cd74f655a16aa2eb1aaeff6451_c2f72501243dc99597a1994eafdb8ca8" />
+  <md5>c2f72501243dc99597a1994eafdb8ca8</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1462</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:47Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>41</sequence_number>
+  <nomenclature>C171B0020r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0020r_a30ed2cd74f655a16aa2eb1aaeff6451_feb8b1f5a7fa6dac9763dd2988975b5b" />
+  <md5>feb8b1f5a7fa6dac9763dd2988975b5b</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:32Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>42</sequence_number>
+  <nomenclature>C171B0020v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0020v_a30ed2cd74f655a16aa2eb1aaeff6451_b6e3e34a0ab52f356e96ac551c470e8f" />
+  <md5>b6e3e34a0ab52f356e96ac551c470e8f</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1442</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:40Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>43</sequence_number>
+  <nomenclature>C171B0021r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0021r_a30ed2cd74f655a16aa2eb1aaeff6451_2787dfa7e55bbaf601a159d7b0d6ff18" />
+  <md5>2787dfa7e55bbaf601a159d7b0d6ff18</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:43Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>44</sequence_number>
+  <nomenclature>C171B0021v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0021v_a30ed2cd74f655a16aa2eb1aaeff6451_ef5e2e14322f0aaef49f93e94627dd8d" />
+  <md5>ef5e2e14322f0aaef49f93e94627dd8d</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1442</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:10Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>45</sequence_number>
+  <nomenclature>C171B0022r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0022r_a30ed2cd74f655a16aa2eb1aaeff6451_4eeb2e83c4f35bbf1228b4470969b37e" />
+  <md5>4eeb2e83c4f35bbf1228b4470969b37e</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:30Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>46</sequence_number>
+  <nomenclature>C171B0022v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0022v_a30ed2cd74f655a16aa2eb1aaeff6451_146e925d922e7c3da5217bec637296b6" />
+  <md5>146e925d922e7c3da5217bec637296b6</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1442</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:49Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>47</sequence_number>
+  <nomenclature>C171B0023r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0023r_a30ed2cd74f655a16aa2eb1aaeff6451_f381621c20e05b144b4cc61ce8d7ccee" />
+  <md5>f381621c20e05b144b4cc61ce8d7ccee</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:48Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>48</sequence_number>
+  <nomenclature>C171B0023v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0023v_a30ed2cd74f655a16aa2eb1aaeff6451_1e077e21d54b9464b948c31cd2ed6ef7" />
+  <md5>1e077e21d54b9464b948c31cd2ed6ef7</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1442</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:30Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>49</sequence_number>
+  <nomenclature>C171B0024r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0024r_a30ed2cd74f655a16aa2eb1aaeff6451_221e1da14ab4eb6ff0c22e47690442bd" />
+  <md5>221e1da14ab4eb6ff0c22e47690442bd</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:03Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>50</sequence_number>
+  <nomenclature>C171B0024v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0024v_a30ed2cd74f655a16aa2eb1aaeff6451_113cfd0370b3a47db184ad673ed649c4" />
+  <md5>113cfd0370b3a47db184ad673ed649c4</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1442</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:50Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>51</sequence_number>
+  <nomenclature>C171B0025r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0025r_a30ed2cd74f655a16aa2eb1aaeff6451_3539d78d928cedfd4f5b8a10fd9ec831" />
+  <md5>3539d78d928cedfd4f5b8a10fd9ec831</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:28Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>52</sequence_number>
+  <nomenclature>C171B0025v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0025v_a30ed2cd74f655a16aa2eb1aaeff6451_16ac66bf6adc1e1c40cd430f135cc98f" />
+  <md5>16ac66bf6adc1e1c40cd430f135cc98f</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:49Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>53</sequence_number>
+  <nomenclature>C171B0026r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0026r_a30ed2cd74f655a16aa2eb1aaeff6451_e07d7d9d5145b096931ce76804d66aa8" />
+  <md5>e07d7d9d5145b096931ce76804d66aa8</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:28Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>54</sequence_number>
+  <nomenclature>C171B0026v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0026v_a30ed2cd74f655a16aa2eb1aaeff6451_fa9d9a9f54514b479eef087db0974df4" />
+  <md5>fa9d9a9f54514b479eef087db0974df4</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:06Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>55</sequence_number>
+  <nomenclature>C171B0027r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0027r_a30ed2cd74f655a16aa2eb1aaeff6451_df41e7e2be0e7dd780513f3f5a543edd" />
+  <md5>df41e7e2be0e7dd780513f3f5a543edd</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1452</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:21Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>56</sequence_number>
+  <nomenclature>C171B0027v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0027v_a30ed2cd74f655a16aa2eb1aaeff6451_b729188af81019e6292b183a2b01eb94" />
+  <md5>b729188af81019e6292b183a2b01eb94</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:26Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>57</sequence_number>
+  <nomenclature>C171B0028r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0028r_a30ed2cd74f655a16aa2eb1aaeff6451_3f4c3e8e568083ffb77bde48585f628e" />
+  <md5>3f4c3e8e568083ffb77bde48585f628e</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:57Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>58</sequence_number>
+  <nomenclature>C171B0028v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0028v_a30ed2cd74f655a16aa2eb1aaeff6451_7df9994df32f5407dc5239420e682f07" />
+  <md5>7df9994df32f5407dc5239420e682f07</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:36Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>59</sequence_number>
+  <nomenclature>C171B0029r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0029r_a30ed2cd74f655a16aa2eb1aaeff6451_cb2789b6e59327044ac2a59fcd349207" />
+  <md5>cb2789b6e59327044ac2a59fcd349207</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:35Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>60</sequence_number>
+  <nomenclature>C171B0029v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0029v_a30ed2cd74f655a16aa2eb1aaeff6451_61c6096efcbcee0a4e164e38c9c9ac84" />
+  <md5>61c6096efcbcee0a4e164e38c9c9ac84</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:02Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>61</sequence_number>
+  <nomenclature>C171B0030r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0030r_a30ed2cd74f655a16aa2eb1aaeff6451_264ce89c1aa174d637fe230a826becba" />
+  <md5>264ce89c1aa174d637fe230a826becba</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:41Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>62</sequence_number>
+  <nomenclature>C171B0030v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0030v_a30ed2cd74f655a16aa2eb1aaeff6451_da1508def2b2a54636114448cc0d8b1d" />
+  <md5>da1508def2b2a54636114448cc0d8b1d</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:05Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>63</sequence_number>
+  <nomenclature>C171B0031r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0031r_a30ed2cd74f655a16aa2eb1aaeff6451_1740dc5a7c57ad4985bd4310978465d2" />
+  <md5>1740dc5a7c57ad4985bd4310978465d2</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:56Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>64</sequence_number>
+  <nomenclature>C171B0031v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0031v_a30ed2cd74f655a16aa2eb1aaeff6451_7fa1e606b2f327bf61fa0bae2f753bc6" />
+  <md5>7fa1e606b2f327bf61fa0bae2f753bc6</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:19Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>65</sequence_number>
+  <nomenclature>C171B0032r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0032r_a30ed2cd74f655a16aa2eb1aaeff6451_8a019ce632708f35ba82d4369cfa6fc0" />
+  <md5>8a019ce632708f35ba82d4369cfa6fc0</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:57Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>66</sequence_number>
+  <nomenclature>C171B0032v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0032v_a30ed2cd74f655a16aa2eb1aaeff6451_23d489d25f10cdc17fcad3dc77fe6ac9" />
+  <md5>23d489d25f10cdc17fcad3dc77fe6ac9</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:33Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>67</sequence_number>
+  <nomenclature>C171B0033r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0033r_a30ed2cd74f655a16aa2eb1aaeff6451_44fdae17d899084cba3d1faad3a6ac0e" />
+  <md5>44fdae17d899084cba3d1faad3a6ac0e</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:25Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>68</sequence_number>
+  <nomenclature>C171B0033v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0033v_a30ed2cd74f655a16aa2eb1aaeff6451_107b06a86e58b22a2a55b6cb71df12f3" />
+  <md5>107b06a86e58b22a2a55b6cb71df12f3</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:38Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>69</sequence_number>
+  <nomenclature>C171B0034r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0034r_a30ed2cd74f655a16aa2eb1aaeff6451_10bf9b595fb95e583616a4d0af0b5076" />
+  <md5>10bf9b595fb95e583616a4d0af0b5076</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:20Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>70</sequence_number>
+  <nomenclature>C171B0034v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0034v_a30ed2cd74f655a16aa2eb1aaeff6451_4dfb1528db933eb2287471bb42b37500" />
+  <md5>4dfb1528db933eb2287471bb42b37500</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:13Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>71</sequence_number>
+  <nomenclature>C171B0035r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0035r_a30ed2cd74f655a16aa2eb1aaeff6451_b7b68d91c44b9adf59dfbc454d5126c0" />
+  <md5>b7b68d91c44b9adf59dfbc454d5126c0</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:13Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>72</sequence_number>
+  <nomenclature>C171B0035v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0035v_a30ed2cd74f655a16aa2eb1aaeff6451_3ce21b984adfbeff19fcb2456cafcb5c" />
+  <md5>3ce21b984adfbeff19fcb2456cafcb5c</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:58Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>73</sequence_number>
+  <nomenclature>C171B0036r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0036r_a30ed2cd74f655a16aa2eb1aaeff6451_4bbd711e2d0bff86fdec4515ae874845" />
+  <md5>4bbd711e2d0bff86fdec4515ae874845</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:39Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>74</sequence_number>
+  <nomenclature>C171B0036v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0036v_a30ed2cd74f655a16aa2eb1aaeff6451_125fb3dbb018f5526efe50e080d5ef02" />
+  <md5>125fb3dbb018f5526efe50e080d5ef02</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:38Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>75</sequence_number>
+  <nomenclature>C171B0037r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0037r_a30ed2cd74f655a16aa2eb1aaeff6451_aebcf8fabfad0160051da066e66c55e3" />
+  <md5>aebcf8fabfad0160051da066e66c55e3</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:59Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>76</sequence_number>
+  <nomenclature>C171B0037v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0037v_a30ed2cd74f655a16aa2eb1aaeff6451_f88a96f929c3818bcdd4c6168bc38f93" />
+  <md5>f88a96f929c3818bcdd4c6168bc38f93</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:11Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>77</sequence_number>
+  <nomenclature>C171B0038r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0038r_a30ed2cd74f655a16aa2eb1aaeff6451_929a788dd9cca588b6bf9668f1f3f417" />
+  <md5>929a788dd9cca588b6bf9668f1f3f417</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:27Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>78</sequence_number>
+  <nomenclature>C171B0038v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0038v_a30ed2cd74f655a16aa2eb1aaeff6451_7f96a90816b36fcb653e596fa2465983" />
+  <md5>7f96a90816b36fcb653e596fa2465983</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:24Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>79</sequence_number>
+  <nomenclature>C171B0039r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0039r_a30ed2cd74f655a16aa2eb1aaeff6451_5a2051a7afd5e2e296427e3be64c4011" />
+  <md5>5a2051a7afd5e2e296427e3be64c4011</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:10Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>80</sequence_number>
+  <nomenclature>C171B0039v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0039v_a30ed2cd74f655a16aa2eb1aaeff6451_518957f50628d0f59ae0367db1abf0ae" />
+  <md5>518957f50628d0f59ae0367db1abf0ae</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:16Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>81</sequence_number>
+  <nomenclature>C171B0040r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0040r_a30ed2cd74f655a16aa2eb1aaeff6451_c9c24db1b4c422dbbb1478d69054788a" />
+  <md5>c9c24db1b4c422dbbb1478d69054788a</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:45Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>82</sequence_number>
+  <nomenclature>C171B0040v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0040v_a30ed2cd74f655a16aa2eb1aaeff6451_ed78713f8197d3be062c0f9330469f4c" />
+  <md5>ed78713f8197d3be062c0f9330469f4c</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:55Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>83</sequence_number>
+  <nomenclature>C171B0041r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0041r_a30ed2cd74f655a16aa2eb1aaeff6451_e263dbc6e281d0f173d0bb911159628f" />
+  <md5>e263dbc6e281d0f173d0bb911159628f</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:54Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>84</sequence_number>
+  <nomenclature>C171B0041v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0041v_a30ed2cd74f655a16aa2eb1aaeff6451_48e9b7d3b377ff9154b47e62a0f73c1b" />
+  <md5>48e9b7d3b377ff9154b47e62a0f73c1b</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:47Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>85</sequence_number>
+  <nomenclature>C171B0042r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0042r_a30ed2cd74f655a16aa2eb1aaeff6451_0221751e324e08c19dc7ea9a7669b60d" />
+  <md5>0221751e324e08c19dc7ea9a7669b60d</md5>
+  <image_dimensions>
+      <niso:imagelength>2033</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:08Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>86</sequence_number>
+  <nomenclature>C171B0042v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0042v_a30ed2cd74f655a16aa2eb1aaeff6451_7bb302d357df82f825698ea7d08ba374" />
+  <md5>7bb302d357df82f825698ea7d08ba374</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:06Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>87</sequence_number>
+  <nomenclature>C171B0043r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0043r_a30ed2cd74f655a16aa2eb1aaeff6451_01206192bbd859cec2e62573e8eaa576" />
+  <md5>01206192bbd859cec2e62573e8eaa576</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:24Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>88</sequence_number>
+  <nomenclature>C171B0043v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0043v_a30ed2cd74f655a16aa2eb1aaeff6451_95aa780361408d631c6d48a57dd3fb6c" />
+  <md5>95aa780361408d631c6d48a57dd3fb6c</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:58Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>89</sequence_number>
+  <nomenclature>C171B0044r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0044r_a30ed2cd74f655a16aa2eb1aaeff6451_dd057eef2b7e2ff0551d66fc2c19bd7c" />
+  <md5>dd057eef2b7e2ff0551d66fc2c19bd7c</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:59Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>90</sequence_number>
+  <nomenclature>C171B0044v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0044v_a30ed2cd74f655a16aa2eb1aaeff6451_4f2b68424c883b763d0d4391b63950e5" />
+  <md5>4f2b68424c883b763d0d4391b63950e5</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:57Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>91</sequence_number>
+  <nomenclature>C171B0045r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0045r_a30ed2cd74f655a16aa2eb1aaeff6451_364af042f4b1a618fab5a96bbbb765fc" />
+  <md5>364af042f4b1a618fab5a96bbbb765fc</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:02Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>92</sequence_number>
+  <nomenclature>C171B0045v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0045v_a30ed2cd74f655a16aa2eb1aaeff6451_83516b7d7c02c5b13e6081488372eebb" />
+  <md5>83516b7d7c02c5b13e6081488372eebb</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:01Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>93</sequence_number>
+  <nomenclature>C171B0046r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0046r_a30ed2cd74f655a16aa2eb1aaeff6451_24ac6d1534ede60aac9b3c8d0a8a2880" />
+  <md5>24ac6d1534ede60aac9b3c8d0a8a2880</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:03Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>94</sequence_number>
+  <nomenclature>C171B0046v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0046v_a30ed2cd74f655a16aa2eb1aaeff6451_e33ba89d1fc5c364f39250025fb833aa" />
+  <md5>e33ba89d1fc5c364f39250025fb833aa</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:38Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>95</sequence_number>
+  <nomenclature>C171B0047r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0047r_a30ed2cd74f655a16aa2eb1aaeff6451_8de442bc767fae29d4cdc51db8c4f073" />
+  <md5>8de442bc767fae29d4cdc51db8c4f073</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:43Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>96</sequence_number>
+  <nomenclature>C171B0047v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0047v_a30ed2cd74f655a16aa2eb1aaeff6451_96b3cd7a174bb33073d594fc7b5167b3" />
+  <md5>96b3cd7a174bb33073d594fc7b5167b3</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:21Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>97</sequence_number>
+  <nomenclature>C171B0048r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0048r_a30ed2cd74f655a16aa2eb1aaeff6451_4a1e7d9d22be41f74b8fc91612372829" />
+  <md5>4a1e7d9d22be41f74b8fc91612372829</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:55Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>98</sequence_number>
+  <nomenclature>C171B0048v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0048v_a30ed2cd74f655a16aa2eb1aaeff6451_efd34461d5938837b3b25e5c62f32ab6" />
+  <md5>efd34461d5938837b3b25e5c62f32ab6</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:07Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>99</sequence_number>
+  <nomenclature>C171B0049r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0049r_a30ed2cd74f655a16aa2eb1aaeff6451_e7f9973ebc05d377601c33e739adced3" />
+  <md5>e7f9973ebc05d377601c33e739adced3</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:02Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>100</sequence_number>
+  <nomenclature>C171B0049v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0049v_a30ed2cd74f655a16aa2eb1aaeff6451_da42165cd22c808a90438e0e87f1dfbe" />
+  <md5>da42165cd22c808a90438e0e87f1dfbe</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:11Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>101</sequence_number>
+  <nomenclature>C171B0050r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0050r_a30ed2cd74f655a16aa2eb1aaeff6451_5aa977b88bcce71fdfcf0750e3c453b5" />
+  <md5>5aa977b88bcce71fdfcf0750e3c453b5</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:19Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>102</sequence_number>
+  <nomenclature>C171B0050v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0050v_a30ed2cd74f655a16aa2eb1aaeff6451_b273bd4eafde91f33c2cc51e28f06c95" />
+  <md5>b273bd4eafde91f33c2cc51e28f06c95</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:52Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>103</sequence_number>
+  <nomenclature>C171B0051r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0051r_a30ed2cd74f655a16aa2eb1aaeff6451_a3815ae7e0879dee15b941cd52b82a3c" />
+  <md5>a3815ae7e0879dee15b941cd52b82a3c</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:55Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>104</sequence_number>
+  <nomenclature>C171B0051v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0051v_a30ed2cd74f655a16aa2eb1aaeff6451_de1b487f5391ba599036b008cb8bc4df" />
+  <md5>de1b487f5391ba599036b008cb8bc4df</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:00Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>105</sequence_number>
+  <nomenclature>C171B0052r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0052r_a30ed2cd74f655a16aa2eb1aaeff6451_face77ec1979370d89c2e2bb011d7128" />
+  <md5>face77ec1979370d89c2e2bb011d7128</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:50Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>106</sequence_number>
+  <nomenclature>C171B0052v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0052v_a30ed2cd74f655a16aa2eb1aaeff6451_6b1e3f281cd099b1cefb9b006f9d39ae" />
+  <md5>6b1e3f281cd099b1cefb9b006f9d39ae</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:06Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>107</sequence_number>
+  <nomenclature>C171B0053r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0053r_a30ed2cd74f655a16aa2eb1aaeff6451_5b340134bb4799a7ffcad6f427aa9759" />
+  <md5>5b340134bb4799a7ffcad6f427aa9759</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:32Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>108</sequence_number>
+  <nomenclature>C171B0053v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0053v_a30ed2cd74f655a16aa2eb1aaeff6451_64b353b735d3fb31589288d0f7376682" />
+  <md5>64b353b735d3fb31589288d0f7376682</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:11Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>109</sequence_number>
+  <nomenclature>C171B0054r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0054r_a30ed2cd74f655a16aa2eb1aaeff6451_41198c67d1a7a861fa4e119e95ac52d3" />
+  <md5>41198c67d1a7a861fa4e119e95ac52d3</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:16Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>110</sequence_number>
+  <nomenclature>C171B0054v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0054v_a30ed2cd74f655a16aa2eb1aaeff6451_652d8db05da454abdfeec44d521c3b90" />
+  <md5>652d8db05da454abdfeec44d521c3b90</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:03Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>111</sequence_number>
+  <nomenclature>C171B0055r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0055r_a30ed2cd74f655a16aa2eb1aaeff6451_3e718b23c0134d8861a91aa4426c25dd" />
+  <md5>3e718b23c0134d8861a91aa4426c25dd</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:07Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>112</sequence_number>
+  <nomenclature>C171B0055v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0055v_a30ed2cd74f655a16aa2eb1aaeff6451_8ef25a752b8b6ba06d7506c06f40d388" />
+  <md5>8ef25a752b8b6ba06d7506c06f40d388</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:05Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>113</sequence_number>
+  <nomenclature>C171B0056r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0056r_a30ed2cd74f655a16aa2eb1aaeff6451_b0a49c784c3129784b498cf906a96f56" />
+  <md5>b0a49c784c3129784b498cf906a96f56</md5>
+  <image_dimensions>
+      <niso:imagelength>2018</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:22Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>114</sequence_number>
+  <nomenclature>C171B0056v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0056v_a30ed2cd74f655a16aa2eb1aaeff6451_805bbd3a82293c5c1986d86f0c15ba4d" />
+  <md5>805bbd3a82293c5c1986d86f0c15ba4d</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:30Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>115</sequence_number>
+  <nomenclature>C171B0057r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0057r_a30ed2cd74f655a16aa2eb1aaeff6451_4e044fd6c6ae146d5932f6f49741d56f" />
+  <md5>4e044fd6c6ae146d5932f6f49741d56f</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:46Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>116</sequence_number>
+  <nomenclature>C171B0057v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0057v_a30ed2cd74f655a16aa2eb1aaeff6451_a59720c84c3e83ea847984d91fde66ab" />
+  <md5>a59720c84c3e83ea847984d91fde66ab</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:45Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>117</sequence_number>
+  <nomenclature>C171B0058r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0058r_a30ed2cd74f655a16aa2eb1aaeff6451_efdd2a3209d826bf4bd380b4783fde32" />
+  <md5>efdd2a3209d826bf4bd380b4783fde32</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:52Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>118</sequence_number>
+  <nomenclature>C171B0058v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0058v_a30ed2cd74f655a16aa2eb1aaeff6451_c0273905b955d7572c50dc7d1eab7cf9" />
+  <md5>c0273905b955d7572c50dc7d1eab7cf9</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:52Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>119</sequence_number>
+  <nomenclature>C171B0059r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0059r_a30ed2cd74f655a16aa2eb1aaeff6451_7d36300208edda3980ad8cb08f92d4f3" />
+  <md5>7d36300208edda3980ad8cb08f92d4f3</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:44Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>120</sequence_number>
+  <nomenclature>C171B0059v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0059v_a30ed2cd74f655a16aa2eb1aaeff6451_771939fd1ca0ad32b26edf640567bbdf" />
+  <md5>771939fd1ca0ad32b26edf640567bbdf</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:46Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>121</sequence_number>
+  <nomenclature>C171B0060r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0060r_a30ed2cd74f655a16aa2eb1aaeff6451_6f5562e3bc27d59bfe924a9a41515b95" />
+  <md5>6f5562e3bc27d59bfe924a9a41515b95</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:40Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>122</sequence_number>
+  <nomenclature>C171B0060v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0060v_a30ed2cd74f655a16aa2eb1aaeff6451_e1e43a801bc6b5c60d189de43f3d4c42" />
+  <md5>e1e43a801bc6b5c60d189de43f3d4c42</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:59Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>123</sequence_number>
+  <nomenclature>C171B0061r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0061r_a30ed2cd74f655a16aa2eb1aaeff6451_6b74e348ea03bd027552b44caa5763e7" />
+  <md5>6b74e348ea03bd027552b44caa5763e7</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:15Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>124</sequence_number>
+  <nomenclature>C171B0061v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0061v_a30ed2cd74f655a16aa2eb1aaeff6451_a73788d5c604c8534dc0f3d6976e77a5" />
+  <md5>a73788d5c604c8534dc0f3d6976e77a5</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:05Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>125</sequence_number>
+  <nomenclature>C171B0062r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0062r_a30ed2cd74f655a16aa2eb1aaeff6451_17a111a611589d0da1bbf49cfa7e8b3c" />
+  <md5>17a111a611589d0da1bbf49cfa7e8b3c</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:14Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>126</sequence_number>
+  <nomenclature>C171B0062v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0062v_a30ed2cd74f655a16aa2eb1aaeff6451_bbaa81f0f2b5e8ffd6982163b2cf858e" />
+  <md5>bbaa81f0f2b5e8ffd6982163b2cf858e</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:33Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>127</sequence_number>
+  <nomenclature>C171B0063r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0063r_a30ed2cd74f655a16aa2eb1aaeff6451_04ad6abb465c1f6aefadbfd8fa1f0357" />
+  <md5>04ad6abb465c1f6aefadbfd8fa1f0357</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:13Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>128</sequence_number>
+  <nomenclature>C171B0063v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0063v_a30ed2cd74f655a16aa2eb1aaeff6451_1871f01c03158df7e6fca30c62b1af31" />
+  <md5>1871f01c03158df7e6fca30c62b1af31</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:23Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>129</sequence_number>
+  <nomenclature>C171B0064r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0064r_a30ed2cd74f655a16aa2eb1aaeff6451_db39bc05a320fc620caa22f59633ca35" />
+  <md5>db39bc05a320fc620caa22f59633ca35</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:18Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>130</sequence_number>
+  <nomenclature>C171B0064v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0064v_a30ed2cd74f655a16aa2eb1aaeff6451_8ac389b8c6935f18a48265cc4732b1da" />
+  <md5>8ac389b8c6935f18a48265cc4732b1da</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:46Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>131</sequence_number>
+  <nomenclature>C171B0065r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0065r_a30ed2cd74f655a16aa2eb1aaeff6451_8c7f3c22077b68a6381630353ca6e890" />
+  <md5>8c7f3c22077b68a6381630353ca6e890</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:15Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>132</sequence_number>
+  <nomenclature>C171B0065v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0065v_a30ed2cd74f655a16aa2eb1aaeff6451_52bbc1eca2e9a06ed97aea6167dcc7b9" />
+  <md5>52bbc1eca2e9a06ed97aea6167dcc7b9</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:23Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>133</sequence_number>
+  <nomenclature>C171B0066r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0066r_a30ed2cd74f655a16aa2eb1aaeff6451_e0da36e2960f788604fa4a691b68cee2" />
+  <md5>e0da36e2960f788604fa4a691b68cee2</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:19Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>134</sequence_number>
+  <nomenclature>C171B0066v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0066v_a30ed2cd74f655a16aa2eb1aaeff6451_0de9aecfa3ac576d5b660fcbb23bae77" />
+  <md5>0de9aecfa3ac576d5b660fcbb23bae77</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:52Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>135</sequence_number>
+  <nomenclature>C171B0067r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0067r_a30ed2cd74f655a16aa2eb1aaeff6451_8754dcda9edea7b5df338efd7b985998" />
+  <md5>8754dcda9edea7b5df338efd7b985998</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1447</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:34Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>136</sequence_number>
+  <nomenclature>C171B0067v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0067v_a30ed2cd74f655a16aa2eb1aaeff6451_2726255e75a0e3066c1d71df038c8e48" />
+  <md5>2726255e75a0e3066c1d71df038c8e48</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:20Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>137</sequence_number>
+  <nomenclature>C171B0068r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0068r_a30ed2cd74f655a16aa2eb1aaeff6451_55c62ec090001b5e44626737ebb353d4" />
+  <md5>55c62ec090001b5e44626737ebb353d4</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:55Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>138</sequence_number>
+  <nomenclature>C171B0068v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0068v_a30ed2cd74f655a16aa2eb1aaeff6451_e99cae26a1f0d118fbf430dc8af6f364" />
+  <md5>e99cae26a1f0d118fbf430dc8af6f364</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:31Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>139</sequence_number>
+  <nomenclature>C171B0069r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0069r_a30ed2cd74f655a16aa2eb1aaeff6451_6564bb9a8b2e8852e5be773c6cab75f8" />
+  <md5>6564bb9a8b2e8852e5be773c6cab75f8</md5>
+  <image_dimensions>
+      <niso:imagelength>2009</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:17Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>140</sequence_number>
+  <nomenclature>C171B0069v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0069v_a30ed2cd74f655a16aa2eb1aaeff6451_623d34a2e16aee93d485358ab80a4858" />
+  <md5>623d34a2e16aee93d485358ab80a4858</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:05Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>141</sequence_number>
+  <nomenclature>C171B0070r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0070r_a30ed2cd74f655a16aa2eb1aaeff6451_2cc32779dce51b1ef898dfe446056014" />
+  <md5>2cc32779dce51b1ef898dfe446056014</md5>
+  <image_dimensions>
+      <niso:imagelength>2016</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:10Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>142</sequence_number>
+  <nomenclature>C171B0070v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0070v_a30ed2cd74f655a16aa2eb1aaeff6451_0e9bcab7bd4bd46658220e79bb060179" />
+  <md5>0e9bcab7bd4bd46658220e79bb060179</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:53Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>143</sequence_number>
+  <nomenclature>C171B0071r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0071r_a30ed2cd74f655a16aa2eb1aaeff6451_27764d06a9a5d13b219e6020527485ed" />
+  <md5>27764d06a9a5d13b219e6020527485ed</md5>
+  <image_dimensions>
+      <niso:imagelength>2016</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:31Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>144</sequence_number>
+  <nomenclature>C171B0071v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0071v_a30ed2cd74f655a16aa2eb1aaeff6451_da62608a83461cf8d4a0f21625cdd7b6" />
+  <md5>da62608a83461cf8d4a0f21625cdd7b6</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:54Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>145</sequence_number>
+  <nomenclature>C171B0072r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0072r_a30ed2cd74f655a16aa2eb1aaeff6451_0b238d9208644ba140b803e05189c191" />
+  <md5>0b238d9208644ba140b803e05189c191</md5>
+  <image_dimensions>
+      <niso:imagelength>2006</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:37Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>146</sequence_number>
+  <nomenclature>C171B0072v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0072v_a30ed2cd74f655a16aa2eb1aaeff6451_870b10def61b4feaa74aa299f73dbebb" />
+  <md5>870b10def61b4feaa74aa299f73dbebb</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:41Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>147</sequence_number>
+  <nomenclature>C171B0073r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0073r_a30ed2cd74f655a16aa2eb1aaeff6451_6358b8ff02bb0fabd2779504e21894b0" />
+  <md5>6358b8ff02bb0fabd2779504e21894b0</md5>
+  <image_dimensions>
+      <niso:imagelength>2006</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:17Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>148</sequence_number>
+  <nomenclature>C171B0073v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0073v_a30ed2cd74f655a16aa2eb1aaeff6451_515f99265e83a779dc3d1299ddd19f49" />
+  <md5>515f99265e83a779dc3d1299ddd19f49</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:37Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>149</sequence_number>
+  <nomenclature>C171B0074r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0074r_a30ed2cd74f655a16aa2eb1aaeff6451_c001e6e8fa461f3ad039ac5656f2b38f" />
+  <md5>c001e6e8fa461f3ad039ac5656f2b38f</md5>
+  <image_dimensions>
+      <niso:imagelength>2006</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:03Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>150</sequence_number>
+  <nomenclature>C171B0074v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0074v_a30ed2cd74f655a16aa2eb1aaeff6451_033ee33350df2f261db519fc9c88dcb2" />
+  <md5>033ee33350df2f261db519fc9c88dcb2</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:16Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>151</sequence_number>
+  <nomenclature>C171B0075r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0075r_a30ed2cd74f655a16aa2eb1aaeff6451_8c4f9b2dbcb3b47a23da06293c6b6a37" />
+  <md5>8c4f9b2dbcb3b47a23da06293c6b6a37</md5>
+  <image_dimensions>
+      <niso:imagelength>2006</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:31Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>152</sequence_number>
+  <nomenclature>C171B0075v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0075v_a30ed2cd74f655a16aa2eb1aaeff6451_aabf1054789a51c10fa0c7cdd1f99fdc" />
+  <md5>aabf1054789a51c10fa0c7cdd1f99fdc</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:47Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>153</sequence_number>
+  <nomenclature>C171B0076r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0076r_a30ed2cd74f655a16aa2eb1aaeff6451_5ecbdefac14db4a133e8f9dbb00afe23" />
+  <md5>5ecbdefac14db4a133e8f9dbb00afe23</md5>
+  <image_dimensions>
+      <niso:imagelength>2002</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:48Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>154</sequence_number>
+  <nomenclature>C171B0076v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0076v_a30ed2cd74f655a16aa2eb1aaeff6451_b4f925fe77ed1dae13c5883d8314c41c" />
+  <md5>b4f925fe77ed1dae13c5883d8314c41c</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:33Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>155</sequence_number>
+  <nomenclature>C171B0077r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0077r_a30ed2cd74f655a16aa2eb1aaeff6451_bdcf7d48046e529aed02497ee1697ade" />
+  <md5>bdcf7d48046e529aed02497ee1697ade</md5>
+  <image_dimensions>
+      <niso:imagelength>2002</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:36Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>156</sequence_number>
+  <nomenclature>C171B0077v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0077v_a30ed2cd74f655a16aa2eb1aaeff6451_4345d4391a35cceb974ac61e427e4c2c" />
+  <md5>4345d4391a35cceb974ac61e427e4c2c</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:53Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>157</sequence_number>
+  <nomenclature>C171B0078r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0078r_a30ed2cd74f655a16aa2eb1aaeff6451_b1a01be7b875d688092cca8c4bceac55" />
+  <md5>b1a01be7b875d688092cca8c4bceac55</md5>
+  <image_dimensions>
+      <niso:imagelength>2002</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:11Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>158</sequence_number>
+  <nomenclature>C171B0078v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0078v_a30ed2cd74f655a16aa2eb1aaeff6451_a07d6c240f4fb3c6d219cbf2ec25fe22" />
+  <md5>a07d6c240f4fb3c6d219cbf2ec25fe22</md5>
+  <image_dimensions>
+      <niso:imagelength>2045</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:52Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>159</sequence_number>
+  <nomenclature>C171B0079r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0079r_a30ed2cd74f655a16aa2eb1aaeff6451_1c71f8bf578f7341c6f4980a5fe50bc6" />
+  <md5>1c71f8bf578f7341c6f4980a5fe50bc6</md5>
+  <image_dimensions>
+      <niso:imagelength>2002</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:44Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>160</sequence_number>
+  <nomenclature>C171B0079v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0079v_a30ed2cd74f655a16aa2eb1aaeff6451_e55081440aad899b27b1b3e43732adad" />
+  <md5>e55081440aad899b27b1b3e43732adad</md5>
+  <image_dimensions>
+      <niso:imagelength>2064</niso:imagelength>
+    <niso:imagewidth>1445</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:29Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>161</sequence_number>
+  <nomenclature>C171B0080r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0080r_a30ed2cd74f655a16aa2eb1aaeff6451_018d37df85e7f6788c611e75d6fa853c" />
+  <md5>018d37df85e7f6788c611e75d6fa853c</md5>
+  <image_dimensions>
+      <niso:imagelength>2002</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:32Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>162</sequence_number>
+  <nomenclature>C171B0080v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0080v_a30ed2cd74f655a16aa2eb1aaeff6451_16892adf7c28ee2fb8fdfebf39b165a8" />
+  <md5>16892adf7c28ee2fb8fdfebf39b165a8</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1426</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:51Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>163</sequence_number>
+  <nomenclature>C171B0081r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0081r_a30ed2cd74f655a16aa2eb1aaeff6451_a3c8d65f780f8c56721cc0ae5adad0d4" />
+  <md5>a3c8d65f780f8c56721cc0ae5adad0d4</md5>
+  <image_dimensions>
+      <niso:imagelength>2023</niso:imagelength>
+    <niso:imagewidth>1440</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:26Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>164</sequence_number>
+  <nomenclature>C171B0081v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0081v_a30ed2cd74f655a16aa2eb1aaeff6451_14c66ef870cea28c317d3ad0721d5840" />
+  <md5>14c66ef870cea28c317d3ad0721d5840</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1426</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:45Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>165</sequence_number>
+  <nomenclature>C171B0082r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0082r_a30ed2cd74f655a16aa2eb1aaeff6451_0741886e33d3c4a9ac08fa7112cf94c5" />
+  <md5>0741886e33d3c4a9ac08fa7112cf94c5</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:55Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>166</sequence_number>
+  <nomenclature>C171B0082v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0082v_a30ed2cd74f655a16aa2eb1aaeff6451_553ab6a4f5dd6fab588bb2afd3d050d0" />
+  <md5>553ab6a4f5dd6fab588bb2afd3d050d0</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:25Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>167</sequence_number>
+  <nomenclature>C171B0083r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0083r_a30ed2cd74f655a16aa2eb1aaeff6451_8f3e6ccefc5e476224c48c3c6705408b" />
+  <md5>8f3e6ccefc5e476224c48c3c6705408b</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:18Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>168</sequence_number>
+  <nomenclature>C171B0083v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0083v_a30ed2cd74f655a16aa2eb1aaeff6451_bb89d3a682a3a098ca0989125817c735" />
+  <md5>bb89d3a682a3a098ca0989125817c735</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:49Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>169</sequence_number>
+  <nomenclature>C171B0084r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0084r_a30ed2cd74f655a16aa2eb1aaeff6451_7874171f87489b677e8d0f2c577caf76" />
+  <md5>7874171f87489b677e8d0f2c577caf76</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:24Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>170</sequence_number>
+  <nomenclature>C171B0084v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0084v_a30ed2cd74f655a16aa2eb1aaeff6451_40986dc8706ac861059bf8750bf7c8c7" />
+  <md5>40986dc8706ac861059bf8750bf7c8c7</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:44Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>171</sequence_number>
+  <nomenclature>C171B0085r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0085r_a30ed2cd74f655a16aa2eb1aaeff6451_47d371a6c085e0f9c6d7c46588472346" />
+  <md5>47d371a6c085e0f9c6d7c46588472346</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:00Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>172</sequence_number>
+  <nomenclature>C171B0085v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0085v_a30ed2cd74f655a16aa2eb1aaeff6451_b5d488b37f8e9c6dd69defe96db0f876" />
+  <md5>b5d488b37f8e9c6dd69defe96db0f876</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:42Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>173</sequence_number>
+  <nomenclature>C171B0086r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0086r_a30ed2cd74f655a16aa2eb1aaeff6451_1b9e3437c8ebbcad0a01a1e7fa575c25" />
+  <md5>1b9e3437c8ebbcad0a01a1e7fa575c25</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:27Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>174</sequence_number>
+  <nomenclature>C171B0086v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0086v_a30ed2cd74f655a16aa2eb1aaeff6451_9d980fa1735338c4561d9564686e01b2" />
+  <md5>9d980fa1735338c4561d9564686e01b2</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:48Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>175</sequence_number>
+  <nomenclature>C171B0087r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0087r_a30ed2cd74f655a16aa2eb1aaeff6451_ef7e82956e7f2b2361c2e86d221bd0a6" />
+  <md5>ef7e82956e7f2b2361c2e86d221bd0a6</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:27:26Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>176</sequence_number>
+  <nomenclature>C171B0087v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0087v_a30ed2cd74f655a16aa2eb1aaeff6451_7de38607d3f950be075598e6c86abfa6" />
+  <md5>7de38607d3f950be075598e6c86abfa6</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:29Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>177</sequence_number>
+  <nomenclature>C171B0088r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0088r_a30ed2cd74f655a16aa2eb1aaeff6451_578b32ee064aba0ae688c46f2d0eb318" />
+  <md5>578b32ee064aba0ae688c46f2d0eb318</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:30:43Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>178</sequence_number>
+  <nomenclature>C171B0088v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0088v_a30ed2cd74f655a16aa2eb1aaeff6451_113ee92c3288f9b3ba2e86764708ad99" />
+  <md5>113ee92c3288f9b3ba2e86764708ad99</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:34Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>179</sequence_number>
+  <nomenclature>C171B0089r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0089r_a30ed2cd74f655a16aa2eb1aaeff6451_1db0d8cec5631699cfd088b852f0036f" />
+  <md5>1db0d8cec5631699cfd088b852f0036f</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:57Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>180</sequence_number>
+  <nomenclature>C171B0089v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0089v_a30ed2cd74f655a16aa2eb1aaeff6451_ae4017079ee77f63f3c504e07fac1c7b" />
+  <md5>ae4017079ee77f63f3c504e07fac1c7b</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:32:16Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>181</sequence_number>
+  <nomenclature>C171B0090r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0090r_a30ed2cd74f655a16aa2eb1aaeff6451_a63853ad01d4ab6e7c81de355e978c2c" />
+  <md5>a63853ad01d4ab6e7c81de355e978c2c</md5>
+  <image_dimensions>
+      <niso:imagelength>2040</niso:imagelength>
+    <niso:imagewidth>1450</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:29:39Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>182</sequence_number>
+  <nomenclature>C171B0090v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0090v_a30ed2cd74f655a16aa2eb1aaeff6451_64cd096839576380e8baa3f788fd4626" />
+  <md5>64cd096839576380e8baa3f788fd4626</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:28:44Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>183</sequence_number>
+  <nomenclature>C171B0091r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0091r_a30ed2cd74f655a16aa2eb1aaeff6451_ae80e290caa14a481b77fcf48d984a60" />
+  <md5>ae80e290caa14a481b77fcf48d984a60</md5>
+  <image_dimensions>
+      <niso:imagelength>2011</niso:imagelength>
+    <niso:imagewidth>1433</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:02Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>184</sequence_number>
+  <nomenclature>C171B0091v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/c171b0091v_a30ed2cd74f655a16aa2eb1aaeff6451_e53a38a8d71631d9b011f2d562046da1" />
+  <md5>e53a38a8d71631d9b011f2d562046da1</md5>
+  <image_dimensions>
+      <niso:imagelength>2047</niso:imagelength>
+    <niso:imagewidth>1438</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:27Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>185</sequence_number>
+  <nomenclature>D171piatto2r</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/d171piatto2r_a30ed2cd74f655a16aa2eb1aaeff6451_fbdf716cd0aa5090120b9e272d519125" />
+  <md5>fbdf716cd0aa5090120b9e272d519125</md5>
+  <image_dimensions>
+      <niso:imagelength>2126</niso:imagelength>
+    <niso:imagewidth>1481</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:42Z</datetimecreated>
+  </img>
+<img imggroupID="jpeg150">
+    <sequence_number>186</sequence_number>
+  <nomenclature>D171piatto2v</nomenclature>
+  <usage>3</usage>
+  <file Location="URL" xlink:href="digitalObject/d171piatto2v_a30ed2cd74f655a16aa2eb1aaeff6451_8a70594a49d4f917f60129301c30e80b" />
+  <md5>8a70594a49d4f917f60129301c30e80b</md5>
+  <image_dimensions>
+      <niso:imagelength>2167</niso:imagelength>
+    <niso:imagewidth>1531</niso:imagewidth>
+    </image_dimensions>
+  <image_metrics />
+  <format />
+  <scanning>
+      <niso:scanningsystem />
+    </scanning>
+  <datetimecreated>2014-04-13T14:31:13Z</datetimecreated>
+  </img>
+</mag:metadigit>

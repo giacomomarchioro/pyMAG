@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<!--Good metadata uses standard controlled vocabularies to reflect the what, where, when and who of the content.-->
+<xsd:schema targetNamespace="http://www.iccu.sbn.it/metaAG1.pdf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.iccu.sbn.it/metaAG1.pdf" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:niso="http://www.niso.org/pdfs/DataDict.pdf" elementFormDefault="qualified">
+	<xsd:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="./simpledc20020312.xsd"/>
+	<xsd:import namespace="http://www.w3.org/TR/xlink" schemaLocation="./xlink.xsd"/>
+	<xsd:import namespace="http://www.niso.org/pdfs/DataDict.pdf" schemaLocation="./niso-mag.xsd"/>
+	<xsd:simpleType name="access_rights">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0">
+				<xsd:annotation>
+					<xsd:documentation>uso riservato all'interno dell'istituzione</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>uso pubblico</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="completeness">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0">
+				<xsd:annotation>
+					<xsd:documentation>digitalizzazione completa</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>digitalizzazione parziale</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="bibliographic_level">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="a">
+				<xsd:annotation>
+					<xsd:documentation>analitico</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="m">
+				<xsd:annotation>
+					<xsd:documentation>monografia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="s">
+				<xsd:annotation>
+					<xsd:documentation>pubblicazione in serie</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="c">
+				<xsd:annotation>
+					<xsd:documentation>raccolta</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Gli identificatori che seguono saranno formalizzati in un registro-->
+	<xsd:simpleType name="SBN">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="BNI">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="IMSS">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="resource_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="img"/>
+			<xsd:enumeration value="audio"/>
+			<xsd:enumeration value="video"/>
+			<xsd:enumeration value="ocr"/>
+			<xsd:enumeration value="doc"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="img_group">
+		<xsd:sequence>
+			<xsd:element name="image_metrics" type="niso:spatialmetrics"/>
+			<xsd:element name="ppi" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="dpi" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="format" type="niso:format"/>
+			<xsd:element name="scanning" type="niso:image_creation" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="gen">
+		<xsd:sequence>
+			<xsd:element name="stprog" type="xsd:anyURI"/>
+			<xsd:element name="collection" type="xsd:anyURI" minOccurs="0"/>
+			<xsd:element name="agency" type="xsd:string"/>
+			<xsd:element name="access_rights" type="access_rights"/>
+			<xsd:element name="completeness" type="completeness"/>
+			<xsd:element name="img_group" type="img_group" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="creation" type="xsd:dateTime" use="optional"/>
+		<xsd:attribute name="last_update" type="xsd:dateTime" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="bib">
+		<xsd:sequence>
+			<xsd:element ref="dc:identifier" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:title" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:creator" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:publisher" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:subject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:description" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:contributor" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:date" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:type" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:format" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:source" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:language" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:relation" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:coverage" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="dc:rights" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="holdings" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="library" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="inventory_number" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="shelfmark" type="xsd:string" minOccurs="0"/>
+					</xsd:sequence>
+					<xsd:attribute name="ID" type="xsd:ID"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="piece" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice minOccurs="0">
+						<xsd:sequence>
+							<xsd:element name="year" type="xsd:string"/>
+							<xsd:element name="issue" type="xsd:string"/>
+						</xsd:sequence>
+						<xsd:sequence>
+							<xsd:element name="part_number" type="xsd:positiveInteger"/>
+							<xsd:element name="part_name" type="xsd:string"/>
+						</xsd:sequence>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="level" type="bibliographic_level" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="stru_element">
+		<xsd:sequence>
+			<xsd:element name="nomenclature" minOccurs="0"/>
+			<xsd:element ref="dc:identifier" minOccurs="0"/>
+			<xsd:element name="piece" minOccurs="0">
+				<xsd:complexType>
+					<xsd:choice minOccurs="0">
+						<xsd:sequence>
+							<xsd:element name="year" type="xsd:string"/>
+							<xsd:element name="issue" type="xsd:string"/>
+						</xsd:sequence>
+						<xsd:sequence>
+							<xsd:element name="part_number" type="xsd:positiveInteger"/>
+							<xsd:element name="part_name" type="xsd:string"/>
+						</xsd:sequence>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resource" type="resource_type" default="img" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>se omesso, vale IMG</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="start" minOccurs="0">
+				<xsd:complexType>
+					<xsd:attribute name="sequence_number" type="xsd:positiveInteger" use="required"/>
+					<xsd:attribute name="offset" type="xsd:time" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="stop" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>se omesso, coincide con START</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="sequence_number" type="xsd:positiveInteger" use="required"/>
+					<xsd:attribute name="offset" type="xsd:time" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="descr" type="xsd:string" use="optional"/>
+		<xsd:attribute name="num" type="xsd:positiveInteger" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="stru">
+		<xsd:annotation>
+			<xsd:documentation>il generico STRU e' individuato dal dc:identifier in BIB e dalla concatenazione dei sequence_number dei diversi livelli nell'albero degli STRU. Il "livello" e' fornito implicitamente dalla nidificazione.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sequence_number" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="nomenclature" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="element" type="stru_element" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="stru" type="stru" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="descr" type="xsd:string" use="optional"/>
+		<xsd:attribute name="start" type="xsd:positiveInteger" use="optional"/>
+		<xsd:attribute name="stop" type="xsd:positiveInteger" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="link">
+		<xsd:attributeGroup ref="xlink:simpleLink"/>
+		<xsd:attribute name="Location">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="URN"/>
+					<xsd:enumeration value="URL"/>
+					<xsd:enumeration value="URI"/>
+					<xsd:enumeration value="PURL"/>
+					<xsd:enumeration value="HANDLE"/>
+					<xsd:enumeration value="DOI"/>
+					<xsd:enumeration value="OTHER"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="side">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="left"/>
+			<xsd:enumeration value="right"/>
+			<xsd:enumeration value="double"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="millimetric_scale">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="img">
+		<xsd:sequence>
+			<xsd:element name="sequence_number" type="xsd:positiveInteger"/>
+			<xsd:element name="nomenclature" type="xsd:string"/>
+			<xsd:element name="usage" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="side" type="side" minOccurs="0"/>
+			<xsd:element name="scale" type="millimetric_scale" minOccurs="0"/>
+			<xsd:element name="file" type="link"/>
+			<xsd:element name="md5" type="niso:checksum"/>
+			<xsd:element name="filesize" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="image_dimensions" type="niso:dimensions"/>
+			<xsd:element name="image_metrics" type="niso:spatialmetrics" minOccurs="0"/>
+			<xsd:element name="ppi" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="dpi" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="format" type="niso:format" minOccurs="0"/>
+			<xsd:element name="scanning" type="niso:image_creation" minOccurs="0"/>
+			<xsd:element name="datetimecreated" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="target" type="niso:targetdata" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="altimg" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="usage" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="file" type="link"/>
+						<xsd:element name="md5" type="niso:checksum"/>
+						<xsd:element name="filesize" type="xsd:positiveInteger" minOccurs="0"/>
+						<xsd:element name="image_dimensions" type="niso:dimensions"/>
+						<xsd:element name="image_metrics" type="niso:spatialmetrics" minOccurs="0"/>
+						<xsd:element name="ppi" type="xsd:positiveInteger" minOccurs="0"/>
+						<xsd:element name="dpi" type="xsd:positiveInteger" minOccurs="0"/>
+						<xsd:element name="format" type="niso:format" minOccurs="0"/>
+						<xsd:element name="scanning" type="niso:image_creation" minOccurs="0"/>
+						<xsd:element name="datetimecreated" type="xsd:dateTime" minOccurs="0"/>
+					</xsd:sequence>
+					<xsd:attribute name="imggroupID" type="xsd:IDREF" use="optional"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="note" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="imggroupID" type="xsd:IDREF" use="optional"/>
+		<xsd:attribute name="holdingsID" type="xsd:IDREF" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="ocr">
+		<xsd:sequence>
+			<xsd:element name="sequence_number" type="xsd:positiveInteger"/>
+			<xsd:element name="nomenclature" type="xsd:string"/>
+			<xsd:element name="file" type="link"/>
+			<xsd:element name="md5" type="niso:checksum"/>
+			<xsd:element name="source" type="link"/>
+			<xsd:element name="filesize" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="format" type="niso:format"/>
+			<xsd:element name="software_ocr" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="datetimecreated" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="note" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="doc">
+		<xsd:sequence>
+			<xsd:element name="sequence_number" type="xsd:positiveInteger"/>
+			<xsd:element name="nomenclature" type="xsd:string"/>
+			<xsd:element name="file" type="link"/>
+			<xsd:element name="md5" type="niso:checksum"/>
+			<xsd:element name="filesize" type="xsd:positiveInteger" minOccurs="0"/>
+			<xsd:element name="format" type="niso:format" minOccurs="0"/>
+			<xsd:element name="datetimecreated" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="note" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

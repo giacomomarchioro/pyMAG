@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Giovanni Bergamin (Giovanni Bergamin) -->
+<!--edited with oXygen v5.1 (http://www.oxygenxml.com) by Elena Pierazzo-->
+<xsd:schema targetNamespace="http://www.iccu.sbn.it/metaAG1.pdf" xmlns="http://www.iccu.sbn.it/metaAG1.pdf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--
+4/11/2002 Changes:
+1- Changed schema for DC
+2- Added section <stru>
+3- Added type SBN and BNI
+4- Added tag <side> to <img> section
+
+10/03/2003 Changes:
+1- Added tag <size>, <usage> and <scale> to <img> section
+2- Added subsections <target> and <altimg> to <img> section 
+3- Changed type of attributes <creation> and <last_update> for tag <gen>
+
+19/05/2003 Changes:
+1- Added tag <collection>, and subsection <img_group> to <gen> section
+2- Added complete set of DC elements to <bib> section 
+3- Added attribute level to <bib> section
+4- Section <holdings> is repetitive
+5- Added tag <library> to section <holdings>
+6- Renamed <fis> to <piece>
+7- Added tag <element> to section <stru>
+8- Added <doc> section
+9- Added imggroupID attribute to <img> and <altimg> sections
+10- Added holdingsID attribute to <img> section
+11- Added <image_metrics> section
+12- Moved tag <dpi> to section <image_metrics> and added tag <ppi> 
+13- Moved tag <photometricinterpretation> from section <format> to <image_metrics> 
+14- Renamed <size> to <filesize>
+15- Added section doc
+
+05/04/2004 Changes:
+1- Added "uniqstru" constraint
+2- Added tags <sequence_number> and <nomenclature> to section <stru>
+3- Relevant changes in section <stru>
+4- tag <usage> is repeatable
+
+
+11/08/2004 1.51 version
+
+1 - <usage>  has now predefined values
+2. in section <stru>  it is now possible - but not mandatory -  to refer to an host item via <file> instead of <dc:identifier>
+
+11/01/2005  2.0 version
+1. new section <dis> for DIP phase of OAIS
+2. new section <audio>
+3. new section <video> 
+
+10/03/2005
+1. Added "uniqnum" constraint
+2. element <shelfmark> is now unbounded ad has an attibute type
+3. elements <stpiece_per> and <stpiece_vol> added 
+    
+03/05/2005
+1. Element local_bib created with content (geog_name*,not_date*)
+2. DC schema taken directly form Dublin Core Org.
+3. Added specialized compression types and mime types added for ocr and doc files
+4. Added djvu format (in compression types and in mime types)  for images 
+5. Predefined value of <usage> are now suggested values, depending on cases     
+-->
+	<xsd:include schemaLocation="./metatype.xsd"/>
+	<xsd:element name="metadigit">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="gen" type="gen"/>
+				<xsd:element name="bib" type="bib"/>
+				<xsd:element name="stru" type="stru" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="img" type="img" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="audio" type="audio" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="video" type="video" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="ocr" type="ocr" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="doc" type="doc" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="dis" type="dis" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" default="2.0"/>
+		</xsd:complexType>
+		<xsd:unique name="uniqstru">
+			<xsd:selector xpath="stru"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqimg">
+			<xsd:selector xpath="img"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqaudio">
+			<xsd:selector xpath="audio"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqvideo">
+			<xsd:selector xpath="video"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqocr">
+			<xsd:selector xpath="ocr"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqdoc">
+			<xsd:selector xpath="doc"/>
+			<xsd:field xpath="sequence_number"/>
+		</xsd:unique>
+		<xsd:unique name="uniqnum">
+			<xsd:selector xpath="stru/element"/>
+			<xsd:field xpath="@num"/>
+		</xsd:unique>
+		<!--vincolo di unicita' sul campo sequenza all'interno di ogni sezione -->
+	</xsd:element>
+</xsd:schema>

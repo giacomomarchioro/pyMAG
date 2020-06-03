@@ -28,7 +28,8 @@ class MAGFile(object):
         self.imgs_counter = 0
         self.holdings_counter = 0
         self.warnings = warnings
-        if filepath is not None:
+        self.filepath = filepath
+        if self.filepath is not None:
             self.load(filepath)
     
     def add_img(self,holdingsID=None,imggroupID=None):
@@ -45,7 +46,7 @@ class MAGFile(object):
         self.struct_counter += 1
         self.structs.append(STRU_section.stru(self.struct_counter))
 
-    def check(self):
+    def check(self,returnwarning=False):
         """Alcuni campi sono definiti obbligatori ma "formalmente opzionali" questi campi quindi 
         non sono coperti dallo schema xsd. Per validare che la convenzione venga rispettata pyMAG
         utilizza la funzione check.
@@ -63,10 +64,15 @@ class MAGFile(object):
             for i in fields:
                 if fields[i] is obbligatorio:
                     warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                    if returnwarning:
+                        fields[i] = "<-!!ERRORE: campo obbligatorio"
+            # image dimension può solo esssere nell'immagine non sul gruppo
             i_d = vars(img.image_dimensions)
             for i in i_d:
-                    if i_d[i] is obbligatorio and i_dg[i] is obbligatorio:
+                    if i_d[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_d[i] = "<-!!ERRORE: campo obbligatorio"
             i_m = vars(img.image_metrics)
             i_f = vars(img.format)
             i_s = vars(img.scanning)
@@ -79,24 +85,42 @@ class MAGFile(object):
                 for i in i_m:
                     if i_m[i] is obbligatorio and i_mg[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_m[i] = "<-!!ERRORE: campo obbligatorio se non definito nel gruppo"
+                            i_mg[i] = "<-!!ERRORE: campo obbligatorio se non definito nell'immagine"
                 for i in i_f:
                     if i_f[i] is obbligatorio and i_fg[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_f[i] = "<-!!ERRORE: campo obbligatorio se non definito nel gruppo"
+                            i_fg[i] = "<-!!ERRORE: campo obbligatorio se non definito nell'immagine"
                 for i in i_s:
                     if i_s[i] is obbligatorio and i_sg[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_s[i] = "<-!!ERRORE: campo obbligatorio se non definito nel gruppo"
+                            i_sg[i] = "<-!!ERRORE: campo obbligatorio se non definito nell'immagine"
             else:
                 for i in i_m:
                     if i_m[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_d[i] = "<-!!ERRORE: campo obbligatorio"
                 for i in i_f:
                     if i_f[i] is obbligatorio:
                         warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
+                        if returnwarning:
+                            i_f[i] = "<-!!ERRORE: campo obbligatorio"
                 if img.scanning.status == 'Used':
                     for i in i_s:
                         if i_s[i] is obbligatorio:
                             warnings.warn("Il campo %s dell'immagine %s è obbligatorio." %(i,sn),stacklevel=2)
-
+                            if returnwarning:
+                                i_s[i] = "<-!!ERRORE: campo obbligatorio"
+         # controlliamo ci sia almeno un dc:identifieres
+        if len(self.bib.identifiers) < 1:
+            url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_bib"
+            warnings.warn("Deve esserci alemno un dc:identifier\n%s" %(url),stacklevel=2)
 
 
                 
@@ -104,17 +128,20 @@ class MAGFile(object):
 
 
 
-    def load(self, filepath):
+    def load(self, filepath=None):
+        if filepath is None:
+            filepath = self.filepath
         tree = ET.parse(filepath)
         root = tree.getroot()
         def add_newstruct(elem):
-            for se in elem:
-                mystru = STRU_section.stru()
+            mystru = STRU_section.stru()
+            for se in elem:    
                 if se.tag.endswith('sequence_number'):
                     mystru.sequence_number= se.text
                 elif se.tag.endswith('nomenclature'):
                     mystru.set_nomencalture = se.text
                 elif se.tag.endswith('element'):
+                    print("Non convertito%s" %se)
                     for sse in se:
                         pass
                     #TODO:Element
@@ -123,8 +150,6 @@ class MAGFile(object):
                     mystru.add_stru(add_newstruct(se))
                 else:
                     print("Non convertito%s" %se)
-
-
             if 'start' in elem.attrib:
                 mystru.set_start(elem.attrib['start'])
             if 'stop' in elem.attrib:
@@ -134,21 +159,25 @@ class MAGFile(object):
             return mystru
             
         def load_scanning(elem,root):
-            if se.tag.endswith('capture_software'):
-                root.set_capture_software(se.text)
-            elif se.tag.endswith('devicesource'):
-                root.set_devicesource(se.text)
-            elif se.tag.endswith('scanner_manufacturer'):
-                root.set_scanner_manufacturer(se.text)
-            elif se.tag.endswith('scanner_model'):
-                root.set_scanner_model(se.text)
-            elif se.tag.endswith('scanningagency'):
-                root.set_scanningagency(se.text)
-            elif se.tag.endswith('sourcetype'):
-                root.set_sourcetype(se.text)
-            else:
-                print("Non convertito%s" %se)
-
+            for se in elem:
+                if se.tag.endswith('sourcetype'):
+                    root.set_sourcetype(se.text)
+                elif se.tag.endswith('scanningagency'):
+                    root.set_scanningagency(se.text)
+                elif se.tag.endswith('devicesource'):
+                    root.set_devicesource(se.text)
+                elif se.tag.endswith('scanningsystem'):
+                    for sse in se:            
+                        if sse.tag.endswith('capture_software'):
+                            root.set_capture_software(sse.text)
+                        elif sse.tag.endswith('scanner_manufacturer'):
+                            root.set_scanner_manufacturer(sse.text)
+                        elif sse.tag.endswith('scanner_model'):
+                            root.set_scanner_model(sse.text)
+                        else:
+                            print("Non convertito%s" %sse)    
+                else:
+                    print("Non convertito%s" %se)
 
         def load_format(elem,root):
             for se in elem:
@@ -161,27 +190,26 @@ class MAGFile(object):
                 else:
                     print("Non convertito%s" %se)
 
-
         def load_image_metrics(elem,root):
             for se in elem:
-                if se.tag.endswith('bitpersample'):
-                    root.set_bitpersample(se.text)
-                elif se.tag.endswith('photometricinterpretation'):
-                    root.set_photometricinterpretation(se.text)
+                if se.tag.endswith('samplingfrequencyunit'):
+                    root.set_samplingfrequencyunit(se.text)
                 elif se.tag.endswith('samplingfrequencyplane'):
                     root.set_samplingfrequencyplane(se.text)
-                elif se.tag.endswith('samplingfrequencyunit'):
-                    root.set_samplingfrequencyunit(se.text)
                 elif se.tag.endswith('xsamplingfrequency'):
                     root.set_xsamplingfrequency(se.text)
                 elif se.tag.endswith('ysamplingfrequency'):
                     root.set_ysamplingfrequency(se.text)
+                elif se.tag.endswith('photometricinterpretation'):
+                    root.set_photometricinterpretation(se.text)
+                elif se.tag.endswith('bitpersample'):
+                    root.set_bitpersample(se.text)
                 else:
                     print("Non convertito%s" %se)
 
 
         def load_image_dimension(elem,root):
-            imglengt, imagelength = None, None
+            imagewidth, imagelength = None, None
             source_xdimension, source_ydimension = None, None
 
             for se in elem:
@@ -201,7 +229,23 @@ class MAGFile(object):
             if source_xdimension is not None and source_ydimension is not None:
                 root.set_xydimensions(source_xdimension,source_ydimension)
             
-        
+        def load_target(elem):
+            newtarget = GEN_IMG_sections.target()
+            for se in elem:
+                if se.tag.endswith('targetType'):
+                    newtarget.set_targetType(se.text)
+                elif se.tag.endswith('targetID'):
+                    newtarget.set_targetID(se.text)
+                elif se.tag.endswith('imageData'):
+                    newtarget.set_imageData(se.text)
+                elif se.tag.endswith('performanceData'):
+                    newtarget.set_performanceData(se.text)
+                elif se.tag.endswith('profiles'):
+                    newtarget.set_profiles(se.text)
+                else:
+                    print("Non convertito%s" %se)
+            return newtarget
+
 
         def load_img_group(elem):
             ID = elem.attrib['ID']
@@ -218,8 +262,9 @@ class MAGFile(object):
                     root = self.gen.img_groups[ID].format
                     load_format(se,root)
                 elif se.tag.endswith('scanning'):
+                    print("loading scanning")
                     root = self.gen.img_groups[ID].scanning
-                    load_format(se,root)
+                    load_scanning(se,root)
                 else:
                     print("Non convertito%s" %se)
 
@@ -268,7 +313,9 @@ class MAGFile(object):
             elif elem.tag.endswith('bib'):
                 self.bib.set_level(elem.attrib['level'])
                 for se in elem:
-                    if se.tag.endswith('contributor'):
+                    if se.tag.endswith('identifier'):
+                        self.bib.add_identifier(se.text)
+                    elif se.tag.endswith('contributor'):
                         self.bib.add_contributor(se.text)
                     elif se.tag.endswith('coverage'):
                         self.bib.add_coverage(se.text)
@@ -322,18 +369,24 @@ class MAGFile(object):
                 for se in elem:
                     if se.tag.endswith('sequence_number'):
                         newimg = img(se.text,imggroupID=imgID,holdingsID=holdingsID)
-                    elif se.tag.endswith('datetimecreated'):
-                        newimg.set_datetimecreated(se.text)
                     elif se.tag.endswith('dpi'):
                         newimg.set_dpi(se.text)
                     elif se.tag.endswith('file'):
-                        loc = se.attrib['Location']
-                        link = se.attrib['{http://www.w3.org/TR/xlink}href']
+                        if 'Location' in se.attrib:
+                            loc = se.attrib['Location']
+                        else:
+                            loc = "Mancante"
+                            warnings.warn("Location mancante",stacklevel=2)
+                        if '{http://www.w3.org/TR/xlink}href' in se.attrib:
+                            link = se.attrib['{http://www.w3.org/TR/xlink}href']
+                        else:
+                            link = "Mancante"
+                            warnings.warn("Link mancante",stacklevel=2)
                         newimg.set_file(link=link,Location=loc)
-                    elif se.tag.endswith('filesize'):
-                        newimg.set_filesize(se.text)
                     elif se.tag.endswith('md5'):
                         newimg.set_md5(se.text)
+                    elif se.tag.endswith('filesize'):
+                        newimg.set_filesize(se.text)                
                     elif se.tag.endswith('nomenclature'):
                         newimg.set_nomenclature(se.text)
                     elif se.tag.endswith('note'):
@@ -345,13 +398,22 @@ class MAGFile(object):
                     elif se.tag.endswith('side'):
                         newimg.set_side(se.text)
                     elif se.tag.endswith('usage'):
-                        newimg.set_usage(stringapersonalizzata=se.text)
+                        newimg.add_usage(stringapersonalizzata=se.text)
                     elif se.tag.endswith('image_dimensions'):
                         load_image_dimension(se,newimg.image_dimensions)
                     elif se.tag.endswith('image_metrics'):
-                        load_image_metrics(se,newimg.metrics)
+                        load_image_metrics(se,newimg.image_metrics)
                     elif se.tag.endswith('format'):
                         load_format(se,newimg.format)
+                    elif se.tag.endswith('scanning'):
+                        load_scanning(se,newimg.scanning)
+                    elif se.tag.endswith('datetimecreated'):
+                        newimg.set_datetimecreated(se.text)
+                    elif se.tag.endswith('target'):
+                        newimg.targets.append(load_target(se))
+                    elif se.tag.endswith('altimg'):
+                        #TODO: creare la funzione altimg
+                        warnings.warn("Funzione altimg non implementata")
                     else:
                         print('Non convertito: %s' %se)
                 self.imgs.append(newimg)
@@ -441,6 +503,63 @@ class MAGFile(object):
 
         # Le caratteristiche comuni a un gruppo omogeneo immagini possono essere definite all'interno dell'elemento <img_group>. 
         # L'elemento è opzionale, ripetibile e ha un attributo obbligatorio:
+        def add_imagespecs(xlmelement,i):
+            if i.image_metrics.is_used:
+                image_metrics = ET.SubElement(xlmelement,'image_metrics')
+                # informazioni sul campionamento
+                if i.image_metrics.samplingfrequencyunit not in [None,obbligatorio]:
+                    nisosamplingfrequencyunit = ET.SubElement(image_metrics, 'niso:samplingfrequencyunit')
+                    nisosamplingfrequencyunit.text = i.image_metrics.samplingfrequencyunit
+                if i.image_metrics.samplingfrequencyplane not in [None,obbligatorio]:
+                    nisosamplingfrequencyplane = ET.SubElement(image_metrics, 'niso:samplingfrequencyplane')
+                    nisosamplingfrequencyplane.text = i.image_metrics.samplingfrequencyplane
+                if i.image_metrics.xsamplingfrequency not in [None,obbligatorio]:
+                    xsamplingfrequency = ET.SubElement(image_metrics, 'niso:xsamplingfrequency')
+                    xsamplingfrequency.text = i.image_metrics.xsamplingfrequency
+                if i.image_metrics.ysamplingfrequency not in [None,obbligatorio]:
+                    ysamplingfrequency = ET.SubElement(image_metrics, 'niso:ysamplingfrequency')
+                    ysamplingfrequency.text = i.image_metrics.ysamplingfrequency
+                if i.image_metrics.photometricinterpretation not in [None,obbligatorio]:
+                    photometricinterpretation = ET.SubElement(image_metrics, 'niso:photometricinterpretation')
+                    photometricinterpretation.text = i.image_metrics.photometricinterpretation
+                if i.image_metrics.bitpersample not in [None,obbligatorio]:
+                    nisobitpersample = ET.SubElement(image_metrics, 'niso:bitpersample')
+                    nisobitpersample.text = i.image_metrics.bitpersample
+            # ppi and dpi
+            if i.ppi is not None:
+                ppi = ET.SubElement(xlmelement, 'ppi')
+                ppi.text = i.ppi
+            if i.dpi is not None:
+                dpi = ET.SubElement(xlmelement, 'dpi')
+                dpi.text = i.dpi
+            # formato immagine
+            if i.format.is_used:
+                fromat_ = ET.SubElement(xlmelement,'format')
+                if i.format.name not in [None,obbligatorio]:
+                    nisoname = ET.SubElement(fromat_, 'niso:name')
+                    nisoname.text = i.format.name
+                if i.format.mime not in [None,obbligatorio]:
+                    nisomime = ET.SubElement(fromat_, 'niso:mime')
+                    nisomime.text = i.format.mime
+                if i.format.compression not in [None,obbligatorio]:
+                    nisocompression = ET.SubElement(fromat_, 'niso:compression')
+                    nisocompression.text = i.format.compression
+            # informazione sulla procedura di scansione
+            if i.scanning.is_used:
+                scanning = ET.SubElement(xlmelement,'scanning')
+                if i.scanning.scanningagency not in [None,obbligatorio]:
+                    nisoscanningagency = ET.SubElement(scanning,'niso:scanningagency')
+                    nisoscanningagency.text = i.scanning.scanningagency
+                nisoscanningsystem = ET.SubElement(scanning,'niso:scanningsystem')
+                if i.scanning.scanner_manufacturer not in [None,obbligatorio]:
+                    nisoscanner_manufacturer = ET.SubElement(nisoscanningsystem,'niso:scanner_manufacturer')
+                    nisoscanner_manufacturer.text = i.scanning.scanner_manufacturer
+                if i.scanning.scanner_model not in [None,obbligatorio]:
+                    nisoscanner_model = ET.SubElement(nisoscanningsystem,'niso:scanner_model')
+                    nisoscanner_model.text = i.scanning.scanner_model
+                if i.scanning.capture_software not in [None,obbligatorio]:
+                    nisocapture_software = ET.SubElement(nisoscanningsystem,'niso:capture_software')
+                    nisocapture_software.text = i.scanning.capture_software
 
         for ig in self.gen.img_groups.values():
             # creo l'elemento 
@@ -448,58 +567,10 @@ class MAGFile(object):
             # assegno l'ID all gruppo se non è assegnato viene usato un numero
             if type(ig.ID) is str:
                 img_group.set('ID', ig.ID)
+            add_imagespecs(img_group,ig)
 
-            image_metrics = ET.SubElement(img_group,'image_metrics')
-            # informazioni sul campionamento
-            if ig.image_metrics.samplingfrequencyunit not in [None,obbligatorio]:
-                nisosamplingfrequencyunit = ET.SubElement(image_metrics, 'niso:samplingfrequencyunit')
-                nisosamplingfrequencyunit.text = ig.image_metrics.samplingfrequencyunit
-            if ig.image_metrics.samplingfrequencyplane not in [None,obbligatorio]:
-                nisosamplingfrequencyplane = ET.SubElement(image_metrics, 'niso:samplingfrequencyplane')
-                nisosamplingfrequencyplane.text = ig.image_metrics.samplingfrequencyplane
-            if ig.image_metrics.xsamplingfrequency not in [None,obbligatorio]:
-                xsamplingfrequency = ET.SubElement(image_metrics, 'niso:xsamplingfrequency')
-                xsamplingfrequency.text = ig.image_metrics.xsamplingfrequency
-            if ig.image_metrics.ysamplingfrequency not in [None,obbligatorio]:
-                ysamplingfrequency = ET.SubElement(image_metrics, 'niso:ysamplingfrequency')
-                ysamplingfrequency.text = ig.image_metrics.ysamplingfrequency
-            if ig.image_metrics.bitpersample not in [None,obbligatorio]:
-                nisobitpersample = ET.SubElement(image_metrics, 'niso:bitpersample')
-                nisobitpersample.text = ig.image_metrics.bitpersample
-            # ppi and dpi
-            if ig.ppi is not None:
-                ppi = ET.SubElement(img_group, 'ppi')
-                ppi.text = ig.ppi
-            if ig.dpi is not None:
-                dpi = ET.SubElement(img_group, 'dpi')
-                dpi.text = ig.dpi
-            # formato immagine
-            fromat_ = ET.SubElement(img_group,'format')
-            if ig.format.name not in [None,obbligatorio]:
-                nisoname = ET.SubElement(fromat_, 'niso:name')
-                nisoname.text = ig.format.name
-            if ig.format.mime not in [None,obbligatorio]:
-                nisomime = ET.SubElement(fromat_, 'niso:mime')
-                nisomime.text = ig.format.mime
-            if ig.format.compression not in [None,obbligatorio]:
-                nisocompression = ET.SubElement(fromat_, 'niso:compression')
-                nisocompression.text = ig.format.compression
-            # informazione sulla procedura di scansione
-            scanning = ET.SubElement(img_group,'scanning')
-            if ig.scanning.scanningagency not in [None,obbligatorio]:
-                nisoscanningagency = ET.SubElement(scanning,'niso:scanningagency')
-                nisoscanningagency.text = ig.scanning.scanningagency
-            nisoscanningsystem = ET.SubElement(scanning,'niso:scanningsystem')
-            nisiscanningsystem = ig.scanning.scanningsystem
-            if ig.scanning.scanner_manufacturer not in [None,obbligatorio]:
-                nisoscanner_manufacturer = ET.SubElement(nisoscanningsystem,'niso:scanner_manufacturer')
-                nisoscanner_manufacturer.text = ig.scanning.scanner_manufacturer
-            if ig.scanning.scanner_model not in [None,obbligatorio]:
-                nisoscanner_model = ET.SubElement(nisoscanningsystem,'niso:scanner_model')
-                nisoscanner_model.text = ig.scanning.scanner_model
-            if ig.scanning.capture_software not in [None,obbligatorio]:
-                nisocapture_software = ET.SubElement(nisoscanningsystem,'niso:capture_software')
-                nisocapture_software.text = ig.scanning.capture_software
+            
+            
 
             
         # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#sez_bib
@@ -598,16 +669,17 @@ class MAGFile(object):
                 shelfmark.text = i[0]
                 if i[1] is not None:
                     shelfmark.set('collocation_type',i[1])
-            # lAlcuni progetti di digitalizzazione che hanno adottato MAG come standard per la 
-            # raccolta dei metadati amministrativi e gestionali, hanno messo in evidenza la necessità 
-            # di dotare lo schema di alcuni elementi per la raccolta di particolari informazioni
-            #  specialistiche relativamente all'oggetto analogico raccolte durante il processo
-            #  di digitalizzazione. Tali informazioni non potevano essere agevolmente codificate 
-            # all'interno del set Dublin Core poiché la scelta di non avvalersi degli elementi 
-            # Dublin Core qualificati rendevano difficilmente identificabili tali contenuti. � stato 
-            # perciò creato l'elemento <local_bib> di tipo xsd:sequence, per il quale 
-            # non sono definiti attributi.
-            # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#local_bib
+        # lAlcuni progetti di digitalizzazione che hanno adottato MAG come standard per la 
+        # raccolta dei metadati amministrativi e gestionali, hanno messo in evidenza la necessità 
+        # di dotare lo schema di alcuni elementi per la raccolta di particolari informazioni
+        #  specialistiche relativamente all'oggetto analogico raccolte durante il processo
+        #  di digitalizzazione. Tali informazioni non potevano essere agevolmente codificate 
+        # all'interno del set Dublin Core poiché la scelta di non avvalersi degli elementi 
+        # Dublin Core qualificati rendevano difficilmente identificabili tali contenuti. � stato 
+        # perciò creato l'elemento <local_bib> di tipo xsd:sequence, per il quale 
+        # non sono definiti attributi.
+        # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#local_bib
+        if self.bib.local_bib._used:
             local_bib = ET.SubElement(bib, 'local_bib')
             # L'elemento è opzionale così pure come gli elementi ivi contenuti:
             # <geo_coord> : di tipo xsd:string, contiene le coordinate geografiche relative
@@ -616,16 +688,16 @@ class MAGFile(object):
             # <not_date> : di tipo xsd:string, contiene la data di notifica relativa a un bando
             #  o a un editto. L'elemento è opzionale e ripetibile. Non sono definiti attributi.
             not_date = ET.SubElement(local_bib, 'not_date')
-            # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
-            # Pubblicazioni seriali e unità componenti di opere più vaste possono essere minuziosamente
-            #  descritte. Tali informazioni sono raccolte dall'elemento <piece>, di tipo xsd:choice, 
-            # vale a dire che può avere due contenuti diversi a seconda che contenga dati relativi a 
-            # una pubblicazione seriale (per esempio il fascicolo di una rivista) o all'unità 
-            # componente di un'opera più vasta (per esempio il singolo volume di un'enciclopedia). 
-            # L'elemento è opzionale e non ripetibile; non sono definiti attributi.
-            piece = ET.SubElement(bib, 'piece')
-            # non lo completiamo
-            # ....
+        # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
+        # Pubblicazioni seriali e unità componenti di opere più vaste possono essere minuziosamente
+        #  descritte. Tali informazioni sono raccolte dall'elemento <piece>, di tipo xsd:choice, 
+        # vale a dire che può avere due contenuti diversi a seconda che contenga dati relativi a 
+        # una pubblicazione seriale (per esempio il fascicolo di una rivista) o all'unità 
+        # componente di un'opera più vasta (per esempio il singolo volume di un'enciclopedia). 
+        # L'elemento è opzionale e non ripetibile; non sono definiti attributi.
+        piece = ET.SubElement(bib, 'piece')
+        # non lo completiamo
+        # ....
 
         # https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#piece
         # L'elemento <stru> è il terzo figlio dell'elemento root <metadigit>; l'elemento è opzionale, 
@@ -701,7 +773,7 @@ class MAGFile(object):
         # <file> : localizza il file contenente l'immagine. Obbligatorio e non ripetibile
         # <md5> : contiene l'impronta del file. Obbligatorio e non ripetibile
         # <filesize> : fornisce la dimensione del file contenente l'immagine in byte. Opzionale e non ripetibile
-        # <image_dimentions> : definisce le dimensioni dell'immagine digitale. Obbligatorio e non ripetibile
+        # <image_dimensions> : definisce le dimensioni dell'immagine digitale. Obbligatorio e non ripetibile
         # <image_metrics> : fornisce le principale caratteristiche tecniche dell'immagine secondo lo standard NISO. Opzionale e non ripetibile
         # <ppi> : risoluzione dell'immagine espressa in ppi. Opzionale e non ripetibile
         # <dpi> : risoluzione dell'immagine espressa in dpi. Opzionale e non ripetibile
@@ -718,26 +790,38 @@ class MAGFile(object):
   
         for image in self.imgs:
             img = ET.SubElement(p, 'img')
-            sequence_number = ET.SubElement(img,'sequence_number')
-            nomenclature = ET.SubElement(img,'nomenclature')
+            if image.sequence_number is not None:
+                sequence_number = ET.SubElement(img,'sequence_number')
+                sequence_number.text = image.sequence_number
+            
+            if image.nomenclature not in [None,obbligatorio]:
+                nomenclature = ET.SubElement(img,'nomenclature')
+                nomenclature.text = image.nomenclature
+           
             # A ciascuna immagine deve inoltre essere attribuita una denominazione, per esempio Pagina 1, Carta 2v, ecc. Tale denominazione viene codificata dall'elemento <nomenclature>. L'elemento è di tipo xsd:string; si consiglia comunque di definire una nomenclatura controllata negli standard di progetto. L'elemento è obbligatorio e non ripetibile
             # Dello stesso oggetto digitale (tipicamente un foglio di carta) possono essere tratte più immagini digitali, più o meno definite, in diversi formati, ognuna delle quali con una diversa finalità. � infatti usuale creare immagini di alta qualità per l'archiviazione interna e immagini di qualità più limitata per la diffusione esterna. La finalità dell'immagine digitale viene registrata dall'elemento <usage>. L'elemento è di tipo xsd:string; al fine di favorire la portabilità dei dati, si consiglia tuttavia di adottare le seguenti due tassonomie (adottate dai maggiori progetti di digitalizzazione italiani), la prima relativa alle modalità d'uso, la seconda al possesso del copyright da parte dell'istituzione:
             #  1 : master  2 : alta risoluzione 3 : bassa risoluzione 4 : preview e   a : il repository non ha il copyright dell'oggetto digitale b : il repository ha il copyright dell'oggetto digitale
             # L'elemento è opzionale e ripetibile.
-            usage = ET.SubElement(img,'usage')
+            for i in image.usage:
+                usage = ET.SubElement(img,'usage')
+                usage.text = i
             # <side>, per il quale è definito un tipo semplice specializzato denominato a sua volta side. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:    
             # left : l'immagine contiene la digitalizzazione della pagina sinistra di un volume o di un fascicolo
             # right : l'immagine contiene la digitalizzazione della pagina destra di un volume o di un fascicolo
             # double : l'immagine contiene la digitalizzazione di una doppia pagina di un volume o di un fascicolo
             # part : l'immagine contiene la digitalizzazione parziale dell'oggetto analogico fonte.
-            side = ET.SubElement(img,'side')
+            if image.side is not None:
+                side = ET.SubElement(img,'side')
+                side.text = image.side
             # Durante la scansione è possibile impiegare una scala millimetrica da affiancare all'oggetto sottoposto a scansione in modo da
             # ricostruire le dimensioni dell'originale partendo dalla sua riproduzione digitale. L'informazione può essere registrata
             # grazie all'elemento opzionale e non ripetibile <scale> per il quale è definito un tipo semplice specializzato denominato millimetric_scale.
             # Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
             # 0 : non è presente alcuna scala millimetrica
             # 1 : è presente una scala millimetrica
-            scale = ET.SubElement(img,'scale')
+            if image.scale is not None:
+                scale = ET.SubElement(img,'scale')
+                scale.text = image.scale
             # L'elemento <file> consente di localizzare il file che contiene l'immagine digitale. � di tipo link,
             # vale è dire che è un elemento vuoto che supporta attributi definiti dal namespace xlink .
             # L'elemento è obbligatorio e non ripetibile.
@@ -754,16 +838,54 @@ class MAGFile(object):
             # Anche l'elemento <filesize> è una raccomandazione NISO (Cfr. Data Dictionary, p. 13).
 
             file_ = ET.SubElement(img,'file')
+            file_.set('Location',image.fileLocation)
+            file_.set('xlink:href',image.fileLink)
             md5 = ET.SubElement(img,'md5')
-            image_dimentions = ET.SubElement(img,'image_dimentions')
-            image_metrics = ET.SubElement(img,'image_metrics')
-            ppi = ET.SubElement(img,'ppi')
-            format_img = ET.SubElement(img,'format')
-            scanning_img = ET.SubElement(img,'scanning')
-            datetimecreated_img = ET.SubElement(img,'datetimecreated')
-            target_img = ET.SubElement(img,'target')
-            altimg = ET.SubElement(img,'altimg')
-            note = ET.SubElement(img,'note')
+            md5.text = image.md5
+            # definisce le dimensioni dell'immagine digitale. Obbligatorio e non ripetibile
+            image_dimensions = ET.SubElement(img,'image_dimensions')
+            nisoimagelength = ET.SubElement(image_dimensions,'niso:imagelength')
+            nisoimagelength.text = image.image_dimensions.imagelength
+            nisoimagewidth = ET.SubElement(image_dimensions,'niso:imagewidth')
+            nisoimagewidth.text = image.image_dimensions.imagewidth
+            # here we add the specs shared with the image group
+            add_imagespecs(img,image)
+            if image.datetimecreated is not None:
+                datetimecreated_img = ET.SubElement(img,'datetimecreated')
+                datetimecreated_img.text = image.datetimecreated 
+            #L'eventuale presenza, la tipologia e le modalità d'utilizzo di un target (o scala cromatica) durante la scansione dell'oggetto analogico è identificata dalla sezione codificata dall'elemento <target>, secondo lo standard NISO. L'elemento è opzionale e non ripetibile. Per <target> è definito un tipo specializzato appartenente al namespace niso denominato niso:targetdata. Tale tipo è di tipo xsd:sequence e contiene cinque elementi:
+
+            #<niso:targetType> : opzionale e non ripetibile, dichiara se il target è interno o esterno. Per l'elemento è definito un tipo semplice specializzato, anch'esso contenuto nel file niso-mag.xsd, denominato niso:targettype. Tale tipo è definito come restrizione di xsd:string ed è costituito dall'enumerazione dei seguenti valori:
+            #0 il target è esterno
+            #1 il target è interno
+            #<niso:targetID> : obbligatorio e non ripetibile, identifica il nome del target, produttore o organizzazione, il numero della versione o il media. � di tipo xsd:string.
+            #<niso:imageData> : opzionale e non ripetibile, identifica il path dell'immagine digitale che funge da target esterno. � di tipo xsd:anyURI. Si usa solo se <niso:targetType> è uguale a 0 (esterno).
+            #<niso:performanceData> : opzionale e non ripetibile, identifica il path del file che contiene i dati dell'immagine performance relativa al target identificato da <niso:targetID>. � di tipo xsd:anyURI.
+            #<niso:profiles> : opzionale e non ripetibile, identifica il path del file che contiene il profilo dei colori ICC o un altro profilo di gestione. � di tipo xsd:anyURI.
+            
+            for t in image.targets:
+                target_img = ET.SubElement(img,'target')
+                if t.targetType is not None:
+                    targetType = ET.SubElement(target_img,'niso:targetType')
+                    targetType.text = t.targetType
+                if t.targetID is not None:
+                    targetID = ET.SubElement(target_img,'niso:targetID')
+                    targetID.text = t.targetID
+                if t.imageData is not None:
+                    imageData = ET.SubElement(target_img,'niso:imageData')
+                    imageData.text = t.imageData
+                if t.performanceData is not None:
+                    performanceData = ET.SubElement(target_img,'niso:performanceData')
+                    performanceData.text = t.performanceData
+                if t.profiles is not None:
+                    profiles = ET.SubElement(target_img,'niso:profiles')
+                    profiles.text = t.profiles
+
+            for a in image.altimgs:
+                altimg = ET.SubElement(img,'altimg')
+            if image.note is not None:
+                note = ET.SubElement(img,'note')
+                note.text = image.note
             # imggroupID : di tipo xsd:IDREF contiene un riferimento all'attributo ID dell'elemento <img_group> . 
             # Tale attributo consente di collegare un <img> con le caratteristiche tecniche definite globalmente da <img_group>.
             #  L'attributo è opzionale; qualora non sia usato si assume che le caratteristiche tecniche dell'immagine non siano 
@@ -794,4 +916,20 @@ class MAGFile(object):
 
         indent(p)
         tree = ET.ElementTree(p)
-        tree.write('%s.xml'%filepath)
+        if not filepath.endswith('.xml'):
+            filepath+='.xml'
+        tree.write(filepath)
+
+    def printerrorstofile(self,filepath=None):
+        from . import MAGtools
+        import copy
+        tempfile = self.filepath[:-4]+"temp.xml"
+        self.write(tempfile)
+        MAGtools.returnwarning = True
+        newmag = MAGFile(tempfile)
+        newmag.check(returnwarning=True)
+        if filepath is None:
+            filepath = self.filepath[:-4]+"_errorlog"
+        newmag.write(filepath)
+        MAGtools.returnwarning = False
+        return newmag
