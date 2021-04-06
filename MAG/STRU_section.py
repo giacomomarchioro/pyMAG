@@ -15,8 +15,8 @@ class element(object):
 
     serve a dichiarare l'ordine degli <element> nel caso di un oggetto digitale logicamente unitario ma fisicamente diviso in più oggetti analogici dello stesso tipo.
     """
-    def __init__(self,start,stop,num,piece=None):
-        self.resource = None
+    def __init__(self,start,stop,num,piece=None,resource=None):
+        self.resource = resource
         # attributo 
         self.num = num
         # come attributi di start a stop
@@ -25,7 +25,7 @@ class element(object):
         self.offset = None
         # elementi
         self.identifier = None
-        self.piece = None
+        self.piece = piece
         self.descr = None
         self.file = None
         
@@ -94,8 +94,10 @@ class stru(object):
     def add_stru(self):
         """Metodo per aggiungere un elemento stru.
         """
-        self.structs.append(stru(sequence_number=self.nested_sequence_number))
+        newstru = stru(sequence_number=self.nested_sequence_number)
+        self.structs.append(newstru)
         self.nested_sequence_number += 1
+        return newstru
 
     def set_nomenclature(self,value):
         """La denominazione del livello strutturale è contenuta dall'elemento <nomenclature>. L'elemento, opzionale e non ripetibile, ha un contenuto di tipo xsd:string, vale a dire che può contenere una qualsiasi sequenza di caratteri. Il formato che tale denominazione può assumere dipende dagli standard di progetto che possono prevedere di riproporre i titoli dei vari livelli strutturali del documento analogico, oppure di adottare denominazioni standardizzate.

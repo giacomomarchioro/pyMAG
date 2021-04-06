@@ -40,6 +40,7 @@ class target(object):
         value : [type]
             [description]
         """
+        url = r"https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#target"
         conv_dict = {"target esterno": "0",
                      "target interno": "1",
                      }
@@ -413,6 +414,7 @@ vario: .../... : per oggetti complessi e/o compositi costituiti da elementi appa
         value : str
             una stringa contentente il nome dell'ente o della persona.
         """
+        url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#scanning"
         value = MAGtools.check_notnanorempty(value,url=url,minlen=3)
         self.scanningagency = value
         self.is_used = True
@@ -543,9 +545,11 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         #TODO altimg
         raise NotImplementedError
 
-    def add_target(self):
-        new_target = target()
+    def add_target(self,new_target=None):
+        if new_target is None:
+            new_target = target()
         self.targets.append(new_target)
+        return new_target
 
     def add_usage(self,uso=None,copyright=None,stringapersonalizzata=None):
         """Dello stesso oggetto digitale (tipicamente un foglio di carta) possono essere tratte più immagini digitali, più o meno definite, in diversi formati, ognuna delle quali con una diversa finalità. � infatti usuale creare immagini di alta qualità per l'archiviazione interna e immagini di qualità più limitata per la diffusione esterna. La finalità dell'immagine digitale viene registrata dall'elemento <usage>. L'elemento è di tipo xsd:string; al fine di favorire la portabilità dei dati, si consiglia tuttavia di adottare le seguenti due tassonomie (adottate dai maggiori progetti di digitalizzazione italiani), la prima relativa alle modalità d'uso, la seconda al possesso del copyright da parte dell'istituzione:
@@ -569,8 +573,8 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
                      "bassa risoluzione":"3",
                      "preview":"4"}
 
-        conv_dict2 = {"a":"il repository non ha il copyright dell'oggetto digitale",
-                      "b":"il repository ha il copyright dell'oggetto digitale"}
+        conv_dict2 = {"il repository non ha il copyright dell'oggetto digitale":"a",
+                      "il repository ha il copyright dell'oggetto digitale":"b"}
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_group"
         if uso is None and copyright is None and stringapersonalizzata is None:
             warnings.warn("Tutti gli attributi di set_usage sono None")
@@ -649,8 +653,8 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
             [description]
         """
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
-        conv_dict={"0" : "non è presente alcuna scala millimetrica",
-                   "1" : "è presente una scala millimetrica"}
+        conv_dict={"non è presente alcuna scala millimetrica":"0",
+                   "è presente una scala millimetrica":}
         self.scale = MAGtools.validvalue(value=value,valuedict=conv_dict,url=url)
 
     def set_filesize(self,value):

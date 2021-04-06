@@ -210,7 +210,7 @@ Per l'elemento è definito un attributo obbligatorio level.
         self.languages = [] 
         self.relations = [] 
         self.coverages = [] 
-        self.rightss = [] 
+        self.rightss= [] 
 
     def create_holidngwithoutID(self):
         """Usato quando si vuole creare un holding senza ID. Verrà assegnato un ID numerico non valido per un file MAG. 
@@ -231,7 +231,7 @@ Per l'elemento è definito un attributo obbligatorio level.
         """
         if ID in self.holdings.keys():
             warnings.warn("L'ID è già presente nella lista degli ID.")
-        self.holdings[ID] = holdings()
+        self.holdings[ID] = holdings(ID=ID)
 
     def set_level(self,value):
         """level : indica il livello della descrizione bibliografica. Il suo valore deve essere scelto fra i seguenti:
@@ -323,7 +323,7 @@ Per l'elemento è definito un attributo obbligatorio level.
 
     def add_rights(self,value):
         """ aggiunge l'elemento DoublinCore alla lista"""
-        self.rightess.append(value)
+        self.rightss.append(value)
 
     def get_vars(self):
         return vars(self)

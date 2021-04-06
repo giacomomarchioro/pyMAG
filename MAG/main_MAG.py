@@ -1,4 +1,5 @@
 from __future__ import print_function
+from types import new_class
 import xml.etree.ElementTree as ET
 import numpy as np
 from . import GEN_IMG_sections
@@ -40,11 +41,15 @@ class MAGFile(object):
             if holdingsID not in self.bib.holdings:
                 warnings.warn("Referenziazione ad un holdings ID non definito in bib.holdings.")
         self.imgs_counter += 1
-        self.imgs.append(GEN_IMG_sections.img(self.imgs_counter,imggroupID,holdingsID))
+        newimg = GEN_IMG_sections.img(self.imgs_counter,imggroupID,holdingsID)
+        self.imgs.append(newimg)
+        return newimg
     
     def add_stru(self):
         self.struct_counter += 1
-        self.structs.append(STRU_section.stru(self.struct_counter))
+        newstr = STRU_section.stru(self.struct_counter)
+        self.structs.append(newstr)
+        return newstr
 
     def check(self,returnwarning=False):
         """Alcuni campi sono definiti obbligatori ma "formalmente opzionali" questi campi quindi 
@@ -59,7 +64,7 @@ class MAGFile(object):
         """
         # image metrics
         for img in self.imgs:
-            sn = img.sequence_number
+            sn = str(img.sequence_number)
             fields = vars(img)
             for i in fields:
                 if fields[i] is obbligatorio:
@@ -733,7 +738,7 @@ class MAGFile(object):
             struxml = ET.SubElement(xlmelem, 'stru')
             if stru.sequence_number is not None:
                 sequence_number = ET.SubElement(struxml, 'sequence_number')
-                sequence_number.text = stru.sequence_number
+                sequence_number.text = str(stru.sequence_number)
             if stru.nomenclature is not None:
                 nomenclature = ET.SubElement(struxml, 'nomenclature')
                 nomenclature.text = stru.nomenclature
@@ -742,14 +747,14 @@ class MAGFile(object):
                 if e.resource is not None:
                     resource = ET.SubElement(element, 'resource')
                     resource.text = e.resource
-                if e.start is not None:
+                if e.start_sequence_number is not None:
                     start = ET.SubElement(element, 'start')
-                    start.text = e.start
-                if e.stop is not None:
+                    start.text = str(e.start_sequence_number)
+                if e.stop_sequence_number is not None:
                     stop = ET.SubElement(element, 'resource')
-                    stop.text = e.stop
+                    stop.text = str(e.stop_sequence_number)
             for ss in stru.structs:
-                add_struct(xlmelem=struxml,stru=stru)
+                add_struc(xlmelem=struxml,stru=ss)
 
 
 
@@ -792,8 +797,8 @@ class MAGFile(object):
             img = ET.SubElement(p, 'img')
             if image.sequence_number is not None:
                 sequence_number = ET.SubElement(img,'sequence_number')
-                sequence_number.text = image.sequence_number
-            
+                sequence_number.text = str(image.sequence_number)
+                
             if image.nomenclature not in [None,obbligatorio]:
                 nomenclature = ET.SubElement(img,'nomenclature')
                 nomenclature.text = image.nomenclature
