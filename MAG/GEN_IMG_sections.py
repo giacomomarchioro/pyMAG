@@ -654,7 +654,7 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         """
         url = "https://www.iccu.sbn.it/export/sites/iccu/documenti/manuale.html#img_el"
         conv_dict={"non è presente alcuna scala millimetrica":"0",
-                   "è presente una scala millimetrica":}
+                   "è presente una scala millimetrica":"1"}
         self.scale = MAGtools.validvalue(value=value,valuedict=conv_dict,url=url)
 
     def set_filesize(self,value):
