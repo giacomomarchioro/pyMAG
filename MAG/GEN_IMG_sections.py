@@ -372,6 +372,7 @@ class scanning(object):
         self.scanner_model = MAGtools.obbligatorio
         self.capture_software = MAGtools.obbligatorio
         self.is_used = True
+        self.status = None
 
     def get_vars(self):
         return vars(self)

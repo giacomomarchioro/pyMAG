@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyMAG",
-    version="0.1.4",
+    version="0.1.6",
     author="Giacomo Marchioro",
     author_email="giacomomarchioro@outlook.com",
     description="Libreria per la creazione di file XML secondo la versione 2.0.1 dello standard MAG ",
