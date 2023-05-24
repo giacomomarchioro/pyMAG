@@ -520,6 +520,7 @@ La sezione IMG è costituita di una sequenza di elementi <img>, uno per ciascuna
         self.fileLocation = MAGtools.obbligatorio
         self.fileLink = MAGtools.obbligatorio
         self.md5 = MAGtools.obbligatorio
+        self.status = None
         MAGtools.check_notnanorempty(self.sequence_number)
 
     def get_vars(self):
