@@ -253,7 +253,7 @@ class MAGFile(object):
 
 
         def load_img_group(elem):
-            ID = elem.attrib.get('ID']
+            ID = elem.attrib.get('ID')
             self.gen.add_img_group(ID)
             for se in elem:
                 if se.tag.endswith('dpi'):
@@ -277,7 +277,7 @@ class MAGFile(object):
             self.holdings_counter +=1
             # if there is no ID we use a progressive count as ID
             if 'ID' in elem.attrib:
-                ID = elem.attrib.get('ID']
+                ID = elem.attrib.get('ID')
             else:
                 ID = self.holdings_counter
             myholding = BIB_section.holdings(ID)
