@@ -156,11 +156,11 @@ class MAGFile(object):
                 else:
                     print("Non convertito%s" %se)
             if 'start' in elem.attrib:
-                mystru.set_start(elem.attrib['start'])
+                mystru.set_start(elem.attrib.get('start'))
             if 'stop' in elem.attrib:
-                mystru.set_stop(elem.attrib['stop'])
+                mystru.set_stop(elem.attrib.get('stop'))
             if 'descr' in elem.attrib:
-                mystru.set_descr(elem.attrib['descr'])
+                mystru.set_descr(elem.attrib.get('descr'))
             return mystru
             
         def load_scanning(elem,root):
@@ -253,7 +253,7 @@ class MAGFile(object):
 
 
         def load_img_group(elem):
-            ID = elem.attrib['ID']
+            ID = elem.attrib.get('ID']
             self.gen.add_img_group(ID)
             for se in elem:
                 if se.tag.endswith('dpi'):
@@ -277,7 +277,7 @@ class MAGFile(object):
             self.holdings_counter +=1
             # if there is no ID we use a progressive count as ID
             if 'ID' in elem.attrib:
-                ID = elem.attrib['ID']
+                ID = elem.attrib.get('ID']
             else:
                 ID = self.holdings_counter
             myholding = BIB_section.holdings(ID)
@@ -297,8 +297,8 @@ class MAGFile(object):
         for elem in root:
             if elem.tag.endswith('gen'):
                 # attributi
-                self.gen.set_creation(elem.attrib['creation'])
-                self.gen.set_last_update(elem.attrib['last_update'])
+                self.gen.set_creation(elem.attrib.get('creation'))
+                self.gen.set_last_update(elem.attrib.get('last_update'))
                 # elementi
                 for se in elem:
                     if se.tag.endswith('access_rights'):
@@ -316,7 +316,7 @@ class MAGFile(object):
                     else:
                         print("Non convertito%s" %se)
             elif elem.tag.endswith('bib'):
-                self.bib.set_level(elem.attrib['level'])
+                self.bib.set_level(elem.attrib.get('level'))
                 for se in elem:
                     if se.tag.endswith('identifier'):
                         self.bib.add_identifier(se.text)
@@ -364,11 +364,11 @@ class MAGFile(object):
             elif elem.tag.endswith('img'):
                 from MAG.GEN_IMG_sections import img
                 if 'imggroupID' in elem.attrib:
-                    imgID = elem.attrib['imggroupID']
+                    imgID = elem.attrib.get('imggroupID')
                 else:
                     imgID = None
                 if 'holdingsID' in elem.attrib:
-                    holdingsID = elem.attrib['holdingsID']
+                    holdingsID = elem.attrib.get('holdingsID')
                 else:
                     holdingsID = None
                 for se in elem:
@@ -378,12 +378,12 @@ class MAGFile(object):
                         newimg.set_dpi(se.text)
                     elif se.tag.endswith('file'):
                         if 'Location' in se.attrib:
-                            loc = se.attrib['Location']
+                            loc = se.attrib.get('Location')
                         else:
                             loc = "Mancante"
                             warnings.warn("Location mancante",stacklevel=2)
                         if '{http://www.w3.org/TR/xlink}href' in se.attrib:
-                            link = se.attrib['{http://www.w3.org/TR/xlink}href']
+                            link = se.attrib.get('{http://www.w3.org/TR/xlink}href')
                         else:
                             link = "Mancante"
                             warnings.warn("Link mancante",stacklevel=2)
